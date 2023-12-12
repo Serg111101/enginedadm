@@ -26,6 +26,7 @@ import { EditHeader } from '../../components/EditHeader';
 import { EditFooter } from '../../components/EditFooter';
 import { LessonEdit } from '../../components/LessonEdit';
 import { Satellites } from '../Satellites';
+import { AddTeacher } from '../../components/AddTeacher';
 
 
 export const Settings = () => {
@@ -75,7 +76,7 @@ export const Settings = () => {
     </button>
     <div className={`menu ${menuOpen ? 'open' : ''}`} ref={menuRef}>
       {[
-        'Home', 'Header', 'HomeNextRoute', 'HomeAuthorComponent',
+        "Add Teacher", 'Home', 'Header', 'HomeNextRoute', 'HomeAuthorComponent',
         'HomeInfo', 'ContactUSInfo', 'Contact', 'Info',
         'AboutTeam', 'AboutPerson', 'Lessons',"Satelite", 'Footer'
       ].map(menuItem => (
@@ -93,6 +94,7 @@ export const Settings = () => {
         {item === 'Home' && <HomeHeader />}
         <div className='homePageBottom' style={{ backgroundImage: `url(${Background})` }}>
            {item === 'Header' && <EditHeader />}
+          {item === 'Add Teacher' && <AddTeacher/>}
           {item === 'HomeNextRoute' && <HomeNextRoute />}
           {item === 'HomeAuthorComponent' && <HomeAuthorComponent />}
           {item === 'HomeInfo' && <HomeInfo />}
