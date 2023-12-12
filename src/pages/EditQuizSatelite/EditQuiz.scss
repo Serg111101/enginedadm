@@ -1,0 +1,107 @@
+.answer {
+    width: 100%;
+    min-height: 90vh;
+    margin: 0 auto;
+    padding: 150px 40px;
+
+    // background-color: #68abea;
+    .quiz {
+        max-width: 1200px;
+        margin: 20px auto;
+
+        div {
+            .head {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 2px solid black;
+                padding: 10px;
+
+                input {
+                    width: 60%;
+                    border-radius: 20px;
+                    height: 30px;
+                }
+            }
+
+            .answer_box {
+                width: 100%;
+
+                .answer_correct {
+                    h4 {
+                        text-align: center;
+                        padding: 10px;
+
+                    }
+
+                    .answer_text {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border-bottom: 2px solid black;
+                        padding: 10px;
+
+                        input {
+                            width: 80%;
+                            border-radius: 20px;
+                            height: 30px;
+                        }
+                    }
+                }
+
+                .answer_wrong {
+                    width: 100%;
+
+                    h4 {
+                        text-align: center;
+                        padding: 10px;
+
+                    }
+
+                    .answer_wrongtext {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        border-bottom: 2px solid black;
+                        padding: 10px;
+
+                        div {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding-bottom: 10px;
+                            div{
+                                padding-bottom: 0px;
+                                .iconantd{
+                                    margin-right: 5px;
+                                }
+                            }
+                            input {
+                                width: 80%;
+                                border-radius: 20px;
+                                height: 30px;
+                            }
+                        }
+
+                        ;
+
+                    }
+                }
+            }
+        }
+    }
+    .addQuestion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+        input{
+            width: 80%;
+            border-radius: 20px;
+            height: 30px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+    }
+}

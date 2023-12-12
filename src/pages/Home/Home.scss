@@ -1,0 +1,51 @@
+.home{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    background-color: black;
+    
+    .homeHeaderPage{
+        background-color: black;
+        // margin-top: 50px;
+        // margin-bottom: 50px;
+        // height: 90vh;
+    }
+
+
+    .homePageBottom{
+        background-clip: border-box;
+        background-repeat: no-repeat !important;
+        background-origin: border-box;
+        background-attachment: fixed;
+        background-size: cover;
+        padding-bottom: 5%;
+        padding-top: 7%;
+        margin-top: -100px;
+    }
+}
+
+// @media (max-width:1200px){
+//     .homeHeaderPage{
+//         height: 80vh !important;
+//     }
+    
+// }
+
+// @media (max-width:1100px){
+//     .homeHeaderPage{
+//         height: 70vh !important;
+//     }
+// }
+
+// @media (max-width:1000px){
+//     .homeHeaderPage{
+//         height: 60vh !important;
+//     }
+// }
+// @media (max-width:900px){
+//     .homeHeaderPage{
+//         height: 60vh !important;
+//     }
+// }
+
+

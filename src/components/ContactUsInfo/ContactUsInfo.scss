@@ -1,0 +1,38 @@
+.ContactUsInfo{
+    // margin-top:5% ;
+    // margin-bottom: 7%;
+
+    .ContactUsInfoContainer{
+        background-color: rgba(0, 0, 0, 0.227);
+        max-width: 600px;
+        padding: 2%;
+        margin: 0 auto;
+        border:20px solid rgba(0, 0, 255, 0.598);
+
+    }
+
+    .contactUsInfoParagraph{
+        font-size: 48px;
+        color: white;
+    }
+
+    .contactUsInfoParagraphText{
+        margin-top: 4%;
+        color: white;
+        letter-spacing: 2px;
+        line-height: 44px;
+    }
+    .inputTitle{
+        input{
+            margin-top: 10px;
+        }
+        textarea{
+            margin-top: 20px;
+        }
+        .closeOkButtons{
+            display: flex;justify-content: space-around;
+            align-items: center;
+        }
+    }
+
+}

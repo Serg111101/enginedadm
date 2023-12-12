@@ -1,0 +1,19 @@
+// custom-flags-select.scss
+
+// Override the default size of flag icons
+.rfs-flag-image {
+  width: 32px;
+  height: 24px;
+}
+
+// Customize the flag dropdown
+.rfs__list {
+  width: 200px;
+  background-color: #f0f0f0;
+}
+
+.rfs__option {
+  padding: 10px;
+  color: #333;
+}
+

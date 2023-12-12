@@ -1,0 +1,232 @@
+.AboutTeam{
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    color: white;
+
+    .iconantd{
+        font-size: 25px !important;
+        background-color: white;
+        color: black;
+        transition: all .3s linear;
+        &:hover{
+            color: white;
+            background-color: gray;
+            transform: scale(1.1);
+        }
+     }
+    .aboutSection{
+        display: flex;
+        justify-content: center;align-items: center;
+
+        .aboutSectionContainer{
+            display: grid;
+            grid-template-columns: auto auto ;
+            grid-template-rows: auto;
+            margin: 20px;
+            // margin: 20px;
+            .bigimg{
+                max-width:600px;
+                 img{
+                     height:754px;
+                     width: 100%;
+                     background-position: center;
+                     background-size: cover;
+                 }
+         }
+          
+            gap: 20px;
+            .items{               
+                display: grid;
+                grid-template-columns: auto auto ;
+                margin: 0 auto;
+               gap:20px;
+            //    padding: 20px;
+            
+            .aboutInfoBlock:nth-child(1){
+                background: #77aad9;
+                max-width: 270px;
+                height:429px;
+                img{
+                    border-radius: 50%;
+                    max-width: 72px;
+                    margin-left: 180px;
+                    margin-top: 20px;
+                    object-fit: cover;
+                    
+                }
+
+                h3{
+                    font-size: 20px;
+                    padding: 20px;
+                    }
+                    p{
+                        font-size: 16px;
+                        padding: 20px;
+                        text-align: start;
+                        line-height: 22px;
+                        font-style: italic;
+                    }
+
+                    button{
+                        color: #adcce9;
+                        background-color: #77aad9;
+                        font-size: 20px;
+                        // display: flex;
+                        // margin: 0 auto;
+                        margin-left: 170px;
+                        margin-top: 20px;
+                        &:hover{
+                            cursor: pointer;
+                        }
+
+                        
+                    }
+
+            }
+            .aboutInfoBlock:nth-child(2){
+                background: #e9f2fa;
+                max-width: 270px;
+                height: 429px;
+
+                img{
+                    border-radius: 50%;
+                    margin-left: 180px;
+                    margin-top: 20px;
+                    max-width: 72px;
+                    
+                    
+                }
+
+                h3{
+                color:black;
+                font-size: 20px;
+                padding: 20px;
+                }
+                p{
+                    color: black;
+                    font-size: 15px;
+                    text-align: start;
+                    padding: 20px;
+                    line-height: 22px;
+                    font-style: italic;
+
+
+
+                }
+                button{
+                    width: 100%;
+                    color: #478ac9;
+                    background: #e9f2fa;
+                    font-size: 20px;
+                    // display: flex;
+                    // margin: 0 auto;
+                    // margin-left: 170px;
+                    // margin-top: 85px;                    
+                    display: flex !important ;
+                    align-items: flex-end !important;
+                    justify-content:flex-end !important;
+                    padding-right: 20px;    
+                    &:hover{
+                        cursor: pointer;
+                    }                
+
+
+                    
+                }
+            }
+
+            .aboutInfoBlock:nth-child(3){
+                    overflow: hidden;
+                    height: 339px;
+                img{
+                    width: 270px;
+                overflow: hidden;
+                height: 90%;
+                }
+
+            }
+
+            .aboutInfoBlock:nth-child(4){
+                height: 339px;
+
+                overflow: hidden;
+                img{
+                    width: 274px;
+                    height: 90%;
+                    overflow: hidden;
+                }
+            }
+        }            
+
+
+        }
+
+    }
+.InfoBlockTitle{
+    color: white;
+    font-size: 20px;
+}
+input{
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+.okCloseButton{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.uploadImage{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+}
+
+@media(max-width:1210px){
+    .AboutTeam{
+        .aboutSection{
+            .aboutSectionContainer{
+                grid-template-columns: auto !important;
+            }
+        }
+    }
+    }
+    
+    @media(max-width:620px){
+        .AboutTeam{
+            .aboutSection{
+                .aboutSectionContainer{
+    
+                    .items{
+                        grid-template-columns: auto !important ;
+                        margin: 0 auto !important;
+    
+                    }
+    
+                    .bigimg{
+                       img{
+                        width: 400px !important;
+                        height: 600px !important;
+                       }
+                    }
+                }
+            }
+        }
+
+    }
+    
+    @media(max-width:450px){
+        .AboutTeam{
+            .aboutSection{
+                .aboutSectionContainer{
+                    .bigimg{
+                        img{
+                            width:300px !important;
+                            height: 450px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }

@@ -1,0 +1,432 @@
+.contact{
+    width: 100%;
+    background-color: #292e33;
+    height: 400px;
+    position: relative;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 50px;
+    // padding: 59px;
+    .container_contact{
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        padding: 70px;
+        h1{
+            color: white;
+            font-size: 60px;
+        }
+        p{
+            color: white;
+            font-size: 29px;
+            padding: 25px;
+        }
+
+        .inputs{
+            display: flex;
+            justify-content: center;
+            align-items: center;     
+            
+            .massege_submit{
+                width: 1000px;
+                background-color: #259bca;
+                height: 70px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                // padding-top: 20px;
+                margin-top: 40px;
+
+                // color: #259bca;
+                button{
+                //   background-color: none;
+                background: #259bca;
+                color: white;
+                font-size: 23px;
+                }
+            }
+
+           label{
+            color: white;
+            display: flex;
+            justify-content: flex-start;
+            line-height: 2rem;
+            font-size: 23px;
+           }
+            .top_input{
+                // width: 1500px;
+                display: flex;
+                justify-content: space-between;
+                padding-top: 20px;
+                input{
+                    width: 600px;
+                    border-radius: 0;
+                    height: 70px;
+                    font-size: 25px;
+                    &::placeholder{
+                        font-size: 25px;
+                    }
+                }
+                
+            }
+
+            .bottom_input{
+                width: 84.3rem;
+                padding-top: 60px;
+                display: flex;
+                flex-direction: column;
+                margin: 0 auto;
+                justify-content: center;
+                align-items:normal;
+                text-align: center;
+
+                .textareaContact{
+                    margin: 0 auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items:center;
+                    border-radius: 0;
+                    resize: none;
+                    font-size: 25px;
+                    &::placeholder{
+                        font-size: 25px;
+                    }
+                }
+
+            }
+        }
+        .message_submit{
+
+            button{
+                // padding: 20px;
+                // text-align: center;
+                height: 70px;
+                font-size: 30px;
+                width: 400px !important;
+            }
+            
+        }
+    }
+    .resonseMessage{
+        // box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        box-shadow: rgba(255, 255, 255, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+        z-index: 80000;
+        color: white;
+        // border: 3px dotted blue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        // box-shadow: 0px 0px 0px red;
+    }
+
+    :root {
+        --hue: 223;
+        --bg: hsl(var(--hue),10%,90%);
+        --fg: hsl(var(--hue),10%,10%);
+        font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1280 - 320));
+    }
+    body {
+        background-color: var(--bg);
+        color: var(--fg);
+        font: 1em/1.5 sans-serif;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+        transition: background-color 0.3s;
+    }
+    main {
+        padding: 1.5em 0;
+    }
+    
+    .pl,
+    .pl__worm {
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+    }
+    .pl {
+        animation-name: bump;
+        animation-timing-function: linear;
+        width: 4em;
+        height: 4em;
+    }
+    .pl__ring {
+        stroke:white; 
+        // hsla(var(--hue),10%,10%,0.1);
+        transition: stroke 0.3s;
+    }
+    .pl__worm {
+        animation-name: worm;
+        animation-timing-function: cubic-bezier(0.42,0.17,0.75,0.83);
+    }
+    
+    /* Dark theme */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --bg: hsl(var(--hue),10%,10%);
+            --fg: hsl(var(--hue),10%,90%);
+        }
+        .pl__ring {
+            stroke:white;
+            //  hsla(var(--hue),10%,90%,0.1);
+        }
+    }
+    
+    /* Animations */
+    @keyframes bump {
+        from,
+        42%,
+        46%,
+        51%,
+        55%,
+        59%,
+        63%,
+        67%,
+        71%,
+        74%,
+        78%,
+        81%,
+        85%,
+        88%,
+        92%,
+        to { transform: translate(0,0); }
+        44% { transform: translate(1.33%,6.75%); }
+        53% { transform: translate(-16.67%,-0.54%); }
+        61% { transform: translate(3.66%,-2.46%); }
+        69% { transform: translate(-0.59%,15.27%); }
+        76% { transform: translate(-1.92%,-4.68%); }
+        83% { transform: translate(9.38%,0.96%); }
+        90% { transform: translate(-4.55%,1.98%); }
+    }
+    @keyframes worm {
+        from { stroke-dashoffset: 10; }
+        25% { stroke-dashoffset: 295; }
+        to { stroke-dashoffset: 1165; }
+    }
+ .inputTextTitle{
+    width: 100%;
+    input{
+        width: 100%;
+    }
+ }
+ input{
+    margin-bottom: 40px;
+ }
+ .okCloseButtons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+ }
+}
+
+// @media (max-width:1620px){
+//     .bottom_input{
+//         width: 1320px !important;
+
+
+//         .textareaContact{
+
+//         }
+//     }
+// }
+
+
+@media (max-width:1440px){
+    .contact{
+        max-width: 1200px;
+        background-color: #292e33;
+        height: 200px;
+        position: relative;
+        height: auto;
+        margin: 0 auto;
+        // padding: 59px;
+        .container_contact{
+            max-width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            padding: 60px;
+            h1{
+                color: white;
+                font-size: 48px;
+            }
+            p{
+                color: white;
+                font-size: 20px;
+                padding: 10px;
+            }
+    
+            .inputs{
+                display: flex;
+                justify-content: center;
+                align-items: center;     
+                
+                .massege_submit{
+                    width: 622px;
+                    background-color: #259bca;
+                    height: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    // padding-top: 20px;
+                    margin-top: 20px;
+    
+                    // color: #259bca;
+                    button{
+                    //   background-color: none;
+                    background: #259bca;
+                    color: white;
+                    font-size: 16px;
+                    }
+                }
+    
+               label{
+                color: white;
+                display: flex;
+                justify-content: flex-start;
+                line-height: 1.6rem;
+                font-size: 16px;
+               }
+                .top_input{
+                    width: 624px;
+                    display: flex;
+                    justify-content: space-between;
+                    padding-top: 20px;
+                    input{
+                        width: 302px;
+                        border-radius: 0;
+                        height: 40px;
+                    }
+                    
+                }
+    
+                .bottom_input{
+                    width: 624px;
+                    padding-top: 40px;
+    
+                    .textareaContact{
+                        border-radius: 0;
+                        resize: none;
+                    }
+                    
+                   
+    
+    
+                }
+            }
+        }
+        .resonseMessage{
+            // box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+            z-index: 80000;
+            color: white;
+            // border: 3px dotted blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            // box-shadow: 0px 0px 0px red;
+        }
+     
+    }
+    
+
+}
+
+@media(max-width:769px){
+    .contact{
+
+        .container_contact{
+            .inputs{
+                .top_input{
+                    width: 500px;
+                    margin: 0 auto;
+                    input{
+                        width:240px;
+                        // justify-content: space-between;
+                    }
+                }
+                .bottom_input{
+                    width: 500px;
+                    margin: 0 auto;
+                    padding-top: 40px;
+                   
+    
+    
+                }
+                .massege_submit{
+                    width: 500px;
+                }
+            }
+        }
+    }
+
+}
+
+@media(max-width:566px){
+    .contact{
+
+        .container_contact{
+            
+            .inputs{
+                .top_input{
+                    width: 400px;
+                    flex-direction: column;
+                    input{
+                        width:400px;
+                    }
+                    label{
+                        
+                        flex-direction: column;
+                        text-align: left;
+                        
+                    }
+                }
+                .bottom_input{
+                    width: 400px;
+                   
+                   
+    
+    
+                }
+                .massege_submit{
+                    width: 400px;
+                }
+            }
+        }
+    }
+
+}
+
+@media(max-width:461px){
+    .contact{
+
+        .container_contact{
+            h1{
+                font-size:30px
+            }
+            p{
+                font-size: 16px;
+            }
+            .inputs{
+                .top_input{
+                    width: 280px;
+                    flex-direction: column;
+                    input{
+                        width:280px;
+                    }
+                    
+                }
+                .bottom_input{
+                    width: 280px;
+                   
+                   
+    
+    
+                }
+                .massege_submit{
+                    width: 280px;
+                }
+            }
+        }
+    }
+}

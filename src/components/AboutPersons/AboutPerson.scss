@@ -1,0 +1,222 @@
+.AboutPersons{
+    max-width: 1200px;
+    font-size: OpenSans,sans-serif;
+     margin: 0 auto;
+     background-color: black;
+     .aboutPersonCont {
+         margin: 0 auto;
+         display: grid;
+         grid-template-columns: auto auto auto auto auto ;
+         grid-template-rows: auto auto  ;
+         gap: 30px;
+         .itemPeople{
+             color: white;
+     
+ 
+             .imageDiv{
+                 max-width: 213px;
+                 height: 213px;
+                 overflow: hidden;
+                 object-position: 50% 50%;
+                 object-fit: cover;
+                 border-radius: 50%;
+                 img{
+                     width: 213px;
+                     height: 100%;
+                     object-fit: cover;
+                     object-position: 50% 50%;
+
+                 }
+             }
+             .PersonTitle{
+                 width: 100%;
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+                 margin-left: auto;
+                 margin-right: auto;
+                 text-align: center;
+ 
+                 p{
+                     width: 100%;
+                 margin-top: 12%;
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+             margin-left: auto;margin-right: auto;
+             text-align: center;
+ 
+                 }
+             }
+         }
+         .infoPerson{
+             width: 100%;
+             margin-top: 2%;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             margin-left: auto;margin-right: auto;
+             text-align: center;
+ 
+             p{
+                 width: 100%;
+             margin-top: 12%;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             margin-left: auto;margin-right: auto;
+             text-align: center;
+             
+ 
+             }
+         }
+         
+ 
+         
+     }
+     .iconantd{
+        font-size: 25px !important;
+        background-color: white;
+        color: black;
+        transition: all .3s linear;
+        &:hover{
+            color: white;
+            background-color: gray;
+            transform: scale(1.1);
+        }
+     }
+     .addIcon{
+        width: 100%;
+        margin-top: 90px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      
+     }
+ .addPerson{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;align-items: center;
+    overflow: hidden;
+    .addImageDiv{
+        width:213px;
+        height: 200px;
+        border: 2px solid red;
+        overflow: hidden;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit:fill;
+            overflow: hidden;
+        }
+    }
+    .addTextInput{
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+
+        input{
+            margin-top: 30px;
+            padding: 10px;
+            
+        }
+
+    }
+
+
+ }
+.allButton{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.saveButton{
+    margin-top: 20px;
+    display: flex;justify-content: space-between;
+    align-items: center;
+}
+ .okclosButtons{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+ }
+ .uploadImage{
+    display: flex;
+    justify-content: flex-end;
+ }
+ .adddd{
+    color: white;
+    margin-top: 12px;
+ }
+ }
+ 
+ @media (max-width:1200px){
+     .aboutPersonCont{
+         display: grid !important;
+         grid-template-columns: auto auto auto !important ;
+         margin: 0 auto;
+ 
+     }
+     .PersonTitle{
+        
+         margin: 2% auto !important ;
+         text-align: center !important;
+         p{
+             margin: 0 auto !important;
+             text-align: center !important;
+         }
+     }
+     .infpPerson{
+         margin: 0 auto !important;
+         text-align: center !important;
+         p{
+             margin: 0 auto !important;
+             text-align: center !important;
+         }
+     }
+     .imageDiv{
+         margin: 0 auto !important ;
+     }
+ }
+ 
+ @media (max-width:769px){
+     .aboutPersonCont{
+         display: grid !important;
+         grid-template-columns: auto auto  !important ;
+         grid-template-rows: auto auto auto auto !important ;
+     }
+     .PersonTitle{
+         margin: 2% auto !important ;
+         text-align: center !important;
+         p{
+             margin: 0 auto !important;
+             text-align: center !important;
+         }
+     }
+     .infpPerson{
+         margin: 0 auto !important;
+         text-align: center !important;
+         p{
+             margin: 0 auto !important;
+             text-align: center !important;
+         }
+     }
+     .imageDiv{
+         margin: 0 auto !important ;
+     }
+     
+ }
+ 
+ @media (max-width:460px){
+     .aboutPersonCont{
+         display: grid !important;
+         grid-template-columns: auto   !important ;
+         grid-template-rows: auto auto auto auto auto !important ;
+     }
+     .imageDiv{
+         margin: 0 auto;
+     }
+ 
+ }

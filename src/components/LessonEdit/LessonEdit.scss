@@ -1,0 +1,157 @@
+.EditLesson_Component {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+
+    .Lesson_option {
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 30px;
+        padding-top: 30px;
+        border-bottom: 2px solid white;
+       
+        .Lesson_item {
+            width: 200px;
+            height: auto;
+            color:aliceblue;
+
+            img {
+                width: 100%;
+            }
+        }
+        textarea{
+            margin: 0 auto;
+        }
+        .Lesson_mini_map {
+            width: 80%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            
+            .Lesson_mini_div {
+                width: 200px;
+                .Lesson_mini_item {
+                    width: 100%;
+                    padding: 20px;
+                    min-height: 160px;
+                    text-align: center;
+
+                }
+                .Editmini_leson{
+                    position: relative;
+                    display: flex;
+                    z-index: -1;
+                    background-color: rgba(255, 255, 255, 0.703);
+                    text-align: center;
+                    top: -10%;
+                    border-bottom-left-radius: 12px;
+                    border-bottom-right-radius: 12px;
+                    border-top: 1px solid rgba(255, 255, 255, 0);
+                    cursor: pointer;
+                    &:hover{
+                        border-top: 1px solid white;
+                        color: white;
+                    }
+                }
+                &:hover>.Editmini_leson{
+                    transition: all .5s linear;
+                    top: 0;
+                    z-index: 1;
+                }
+            }
+
+            .Edit_button_Lesson,
+            .save_button_Lesson,
+            .Delete_button_Lesson {
+                position: relative;
+                width: 50px;
+                height: 50px;
+               
+                // left: -50%;
+                cursor: pointer;
+
+                span {
+                    font-size: 20px;
+                    padding: 14px;
+                }
+            }
+        }
+    }
+}
+
+.AddLesson_component {
+
+    text-align: center;
+  color: aliceblue;
+    input {
+        // background: rgba(255, 255, 255, 0);
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+        // border-radius: 20px;
+        border-bottom: 2px solid;
+    }
+
+    .AddLesson_button {
+        background-color: aliceblue;
+        margin: 0 auto;
+        font-size: 40px;
+    }
+
+    .AddLesson_div {
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap:wrap ;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 30px;
+        padding-top: 30px;
+        border-bottom: 2px solid white;
+
+        .Lesson_item {
+          
+            width: 200px;
+            height: auto;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .Lesson_mini_map {
+            width: 78%;
+            display: flex;
+            flex-wrap: wrap;
+            // justify-content: space-between;
+
+            .Lesson_mini_item {
+                width: 200px;
+                min-height: 200px;
+                padding: 20px;
+                margin: 8px;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                border-right: 2px solid white;
+            }
+
+        }
+        .btn_box{
+            width: 100%;
+            padding: 5px;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+}

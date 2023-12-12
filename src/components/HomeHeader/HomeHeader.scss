@@ -1,0 +1,234 @@
+.HomeHeader {
+  max-width: 100%;
+  margin: 0 auto;
+
+  .HomeImageDiv {
+    width: 100%;
+    height: 100vh;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .homeHeaderP {
+      width: 100%;
+      font-size: 40px;
+      letter-spacing: 25px;
+      line-height: 75px;
+      color: #18cffd;
+      width: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      width: 0%;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: textanimation 10s steps(27) infinite;
+      animation-fill-mode: both;
+    }
+  }
+
+  .HomeImageDiv1 {
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+    gap: 20px;
+    overflow: hidden;
+
+    .imageContainer {
+      width: 95%;
+      height: 70%;
+      overflow: hidden !important;
+
+      img {
+        width: 100%;
+        height: 100%;
+        overflow: hidden !important;
+        height: 100% !important;
+        object-fit: contain;
+        object-position: 50% 50%;
+        border: 1px solid red;
+      }
+    }
+  }
+
+  .textHomeEdit {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    color: white;
+  }
+
+  .addDeleteButton {
+    margin-top: 52px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+  }
+
+  .inputt {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+
+    input {
+      width: 80%;
+    }
+
+    .buttons {
+      width: 20%;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+
+  .addButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 40px;
+  }
+}
+
+@keyframes textanimation {
+  0% {
+    width: 0%;
+    color: orangered;
+  }
+
+  30% {
+    width: 100%;
+    color: greenyellow;
+  }
+
+  70% {
+    width: 100%;
+    color: coral;
+  }
+
+  100% {
+    width: 100%;
+    color: #18cffd;
+  }
+}
+
+@media (max-width: 1570px) {
+  .homeHeaderP {
+    font-size: 30px !important;
+    letter-spacing: 20px !important;
+    line-height: 70px !important;
+  }
+}
+
+@media (max-width: 1215px) {
+  .homeHeaderP {
+    font-size: 25px !important;
+    letter-spacing: 17px !important;
+    line-height: 65px !important;
+  }
+}
+
+@media (max-width: 1025px) {
+  .homeHeaderP {
+    font-size: 20px !important;
+    letter-spacing: 14px !important;
+    line-height: 60px !important;
+  }
+}
+
+@media (max-width: 830px) {
+  .HomeImageDiv {
+    height: 90vh !important;
+
+    .homeHeaderP {
+      letter-spacing: 10px !important;
+      line-height: 50px !important;
+
+      h1 {
+        font-size: 30px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 669px) {
+  .HomeImageDiv {
+    height: 80vh !important;
+
+    .homeHeaderP {
+      font-size: 16px !important;
+      letter-spacing: 9px !important;
+      line-height: 40px !important;
+    }
+  }
+}
+
+@media (max-width: 598px) {
+  .HomeImageDiv {
+    height: 70vh !important;
+
+    .homeHeaderP {
+      font-size: 13px !important;
+      letter-spacing: 7px !important;
+      line-height: 35px !important;
+    }
+  }
+}
+
+@media (max-width: 476px) {
+  .HomeImageDiv {
+    height: 60vh !important;
+
+    .homeHeaderP {
+      letter-spacing: 6px !important;
+      line-height: 30px !important;
+
+      h1 {
+        font-size: 25px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 426px) {
+  .homeHeaderP {
+    font-size: 10px !important;
+    letter-spacing: 6px !important;
+    line-height: 25px !important;
+  }
+}
+
+@media (max-width: 385px) {
+  .HomeImageDiv {
+    height: 50vh !important;
+
+    .homeHeaderP {
+      letter-spacing: 5px !important;
+      line-height: 20px !important;
+
+      h1 {
+        font-size: 20px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 335px) {
+  .homeHeaderP {
+    font-size: 8px !important;
+    letter-spacing: 5px !important;
+    line-height: 18px !important;
+  }
+}

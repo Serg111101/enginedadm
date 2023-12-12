@@ -1,0 +1,222 @@
+.EditInformation {
+    position: fixed;
+    padding: 50px;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 2000000;
+    background-color: rgba(0, 0, 0, 0.826);
+    overflow-y: scroll;
+    width: 100%;
+    
+    hr {
+        width: 95%;
+        height: 3px;
+        background-color: gray;
+        // border-bottom-left-radius: 900%;
+        border-radius: 12px;
+        margin: 5px auto 30px;
+
+    }
+
+    .addTextArr {
+        color: white;
+
+        .saveCancle {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 25px;
+            .CloseOutlined{
+                &:hover{
+                    color: red;
+                }
+            }
+            span {
+                font-size: 35px;
+                color: white;
+                &:hover {
+                    // background-color: white;
+                    color: greenyellow;
+                    // border-radius: 50%;
+                //    box-shadow: 0 0 30px 20px white ;
+                }
+            }
+        }
+    }
+
+    .uploadImage_Add_label {
+        .uploadImage_Add {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 25%;
+            background-color: gray;
+            color: white;
+            height: 250px;
+            cursor: pointer;
+            font-size: 50px;
+            border: 2px dashed;
+            &:hover {
+                background-color: white;
+                color: black;
+            }
+        }
+    }
+
+    .EditInformation_div {
+        width: 100%;
+        display: initial;
+        text-align: center;
+        height: 50%;
+
+        input {
+            width: 100%;
+            background-color: rgba(240, 248, 255, 0.656);
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        textarea {
+            border-radius: 12px;
+            padding: 12px;
+            width: 100%;
+            height: 100px;
+        }
+
+        .inputImage {
+            width: 70%;
+        }
+
+        .imageDiv {
+            transition: all 2s linear;
+
+            img {
+                max-width: 70%;
+            }
+
+            .uploadImage {
+                cursor: pointer;
+                padding: 15px;
+                position: relative;
+                top: -84px;
+                opacity: 0;
+                width: 80%;
+                margin: 0 auto;
+                background-color: gray;
+                transition: all .5s linear;
+                display: flex;
+                justify-content: space-around;
+
+                span {
+                    font-size: 50px;
+                    color: white;
+                }
+
+            }
+
+            &:hover .uploadImage {
+                opacity: 1;
+                color: white;
+            }
+        }
+
+        .gridContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 10px;
+
+            .SlidesImage {
+                width: 100%;
+
+                img {
+                    width: 100%;
+                }
+
+                .deleteviewDiv {
+                    width: 100%;
+                    height: 110px;
+                    background-color: rgba(68, 66, 66, 0.667);
+                    color: white;
+                    position: relative;
+                    font-size: 50px;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    opacity: 0;
+                    top: -114px;
+                    transition: all .5s linear;
+                    transform: scale(1, 0);
+
+                    span {
+                        transition: all .3s linear;
+                        cursor: pointer;
+
+                        &:hover {
+                            transform: translateY(-5px)scaleX(1.2);
+                            color: wheat;
+                        }
+                    }
+
+                    .deleteImages:hover {
+                        transform: translateY(-5px)scaleX(1.2);
+                        color: red;
+                    }
+
+                }
+
+                &:hover .deleteviewDiv {
+                    opacity: 1;
+                    transform: scale(1, 1);
+
+                }
+            }
+
+            .uploadImage_Add_Slide {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                background-color: gray;
+                color: white;
+                height: 320px;
+                cursor: pointer;
+                font-size: 50px;
+                border: 2px dashed;
+
+                &:hover {
+                    background-color: white;
+                    color: black;
+                }
+            }
+        }
+
+        .SaveChange_Edit {
+            button {
+                padding: 12px;
+                border-radius: 12px;
+                background-color: green;
+                color: white;
+                cursor: pointer;
+
+                &:hover {
+                    color: black;
+                    background-color: greenyellow;
+                }
+            }
+        }
+    }
+
+    .CloseEdit {
+        position: fixed;
+        top: 0;
+        right: 20px;
+        font-size: 70px;
+        color: gray;
+        cursor: pointer;
+
+        &:hover {
+            color: white;
+        }
+    }
+}
