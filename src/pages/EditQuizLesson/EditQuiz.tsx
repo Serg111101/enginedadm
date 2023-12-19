@@ -44,7 +44,6 @@ export const EditQuiz = () => {
     }, [dispatch,title])
 
     async function editQuestion(value: any, index: any, indexItem: any, id: any, keys: string) {
-        console.log(value);
         if ( value?.incorrectAnswer !== undefined) {
             if (!value?.incorrectAnswer?.trim()) {
                 Swal.fire({

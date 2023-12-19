@@ -20,7 +20,6 @@ export const getfetchHomeHeader = () => {
             dispatch(fetchingHomeHeaderr());
             const response =await axios.get(`${URL}aeroSpace/homeIcons/text/${LocalValue ? LocalValue:"AM"}`);  
             dispatch (fetchHomeHeaderr(response.data[0]?.information[0]));
-            console.log(response.data[0]?.information[0]);
             
         }
         catch(error){
@@ -141,7 +140,6 @@ export const editHomeHeaderText=(editvalue:any)=>{
 }
 
 export const deleteHomeHeaderImages =(index:number)=>{
-    console.log(index);
     
     return async (dispatch:Dispatch) => {
         try{
@@ -168,7 +166,6 @@ export const addHomeHeaderImages =(addImg:string)=>{
     return async (dispatch:Dispatch) => {
         
         try{
-            console.log(addImg);
               await axios.post(`${URL}aeroSpace/addNewBlok/${LocalValue}/text/`,{logo:addImg},)
         }
         catch(error){
@@ -182,7 +179,6 @@ export const addHomeHeaderImages =(addImg:string)=>{
 export const editNextRoute = (obj:any,id:number) => {
 
     return async (dispatch:Dispatch)=>{
-        console.log(obj);
         
         try{
             await axios.put(`${URL}aeroSpace/editBlok/${LocalValue}/lessonBox/${id}/${id}`,obj)
@@ -194,7 +190,6 @@ export const editNextRoute = (obj:any,id:number) => {
 }
 
 export const editHomeAuthor = (obj:any) => {
-    console.log(obj);
     
     return async (dispatch:Dispatch)=>{
         try{

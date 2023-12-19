@@ -60,7 +60,6 @@ export function AboutPersons({ id }: any) {
       ...editvalue,
       image:addimage
     }
-    console.log(obj);
     
     await dispatch(editePerson(id, addimage?obj:editvalue));
     await dispatch(getAboutOutTeam());
@@ -111,7 +110,6 @@ export function AboutPersons({ id }: any) {
     }
 
   }
-console.log(addimage);
 
   return (
     <div className="AboutPersons">

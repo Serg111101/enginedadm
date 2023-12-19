@@ -98,7 +98,6 @@ export function HomeHeader() {
         return "Server request is failed";
       }
     }
-    console.log('dddddddddddd');
 
   }
   async function uploadImageHandleradd(e: any) {
@@ -111,7 +110,6 @@ export function HomeHeader() {
             "Content-Type": "multipart/form-data",
           },
         });
-        console.log(response.data.dirname);
 
         setAddNewImage(response.data.dirname);
       } catch (error) {

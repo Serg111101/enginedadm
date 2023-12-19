@@ -6,7 +6,6 @@ if(localStorage.getItem("language")){
 }
 
 export const RemoveItem = ({ deleteItem,name, setDeletePage, id }: any) => {
-  console.log(id);
   
   return (
     <div className='RemoveDiv' onClick={() => setDeletePage([-1, ''])}>

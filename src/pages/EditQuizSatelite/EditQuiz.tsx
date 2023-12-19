@@ -54,7 +54,6 @@ export const EditQuizSatelite = () => {
     //     }
     // }
     async function editQuestion(value: any, index: any, id: any, keys: string) {
-        console.log(value);
         if ( value?.incorrectAnswer !== undefined) {
             if (!value?.incorrectAnswer?.trim()) {
                 Swal.fire({

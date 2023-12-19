@@ -55,7 +55,6 @@ export const uploadImage = (e: any, id: number, setImage: (e: string) => void) =
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(response?.data?.dirname);
       
       setImage(response?.data?.dirname)
 
@@ -71,7 +70,6 @@ export const editePerson = (id: number, editvalue: any) => {
 
   return async () => {
     try {
-      console.log(editvalue,id);
 
       await axios.put(`${URL}aeroSpace/editAboutPage/${LocalValue}/${id}`, editvalue)
     } catch (error) {

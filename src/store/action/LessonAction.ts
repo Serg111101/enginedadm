@@ -132,7 +132,6 @@ export const getFetchSlides = (id: any) => {
 }
 export const editLessonSlides = (id: number, props: any) => {
     return async () => {
-        console.log(props);
         
         try {
             await axios.put(`${URL}aeroSpace/editExistTopics/${LocalValue}/${id}`, props)
@@ -144,9 +143,7 @@ export const editLessonSlides = (id: number, props: any) => {
 }
 
 export const editLessonAction = (id: number, props: any,title:string) => {
-    console.log(id,"iddddddddd");
-    console.log(props,"pppppppppppppppppp");
-    console.log(title,"tttttttttttt");
+   
     
     return async () => {
         try {
@@ -219,7 +216,6 @@ export const deleteLesson = (id: number,title:string) => {
 
 
 export const addnewLesson = (obj:any) => {
-    console.log(obj);
     
     return async () => {
         try {

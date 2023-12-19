@@ -176,3 +176,16 @@ export interface ISendMail {
   text: string,
   title: string,
 }
+
+export interface ITeacher  {
+  id:number
+  position:string,
+  name:string,
+  login:string,
+  password:string,
+  fullName:string,
+  role:string,
+  info:string,
+  updated_at:string,
+  created_at:string,
+};

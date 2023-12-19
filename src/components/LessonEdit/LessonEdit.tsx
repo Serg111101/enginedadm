@@ -146,7 +146,7 @@ export function LessonEdit() {
             lectures[3].text.trim() && lectures[3].color.trim() &&
             lectures[4].text.trim() && lectures[4].color.trim()) {
                 
-                console.log(lectures);
+                
             let newLesson={
                 lesson: addLesson.lesson,
                 icon: image,
