@@ -26,7 +26,6 @@ import { EditHeader } from '../../components/EditHeader';
 import { EditFooter } from '../../components/EditFooter';
 import { LessonEdit } from '../../components/LessonEdit';
 import { Satellites } from '../Satellites';
-import { AddTeacher } from '../../components/AddTeacher';
 import { Teacher } from '../../components/Teacher';
 
 

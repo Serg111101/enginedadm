@@ -42,8 +42,7 @@ export const editeTeacher = (obj:any) => {
         try{
         
            dispatch(fetchingTeacher())
-            const response =await axios.put(`${URL}putTeacher/${obj.id}`,obj);  
-            //  dispatch(fetchTeacher(response?.data));
+            await axios.put(`${URL}putTeacher/${obj.id}`,obj);  
         }
         catch(error){
             dispatch(fetchErrorTeacher(error as Error ));
@@ -57,7 +56,7 @@ export const deleteTeacher = (id:any) => {
         try{
         
            dispatch(fetchingTeacher())
-            const response =await axios.delete(`${URL}deleteTeacher/${id}`);  
+            await axios.delete(`${URL}deleteTeacher/${id}`);  
             
           
         }

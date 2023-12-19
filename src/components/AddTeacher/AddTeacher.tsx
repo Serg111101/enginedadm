@@ -1,5 +1,5 @@
 
-import React from "react";
+
 import { Form, Input, Button } from "antd";
 import "./AddTeacher.scss";
 import { useAppDispatch } from "../../hooks";
@@ -24,57 +24,57 @@ if (localStorage.getItem("language")) {
   return (
     <div className="registration-container">
       <Form className="registration-form" onFinish={onFinish}>
-        <h2>{LocalValue=='AM'?'Ավելացնել ուսուցիչ':'Add teacher'}</h2>
+        <h2>{LocalValue==='AM'?'Ավելացնել ուսուցիչ':'Add teacher'}</h2>
 
 
 
         <Form.Item
-          label={LocalValue=='AM'?"Անուն Ազգանուն":'Name Surname'}
+          label={LocalValue==='AM'?"Անուն Ազգանուն":'Name Surname'}
           name="fullName"
-          rules={[{ required: true, message: LocalValue=='AM'?"Պարտադիր դաշտ!":'Required field' }]}
+          rules={[{ required: true, message: LocalValue==='AM'?"Պարտադիր դաշտ!":'Required field' }]}
         >
           <Input />
         </Form.Item>
 
 
         <Form.Item
-          label={LocalValue=='AM'?"Առարկան":'Subject'} 
+          label={LocalValue==='AM'?"Առարկան":'Subject'} 
           name="position"
-          rules={[{ required: true, message: LocalValue=='AM'?"Պարտադիր դաշտ!":'Required field' }]}
+          rules={[{ required: true, message: LocalValue==='AM'?"Պարտադիր դաշտ!":'Required field' }]}
         >
           <Input />
         </Form.Item>
 
 
         <Form.Item
-          label={LocalValue=='AM'?"Մուտքանուն":'Username'} 
+          label={LocalValue==='AM'?"Մուտքանուն":'Username'} 
           name="username"
-          rules={[{ required: true, message: LocalValue=='AM'?"Պարտադիր դաշտ!":'Required field' }]}
+          rules={[{ required: true, message: LocalValue==='AM'?"Պարտադիր դաշտ!":'Required field' }]}
         >
           <Input />
         </Form.Item>
 
 
         <Form.Item
-          label={LocalValue=='AM'?"Գաղտաբառը":'Password'} 
+          label={LocalValue==='AM'?"Գաղտաբառը":'Password'} 
           name="password"
-          rules={[{ required: true, message: LocalValue=='AM'?"Պարտադիր դաշտ!":'Required field' }]}
+          rules={[{ required: true, message: LocalValue==='AM'?"Պարտադիր դաշտ!":'Required field' }]}
         >
           <Input.Password />
         </Form.Item>
         <Form.Item
-          label= {LocalValue=='AM'?"Հաստատել գաղտաբառը":'Confirm password'} 
+          label= {LocalValue==='AM'?"Հաստատել գաղտաբառը":'Confirm password'} 
           name="confirmPassword"
           dependencies={["password"]}
           rules={[
-            { required: true, message: LocalValue=='AM'?"Պարտադիր դաշտ!":'Required field' },
+            { required: true, message: LocalValue==='AM'?"Պարտադիր դաշտ!":'Required field' },
             ({ getFieldValue }) => ({
               validator(_, value) {
                 if (!value || getFieldValue("password") === value) {
                   return Promise.resolve();
                 }
                 return Promise.reject(
-                  new Error( LocalValue=='AM'?"Համընկնում չկա !":'There is no coincidence !' )
+                  new Error( LocalValue==='AM'?"Համընկնում չկա !":'There is no coincidence !' )
                 );
               },
             }),
@@ -84,11 +84,11 @@ if (localStorage.getItem("language")) {
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit">
-          {LocalValue=='AM'?"Ավելացնել ուսուցիչ":'Add teacher'} 
+          {LocalValue==='AM'?"Ավելացնել ուսուցիչ":'Add teacher'} 
           </Button>
         </Form.Item>
       </Form>
-      <button className="buttonprev" onClick={()=> setOpen(false)}>{LocalValue=='AM'?"Հետ":'Back'} </button>
+      <button className="buttonprev" onClick={()=> setOpen(false)}>{LocalValue==='AM'?"Հետ":'Back'} </button>
     </div>
   );
 };

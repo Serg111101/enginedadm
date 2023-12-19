@@ -3,7 +3,6 @@ import './EditClassModal.scss'
 import { CloseOutlined } from '@ant-design/icons'
 
 export const EditClassModal = ({ seteditTeacher, editTeacher,EditTeacher}) => {
-    const [addValue, setAddValue] = useState('')
     const [error, setError] = useState(false)
     return (
         <div className='AddClassModal'>
