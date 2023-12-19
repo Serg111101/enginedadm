@@ -6,7 +6,7 @@ import { AddTeacher } from '../AddTeacher'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import { EditClassModal } from '../EditClassRoom/EditClassModal'
 
-
+import { EyeFilled, EyeInvisibleFilled } from "@ant-design/icons"
 
 
 export function Teacher() {
@@ -51,14 +51,19 @@ export function Teacher() {
                             <tr>
                                 <th>{LocalValue === 'AM' ? "Անուն Ազգանուն" : 'Name Surname'}</th>
                                 <th>{LocalValue === 'AM' ? 'Առարկա' : 'Subject'}</th>
+                                <th colSpan={2} ><EyeFilled /></th>
+
                             </tr>
                         </thead>
+
                         <tbody>
                             {Teacher?.map((el) => <tr key={el.id}>
                                 <td>{el?.fullName}</td>
                                 <td><strong>{el?.position}</strong></td>
                                 <td className=' editdelete'>
                                     <EditOutlined className='edit' onClick={() => { seteditTeacher(el) }} />
+                                </td>
+                                <td>
                                     <DeleteOutlined className='delete' onClick={() => { deleteItem(el.id) }} />
                                 </td>
                             </tr>)
@@ -71,7 +76,7 @@ export function Teacher() {
                 {open && <AddTeacher setOpen={setOpen} />}
             </div>
 
-            
+
 
             {editTeacher && <EditClassModal seteditTeacher={seteditTeacher} editTeacher={editTeacher} EditTeacher={EditTeacher} />}
 
