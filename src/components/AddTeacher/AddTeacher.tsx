@@ -1,19 +1,71 @@
 
-
 import { Form, Input, Button, } from "antd";
 import "./AddTeacher.scss";
 import { useAppDispatch } from "../../hooks";
 import { fetchAddTeacher, getTeacher, } from "../../store/action/TeacherAction";
+import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
+import { useForm } from "antd/es/form/Form";
 
 const AddTeacher = ({ setOpen }: any) => {
+
+  const [error, setError] = useState<any>({});
+  const [loading, setLoadnig] = useState(false);
+
+
   const dispatch = useAppDispatch();
   const onFinish = async (values: string) => {
 
 
-    await dispatch(fetchAddTeacher(values));
+
+    await dispatch(fetchAddTeacher(values, setError, setLoadnig));
     dispatch(getTeacher('admin'))
-    setOpen(false)
+    if (error === "ok") {
+      setOpen(false)
+      setLoadnig(false);
+      setError("")
+
+    }
   };
+
+
+
+
+  useEffect(() => {
+
+    if (error === 'ok') {
+
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Տվըալները հաջողությամբ հաստատվել են",
+        showConfirmButton: false,
+        timer: 2500
+      }).then(() => {
+        setOpen(false)
+        setError("");
+        setLoadnig(false)
+
+      });
+    }
+    if (error?.response?.status < 200 || error?.response?.status >= 400) {
+
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        // title: "Լրացրեք բոլոր դաշտերը!!!",
+        showConfirmButton: false,
+        timer: 2500
+      }).then(() => {
+        setError("");
+        setLoadnig(false)
+      });
+    }
+  }, [error, loading])
+
+
+
+
 
   let LocalValue: any;
   if (localStorage.getItem("language")) {
@@ -23,12 +75,12 @@ const AddTeacher = ({ setOpen }: any) => {
 
   return (
     <div className="registration-container">
-      <Form  className="registration-form" onFinish={onFinish}>
+      <Form className="registration-form" onFinish={onFinish} >
         <h2 className="h2">{LocalValue === 'AM' ? 'Ավելացնել ուսուցիչ' : 'Add teacher'}</h2>
 
 
 
-        <Form.Item 
+        <Form.Item
           label={LocalValue === 'AM' ? "Անուն Ազգանուն" : 'Name Surname'}
           name="fullName"
           rules={[{ required: true, message: LocalValue === 'AM' ? "Պարտադիր դաշտ!" : 'Required field' }]}
@@ -60,7 +112,7 @@ const AddTeacher = ({ setOpen }: any) => {
           name="password"
           rules={[{ required: true, message: LocalValue === 'AM' ? "Պարտադիր դաշտ!" : 'Required field' }]}
         >
-          <Input.Password  />
+          <Input.Password />
         </Form.Item>
         <Form.Item
           label={LocalValue === 'AM' ? "Հաստատել գաղտաբառը" : 'Confirm password'}
@@ -80,10 +132,10 @@ const AddTeacher = ({ setOpen }: any) => {
             }),
           ]}
         >
-          <Input.Password  />
+          <Input.Password />
         </Form.Item>
         <Form.Item >
-          <Button type="primary" htmlType="submit">
+          <Button disabled={loading} className={loading ? "load" : ""} type="primary" htmlType="submit">
             {LocalValue === 'AM' ? "Ավելացնել ուսուցիչ" : 'Add teacher'}
           </Button>
         </Form.Item>

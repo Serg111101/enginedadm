@@ -30,8 +30,6 @@ export function Lesson() {
 
   async function Quizz(lesson:string) {
     localStorage.setItem("lessons", JSON.stringify(lesson));
-    dispatch(getFetchQuiz(lesson));
-    dispatch(getFetchLectures(lesson));
     setQuiz(!quiz);
     navigate('/Leqtures');
   }
@@ -52,7 +50,10 @@ export function Lesson() {
             {Lesson && Lesson.map((item, index) => {
              return (
 
-              <div key={index} className={count >= index + 1 ? "product-card" : "product-cardDisable"} onClick={() => Quizz(item?.lesson)}>
+              <div key={index} className=
+               "product-card"
+                 onClick={() => Quizz(item?.lesson)}
+                >
                 <img className='imageDiv' src={item?.icon} alt={item.lesson} />
                 <div className="color" id='color' style={{ background: item?.color }}>
                   <div className='ikonkaDiv'>

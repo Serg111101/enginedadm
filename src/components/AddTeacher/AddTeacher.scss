@@ -57,6 +57,7 @@ form{
         text-align: center;
         font-size: 28px;
       }
+
     }
 
   //   input{
@@ -78,6 +79,11 @@ form{
   //   #fullName{
   //     // transform: translateX(60px);
   //   }
+
+
+  .load{
+    pointer-events: none;
+  }
 
   }
   

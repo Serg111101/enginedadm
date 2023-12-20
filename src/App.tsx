@@ -18,6 +18,8 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { Login } from "./pages/Login";
 import { Settings } from "./pages/PageSettings/Settings";
 import { useEffect } from "react";
+import { UsefulMaterials } from "./pages/UsefulMaterials";
+import { UsefulMaterialsInfo } from "./pages/UsefulMaterialsInfo";
 
 
 function App() {
@@ -75,6 +77,8 @@ function App() {
           <Route path="/SatelliteQuiz" element={<QuizSatelite />} />
           <Route path="/EditSatelliteQuiz" element={<EditQuizSatelite />} />
           <Route path="/EditHeader" element={<EditHeader />} />
+          <Route path="/UsefulMaterials" element={<UsefulMaterials/>}/>
+          <Route path="/UsefulMaterialsInfo" element={<UsefulMaterialsInfo/>}/>
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

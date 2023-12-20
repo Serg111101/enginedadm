@@ -1,16 +1,13 @@
 .LessonContainer{
-  // padding-top: 110px;
-  // background-clip: border-box;
   background-origin: border-box;
   background-position: fixed;
   background-repeat: round;
   background-clip: border-box;
   background-size: contain;
-  height: 100vh;
 .Lesson {
   max-width: 1200px;
   margin: 0 auto;
-  padding-top: 210px;
+  padding-top: 70px;
 
   .prevButton{
     max-width: 1200px;
@@ -292,6 +289,5 @@
   .LessonContainer{
     background-repeat: no-repeat;
     background-size: cover;
-    height: 160vh;
   }
 }
