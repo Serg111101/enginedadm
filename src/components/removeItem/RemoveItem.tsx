@@ -12,7 +12,7 @@ export const RemoveItem = ({ deleteItem,name, setDeletePage, id }: any) => {
 
       <div className='RemoveItem'>
         <h3>{LocalValue==='AM'? 'Ուշադրություն!!!':'Attention!!!'} </h3>
-        <span>{LocalValue==='AM'? 'ջնջված հատվածը ետ բերել հնարավոր չէ,համոզված եք՞ որ ցանկանում եք ջնջել այն':'the deleted section cannot be recovered, are you sure you want to delete it?'}  </span>
+        <span>{LocalValue==='AM'? 'ջնջված հատվածը ետ բերել հնարավոր չէ,համոզված եք որ ցանկանում եք ջնջել այն':'the deleted section cannot be recovered, are you sure you want to delete it?'}  </span>
         <div>
           <button className='Yes' onClick={() => { deleteItem(id[0],id[1]) }}>{LocalValue==='AM'?'Այո':'Yes'}</button>
           <button onClick={() => setDeletePage([-1, ''])}>{LocalValue==='AM'?'Ոչ':'No'}</button>

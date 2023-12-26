@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../axios/adminaxios";
 import { Dispatch } from "@reduxjs/toolkit";
 import { fetchingAbout, fetchAbout, fetchErrorAbout } from "../slice/AboutSlice";
 import { fetchAboutOurTeam, fetchErrorAboutOurTeam, fetchingAboutOurTeam } from "../slice/AboutOurTeamSlice";
@@ -117,9 +117,10 @@ export const addPersonImage = (e: any,setAddImage:any) => {
 
 export const deletePersons = (id: number) => {
 
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: any) => {
     try {
       await axios.delete(`${URL}aeroSpace/deleteExistAboutBox/${LocalValue}/${id}`)
+      dispatch(getAboutOutTeam())
     }
     catch (error) {
       console.log(error as Error);

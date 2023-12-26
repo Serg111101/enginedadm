@@ -20,6 +20,7 @@ import {
 } from "@ant-design/icons";
 import { uploadImage } from "../../store/action/AboutAction";
 import Swal from "sweetalert2";
+import DeleteAll from "../DeleteComponent";
 
 export function AboutPersons({ id }: any) {
   const { AboutOurTeam } = useAppSelector((state) => state?.AboutOurTeam);
@@ -79,11 +80,11 @@ export function AboutPersons({ id }: any) {
     await dispatch(addPersonImage(event,setAddImage));
   }
 
-  async function deletePerson(id: number) {
-    await dispatch(deletePersons(id));
-    await dispatch(getAboutOutTeam());
-    setAddImage("");
-  }
+  // async function deletePerson(id: number) {
+  //   await dispatch(deletePersons(id));
+  //   await dispatch(getAboutOutTeam());
+  //   setAddImage("");
+  // }
 
 
   async function validateAndEditPerson(id: number, newTitle: string) {
@@ -110,6 +111,26 @@ export function AboutPersons({ id }: any) {
     }
 
   }
+
+
+
+  async function deleteItemm(id: number) {
+    try {
+        await DeleteAll({
+            title: LocalValue === 'AM' ? "Ցանկանում եք ջնջե՞լ" : 'Do you want to delete?',
+            text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող" : 'If you delete it, you cannot restore it',
+            deleteItem: () => dispatch(deletePersons(id))
+        });
+
+
+    } catch (error) {
+        console.error(error);
+
+    }
+
+}
+
+
 
   return (
     <div className="AboutPersons">
@@ -234,7 +255,7 @@ export function AboutPersons({ id }: any) {
                     <DeleteOutlined
                       className="iconantd"
                       onClick={() => {
-                        deletePerson(el?.id);
+                        deleteItemm(el?.id);
                       }}
                     />
                   </div>

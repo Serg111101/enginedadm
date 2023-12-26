@@ -9,8 +9,8 @@ import {
 import { Loading } from "../../components/Loading/Loading";
 
 const UsefulMaterialsInfo = () => {
-  const { Lectures, loading } = useSelector((state) => state.Lectures);
-  const { Slide } = useSelector((state) => state.Slide);
+  const { Lectures, loading } = useSelector((state:any) => state.Lectures);
+  const { Slide } = useSelector((state:any) => state.Slide);
   const [lectures, setLectures] = useState(Lectures);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,11 +19,11 @@ const UsefulMaterialsInfo = () => {
   useEffect(() => {
     let title;
     if (localStorage.getItem("lessons")) {
-      const loc = localStorage.getItem("lessons");
+      const loc:any = localStorage.getItem("lessons");
       title = JSON.parse(loc);
     }
-    dispatch(getFetchLectures(title));
-    dispatch(getFetchSlides(title));
+    dispatch<any>(getFetchLectures(title));
+    dispatch<any>(getFetchSlides(title));
   }, [dispatch]);
 
   useEffect(() => {
@@ -41,6 +41,7 @@ const UsefulMaterialsInfo = () => {
           elem ? { display: "none" } : { backgroundImage: `url(${Background})` }
         }
       >
+        kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
         {!elem && lectures?.length > 0 && (
           <div className="prevButton">
             <button onClick={() => navigate("/UsefulMaterials")}>
@@ -55,7 +56,7 @@ const UsefulMaterialsInfo = () => {
             <>
               {!elem && lectures?.length > 0 && (
                 <>
-                  {lectures[0]?.lectures?.map((el, index) => (
+                  {lectures[0]?.lectures?.map((el:any, index:any) => (
                     <div
                       className="itemLecture"
                       key={index}

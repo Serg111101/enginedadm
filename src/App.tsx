@@ -1,4 +1,4 @@
-import { Routes, Route, } from "react-router-dom";
+import { Routes, Route, useNavigate, } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About us";
 import { Header } from "./components/Header";
@@ -9,7 +9,7 @@ import { ContactUs } from "./pages/ContactUs/ContactUs";
 import { Lesson } from "./pages/Lessons";
 import Infomation from "./pages/infoBlock/infomation";
 import { Quiz } from "./pages/Quiz/quiz";
-import {EditQuiz} from "./pages/EditQuizLesson"
+import { EditQuiz } from "./pages/EditQuizLesson"
 import { Scrollbars } from "react-custom-scrollbars";
 import { Satellites } from "./pages/Satellites";
 import { QuizSatelite } from "./pages/QuizSatelite";
@@ -17,36 +17,43 @@ import { EditQuizSatelite } from "./pages/EditQuizSatelite";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { Login } from "./pages/Login";
 import { Settings } from "./pages/PageSettings/Settings";
-import { useEffect } from "react";
-import { UsefulMaterials } from "./pages/UsefulMaterials";
+import { useEffect, useState } from "react";
 import { UsefulMaterialsInfo } from "./pages/UsefulMaterialsInfo";
-
+import axios from "./axios/axios";
 
 function App() {
-  // const logd:any = localStorage.getItem('auth') 
-  // const locc = JSON?.parse(logd);
-  // const navigate = useNavigate()
+console.log(axios?.interceptors);
+
+  const navigate = useNavigate();
+  const [auth, setAuth] = useState<any>("")
   
-  // useEffect(()=>{
-  //   if(logd && logd !== null && locc?.accessToken && locc?.id === "1" ){
-  //     navigate("/Login")
-  //   }
-  // },[logd]);
-
-
+  useEffect(() => {
+    if (localStorage?.getItem("auth")) {
+      const loc: any = localStorage.getItem("auth")
+      const json = JSON?.parse(loc)
+      if (json?.accessToken) {
+        setAuth(json);
+      }
+    } else {
+      navigate("/login")
+    }
+  }, [localStorage?.getItem("auth"),])
   const url = window.location.href;
   const path = window.location.pathname;
 
   useEffect(() => {
-    if (path !== "/Setting" && sessionStorage.getItem("done") ) {
+    if (path !== "/Setting" && sessionStorage.getItem("done")) {
       sessionStorage.removeItem("done");
-    } else {
-      sessionStorage.setItem("done", "true");
+    } 
+  }, [url, path]);
+
+  useEffect(() => {
+
+    if (!auth?.accessToken && !localStorage.getItem("auth")) {
+      navigate('/login')
     }
+  }, [auth])
 
-  }, [url,path]);
-
-  
 
 
   return (
@@ -62,7 +69,7 @@ function App() {
       autoHideDuration={200}
     >
       <div className="App">
-        <Header />
+        {auth?.accessToken && <Header />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -77,12 +84,12 @@ function App() {
           <Route path="/SatelliteQuiz" element={<QuizSatelite />} />
           <Route path="/EditSatelliteQuiz" element={<EditQuizSatelite />} />
           <Route path="/EditHeader" element={<EditHeader />} />
-          <Route path="/UsefulMaterials" element={<UsefulMaterials/>}/>
-          <Route path="/UsefulMaterialsInfo" element={<UsefulMaterialsInfo/>}/>
+          <Route path="/UsefulMaterials" element={<UsefulMaterialsInfo />} />
+          <Route path="/UsefulMaterialsInfo/:name" element={<UsefulMaterialsInfo />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
-        <Footer />
+        {auth?.accessToken?.length>0  && <Footer />}
       </div>
     </Scrollbars>
   );

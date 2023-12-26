@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../axios/adminaxios";
 import { Dispatch } from "@reduxjs/toolkit";
 import {  fetchingHeader, fetchHeader, fetchErrorHeader } from "../slice/HeaderSlice";
 const URL = process.env.REACT_APP_BASE_URL

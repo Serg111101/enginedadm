@@ -3,6 +3,7 @@ import "./Login.scss";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Input } from "antd";
 import { useNavigate } from "react-router-dom";
+import axioss from "../../axios/adminaxios";
 import axios from "axios";
 import auth from "../../auth";
 
@@ -31,6 +32,10 @@ export const Login = () => {
         "auth",
         JSON.stringify({ ...user.data, lifetime: lifetime })
       );
+      axioss.interceptors.request.use(function (config: any) {
+        config.headers.Authorization = `Bearer ${user?.data?.accessToken}`;
+    return config;
+});
       navigate("/");
     } catch (error) {
       loginError.login = "error";

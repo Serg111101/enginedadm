@@ -16,8 +16,9 @@ import {
   PlusCircleFilled,
   DeleteOutlined,
 } from "@ant-design/icons";
-import axios from "axios";
+import axios from "../../axios/adminaxios";
 import Swal from "sweetalert2";
+import DeleteAll from "../DeleteComponent";
 const URL = process.env.REACT_APP_BASE_URL;
 
 export function HomeHeader() {
@@ -119,12 +120,25 @@ export function HomeHeader() {
 
   }
 
+  
+
+
+
   async function deleteHomeHeaderImage(index: number) {
-    await dispatch(deleteHomeHeaderImages(index));
-    await dispatch(getfetchHomeHeader());
-    setIndexs(0);
-    setAddImg("");
-  }
+    try {
+        await DeleteAll({
+            title: LocalValue === 'AM' ? "Ցանկանում եք ջնջե՞լ" : 'Do you want to delete?',
+            text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող" : 'If you delete it, you cannot restore it',
+            deleteItem: () => dispatch(deleteHomeHeaderImages(index))
+        });
+
+
+    } catch (error) {
+        console.error(error);
+
+    }
+
+}
 
 
 

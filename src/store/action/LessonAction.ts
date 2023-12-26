@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../axios/adminaxios";
 import { Dispatch } from "@reduxjs/toolkit";
 import { fetchingLesson, fetchLesson, fetchErrorLesson } from "../slice/LessonSlice";
 import { fetchingQuiz, fetchQuiz, fetchErrorQuiz } from "../slice/QuizSlice";
@@ -203,9 +203,10 @@ export const addTopics = (obj: any) => {
 
 export const deleteLesson = (id: number,title:string) => {
 
-    return async () => {
+    return async (dispatch:any) => {
         try {
             await axios.delete(`${URL}aeroSpace/deleteExistLesson/${LocalValue}/${id}/${title}`)
+             dispatch(getFetchLesson())
         }
         catch (error) {
             console.log(error as Error);

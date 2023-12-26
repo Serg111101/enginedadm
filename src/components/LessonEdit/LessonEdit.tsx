@@ -9,13 +9,12 @@ import { EditOutlined, CheckSquareOutlined, PlusCircleFilled, CloudDownloadOutli
 import { RemoveItem } from '../removeItem';
 import { EditInformation } from './EditInformation';
 import Swal from 'sweetalert2';
+import DeleteAll from '../DeleteComponent';
 let LocalValue: any;
 if (localStorage.getItem("language")) {
     let local: any = localStorage.getItem("language");
     LocalValue = JSON?.parse(local);
 }
-
-
 
 export function LessonEdit() {
     const { Lesson, loading } = useAppSelector((state) => state.Lesson);
@@ -92,11 +91,27 @@ export function LessonEdit() {
         await dispatch(uploadImageFunction(e, setImage))
     }
 
-    async function DeleteLesson(id: number, title: string) {
-        await dispatch(deleteLesson(id, title));
-        await dispatch(getFetchLesson())
-        setDeleteState([-1, ''])
+   
+
+
+    async function DeleteLesson(id: number,title:string) {
+        try {
+            console.log(title,'fdgfdgs');
+            await DeleteAll({
+                title: LocalValue === 'AM' ? "Ցանկանում եք ջնջե՞լ" : 'Do you want to delete?',
+                text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող" : 'If you delete it, you cannot restore it',
+                deleteItem: () => dispatch(deleteLesson(id,title))
+                
+                
+            });
+
+        } catch (error) {
+            console.error(error);
+
+        }
+
     }
+
 
 
     async function editLecturess(e: any, i: number, par: any) {
@@ -191,6 +206,8 @@ export function LessonEdit() {
         }
     }
 
+
+    
 
 
 
@@ -317,7 +334,7 @@ export function LessonEdit() {
                                                 }
                                                 <div>
                                                     <button className='Edit_button_Lesson' onClick={() => setEditLesson(el)}><EditOutlined /></button>
-                                                    <button className='Delete_button_Lesson' onClick={() => setDeleteState([el.id, el.lesson])}><DeleteOutlined /></button></div>
+                                                    <button className='Delete_button_Lesson' onClick={() => DeleteLesson(el.id,el.lesson)}><DeleteOutlined /></button></div>
                                             </div></>}
 
                                 </div>)
@@ -373,7 +390,7 @@ export function LessonEdit() {
 
                         </div>}
                     </div>
-                    {deleteState[0] !== -1 && <RemoveItem deleteItem={DeleteLesson} name={'lesson'} setDeletePage={setDeleteState} id={deleteState} />}
+                    {/* {deleteState[0] !== -1 && <RemoveItem deleteItem={DeleteLesson} name={'lesson'} setDeletePage={setDeleteState} id={deleteState} />} */}
                     {editInformation && <EditInformation title={editInformation} indexing={editInformationID} setEditInformation={setEditInformation} />}
                 </>}
     </>

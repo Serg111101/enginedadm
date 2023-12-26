@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../axios/adminaxios";
 import { Dispatch } from "@reduxjs/toolkit";
 // import { fetchingHeader,fetchHeader,fetchErrorHeader } from "../slice/HeaderSlice";
 import  {fetchingFooter,fetchFooter,fetchErrorFooter} from '../slice/FooterSlice'
@@ -55,9 +55,10 @@ export const addFooterSociall = (obj:any)=>{
     }
 }
 export const DeleteFooter=(id:number)=>{
-    return async()=>{
+    return async(dispatch:any)=>{
         try{
             await axios.delete(`${URL}aeroSpace/deleteFooter/${id}/${LocalValue}`)
+            dispatch(getFetchFooter())
         }catch(error){
             console.log(error as Error)
         }

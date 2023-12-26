@@ -1,5 +1,5 @@
 import { Dispatch } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios from "../../axios/adminaxios";
 import {  fetchingHomeHeaderr, fetchHomeHeaderr, fetchErrorHomeHeaderr } from "../slice/HomeHeaderSlice";
 import { fetchingHomeNextRout,fetchErrorHomeNextRout,fetchHomeNextRout } from "../slice/HomeNextRoutSlice";
 import { fetchHomeAuthor,fetchErrorHomeAuthor,fetchingHomeAuthor } from "../slice/HomeAuthorSlice";
@@ -141,9 +141,10 @@ export const editHomeHeaderText=(editvalue:any)=>{
 
 export const deleteHomeHeaderImages =(index:number)=>{
     
-    return async (dispatch:Dispatch) => {
+    return async (dispatch:any) => {
         try{
               await axios.delete(`${URL}aeroSpace/blok/${LocalValue}/text/0?arrIndex=${index}`)
+              dispatch(getfetchHomeHeader())
         }
         catch(error){
           console.log(error as Error);

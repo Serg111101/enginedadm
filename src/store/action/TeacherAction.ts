@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../axios/adminaxios";
 import { Dispatch } from "@reduxjs/toolkit";
 import { fetchTeacher,fetchErrorTeacher,fetchingTeacher } from "../slice/TeacherSlice";
 
@@ -41,15 +41,17 @@ export const getTeacher = (role:any) => {
     }
 }
 
-export const editeTeacher = (obj:any) => {
+export const editeTeacher = (obj:any,setError:any) => {
     return async (dispatch:Dispatch)=>{
         try{
         
-           dispatch(fetchingTeacher())
-            await axios.put(`${URL}v2/putTeacher/${obj.id}`,obj);  
+            await axios.put(`${URL}v2/putTeacher/${obj.id}`,obj); 
+            setError("ok") 
         }
         catch(error){
-            dispatch(fetchErrorTeacher(error as Error ));
+            setError(error)
+            console.error(error);
+            
         }
 
     }
@@ -57,12 +59,12 @@ export const editeTeacher = (obj:any) => {
 
 export const deleteTeacher = (id:any) => {
 
-    return async (dispatch:Dispatch)=>{
+    return async (dispatch:any)=>{
         try{
         
            dispatch(fetchingTeacher())
             await axios.delete(`${URL}v2/deleteTeacher/${id}`);  
-            
+            await dispatch(getTeacher('admin'))
           
         }
         catch(error){

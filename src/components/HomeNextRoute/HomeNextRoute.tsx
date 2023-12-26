@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { IHomeNextRout } from '../../models';
 import { useAppDispatch } from '../../hooks';
 import { editNextRoute, getfetchHomeNextRout } from '../../store/action/HomeAction';
-import axios from 'axios';
+import axios from "../../axios/adminaxios";
 import {
   CloseOutlined,
   EditOutlined,

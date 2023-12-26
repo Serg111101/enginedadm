@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../axios/adminaxios";
 import { Dispatch } from "@reduxjs/toolkit";
 // import {  fetchingLogo, fetchLogo, fetchErrorLogo } from "../slice/LogoSlice";
 import { fetchingQuizSatelite,fetchQuizSatelite,fetchErrorQuizSatelite } from "../slice/QuizSateliteSlice";

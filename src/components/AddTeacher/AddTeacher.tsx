@@ -38,7 +38,7 @@ const AddTeacher = ({ setOpen }: any) => {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Տվըալները հաջողությամբ հաստատվել են",
+        title: LocalValue === 'AM' ? "Տվյալները հաջողությամբ հաստատվել են" : 'Data has been successfully verified' ,
         showConfirmButton: false,
         timer: 2500
       }).then(() => {

@@ -4,8 +4,9 @@ import "./EditFooter.scss";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getFetchLogo } from "../../store/action/LogoAction";
 import { addFooterSociall, editFooter, editFooterSociall, getFetchFooter,DeleteFooter } from "../../store/action/FooterAction";
-import axios from "axios";
+import axios from "../../axios/adminaxios";
 import Swal from "sweetalert2";
+import DeleteAll from "../DeleteComponent";
 const URL = process.env.REACT_APP_BASE_URL;
 
 
@@ -101,14 +102,27 @@ async function addSocialItems() {
     setAddImg("");
   }
 }
-async function deleteFooter(id:number) {
-  await dispatch(DeleteFooter(id))
-  await dispatch(getFetchFooter())
-}
+
 let LocalValue: any;
 if (localStorage.getItem("language")) {
   let local: any = localStorage.getItem("language");
   LocalValue = JSON.parse(local);
+}
+
+async function deleteFooter(id: number) {
+  try {
+      await DeleteAll({
+          title: LocalValue === 'AM' ? "Ցանկանում եք ջնջե՞լ" : 'Do you want to delete?',
+          text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող" : 'If you delete it, you cannot restore it',
+          deleteItem: () => dispatch(DeleteFooter(id))
+      });
+
+
+  } catch (error) {
+      console.error(error);
+
+  }
+
 }
 
 

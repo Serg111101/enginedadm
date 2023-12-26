@@ -16,10 +16,11 @@ export function UsefulMaterials() {
   const { Lesson, loading } = useAppSelector((state) => state.Lesson);
   const Background = Lesson[0]?.background;
   const [count, setCount] = useState(1);
-  const [auth,setAuth] = useState(localStorage?.getItem("auth")||{});
+  const [auth,setAuth] = useState<any>(localStorage?.getItem("auth")||{});
   useEffect(()=>{
     if(localStorage?.getItem("auth")){
-      setAuth(JSON?.parse(localStorage?.getItem("auth")))
+      let loc:any=localStorage?.getItem("auth")
+      setAuth(JSON?.parse(loc))
     }
   },[localStorage?.getItem("auth")])
   useEffect(() => {
@@ -34,9 +35,9 @@ export function UsefulMaterials() {
     
   }, [dispatch, auth]);
 
-  async function nextInfo(title, index) {
+  async function nextInfo(title:any, index:any) {
 
-    navigate(`/UsefulMaterialsInfo:${index}`)
+    navigate(`/UsefulMaterialsInfo/:${index}`)
   }
   return (
     <>

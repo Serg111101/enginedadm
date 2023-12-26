@@ -7,7 +7,7 @@ import {
   CheckSquareOutlined,
   PlusCircleFilled,
 } from "@ant-design/icons";
-import axios from 'axios';
+import axios from "../../axios/adminaxios";
 import { editHomeAuthor, getfetchHomeAuthor } from '../../store/action/HomeAction';
 import Swal from 'sweetalert2';
 const URL = process.env.REACT_APP_BASE_URL;
