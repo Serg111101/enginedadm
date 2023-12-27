@@ -20,8 +20,8 @@ export const Login = () => {
   const loginRequest = async () => {
     try {
       const user = await axios.post(`${URL}auth/login`, {
-        login: checkLogin?.login,
-        password: password.password,
+        login: checkLogin?.login.trim(),
+        password: password.password.trim(),
       });
       const lifetime = active
         ? new Date().setDate(new Date().getDate() + 356)

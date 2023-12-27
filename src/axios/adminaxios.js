@@ -2,10 +2,16 @@ import axios from 'axios';
 const URL = process.env.REACT_APP_BASE_URL
 
 const local = localStorage.getItem('auth')
-const localAuth = JSON.parse(local)
-const token = localAuth?.accessToken
-const refresh = localAuth?.refreshToken
+let token
+let refresh
+let localAuth
 
+if(local){
+  console.log(local,"hujjhj");
+   localAuth = JSON.parse(local)
+   token= localAuth?.accessToken
+   refresh = localAuth?.refreshToken
+}
 
 
 const refreshAccessToken = async () => {

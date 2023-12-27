@@ -57,8 +57,11 @@ export function Header() {
   }, [languages, bb]);
 
   
-  const role:any = localStorage.getItem('auth')
-  const roles = JSON.parse(role)
+  let role:any = localStorage.getItem('auth')
+  let roles:any
+  if(role){
+    roles = JSON.parse(role)
+  }
   useEffect(()=>{
     if(roles){
    setAuth(roles?.accessToken)

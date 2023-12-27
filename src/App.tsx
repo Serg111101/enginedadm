@@ -20,12 +20,14 @@ import { Settings } from "./pages/PageSettings/Settings";
 import { useEffect, useState } from "react";
 import { UsefulMaterialsInfo } from "./pages/UsefulMaterialsInfo";
 import axios from "./axios/axios";
+import { Loading } from "./components/Loading";
 
 function App() {
 console.log(axios?.interceptors);
 
   const navigate = useNavigate();
   const [auth, setAuth] = useState<any>("")
+  const [auth1, setAuth1] = useState<any>(true)
   
   useEffect(() => {
     if (localStorage?.getItem("auth")) {
@@ -35,7 +37,7 @@ console.log(axios?.interceptors);
         setAuth(json);
       }
     } else {
-      navigate("/login")
+      navigate("/Login")
     }
   }, [localStorage?.getItem("auth"),])
   const url = window.location.href;
@@ -50,10 +52,14 @@ console.log(axios?.interceptors);
   useEffect(() => {
 
     if (!auth?.accessToken && !localStorage.getItem("auth")) {
-      navigate('/login')
+      navigate('/Login')
+      setAuth1(false)
+    }else{
+      setAuth1(true)
     }
   }, [auth])
 
+console.log(window.location.pathname);
 
 
   return (
@@ -69,8 +75,9 @@ console.log(axios?.interceptors);
       autoHideDuration={200}
     >
       <div className="App">
-        {auth?.accessToken && <Header />}
-        <Routes>
+        {auth1 && window.location.pathname!=="/Login" && <Header />}
+
+        { !auth.accessToken && window.location.pathname!=="/Login"  ? <Loading/>: <Routes> 
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/ContactUS" element={<ContactUs />} />
@@ -88,8 +95,8 @@ console.log(axios?.interceptors);
           <Route path="/UsefulMaterialsInfo/:name" element={<UsefulMaterialsInfo />} />
 
           <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-        {auth?.accessToken?.length>0  && <Footer />}
+        </Routes>}
+        {auth1 && window.location.pathname!=="/Login" && <Footer />}
       </div>
     </Scrollbars>
   );
