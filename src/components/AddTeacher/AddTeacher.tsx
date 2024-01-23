@@ -6,19 +6,25 @@ import { fetchAddTeacher, getTeacher, } from "../../store/action/TeacherAction";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useForm } from "antd/es/form/Form";
+import { addSyntheticLeadingComment } from "typescript";
 
 const AddTeacher = ({ setOpen }: any) => {
 
   const [error, setError] = useState<any>({});
   const [loading, setLoadnig] = useState(false);
-
+  const [links,setLinks] = useState<any>([]);
 
   const dispatch = useAppDispatch();
-  const onFinish = async (values: string) => {
+  const onFinish = async (values: any) => {
 
+    const obj = {
+      ...values,
+      cubesat_link:links,
+    }
+    console.log(obj);
+    
 
-
-    await dispatch(fetchAddTeacher(values, setError, setLoadnig));
+    await dispatch(fetchAddTeacher(obj, setError, setLoadnig));
     dispatch(getTeacher('admin'))
     if (error === "ok") {
       setOpen(false)
@@ -87,7 +93,13 @@ const AddTeacher = ({ setOpen }: any) => {
         >
           <Input />
         </Form.Item>
-
+        <Form.Item
+          label={LocalValue === 'AM' ? "Դպրոց" : 'school'}
+          name="school"
+          rules={[{ required: true, message: LocalValue === 'AM' ? "Պարտադիր դաշտ!" : 'Required field' }]}
+        >
+          <Input />
+        </Form.Item>
 
         <Form.Item
           label={LocalValue === 'AM' ? "Առարկան" : 'Subject'}
@@ -95,6 +107,12 @@ const AddTeacher = ({ setOpen }: any) => {
           rules={[{ required: true, message: LocalValue === 'AM' ? "Պարտադիր դաշտ!" : 'Required field' }]}
         >
           <Input />
+        </Form.Item>
+        <Form.Item
+          label={LocalValue === 'AM' ? "Հղում" : 'Link'}
+          rules={[{ required: true, message: LocalValue === 'AM' ? "Պարտադիր դաշտ!" : 'Required field' }]}
+        >
+          <Input onChange={(e:any)=>{setLinks([e.target.value])}} />
         </Form.Item>
 
 
@@ -105,6 +123,7 @@ const AddTeacher = ({ setOpen }: any) => {
         >
           <Input />
         </Form.Item>
+        
 
 
         <Form.Item

@@ -177,7 +177,8 @@ export interface ISendMail {
   title: string,
 }
 
-export interface ITeacher  {
+export interface ITeacher
+  {
   id:number
   position:string,
   name:string,
@@ -186,6 +187,8 @@ export interface ITeacher  {
   fullName:string,
   role:string,
   info:string,
+  school:string,
+  cubesat_link:any | any[],
   updated_at:string,
   created_at:string,
 };

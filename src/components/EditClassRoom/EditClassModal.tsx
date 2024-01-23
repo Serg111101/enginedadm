@@ -7,16 +7,15 @@ import { useAppDispatch } from '../../hooks'
 interface props{
     seteditTeacher:any,
     editTeacher:any,
-    EditTeacher:any
-
+    EditTeacher:any,
+    error:any,
+    setError:any,
+    loading:boolean,
+    setLoadnig:(loading:boolean) => void,
 }
 
-export const EditClassModal = ({ seteditTeacher, editTeacher,EditTeacher,}:props) => {
-    const [error, setError] = useState<any>()
-    const [loading, setLoadnig] = useState(false);
-    
-    console.log(loading,"loadingloadingloadingloadingloadingloadingloading");
-    
+export const EditClassModal = ({error,setError,loading, setLoadnig,seteditTeacher, editTeacher,EditTeacher,}:props) => {
+  
     
     const dispatch = useAppDispatch();
 

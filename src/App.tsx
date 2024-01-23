@@ -91,8 +91,8 @@ console.log(window.location.pathname);
           <Route path="/SatelliteQuiz" element={<QuizSatelite />} />
           <Route path="/EditSatelliteQuiz" element={<EditQuizSatelite />} />
           <Route path="/EditHeader" element={<EditHeader />} />
-          <Route path="/UsefulMaterials" element={<UsefulMaterialsInfo />} />
-          <Route path="/UsefulMaterialsInfo/:name" element={<UsefulMaterialsInfo />} />
+          {/* <Route path="/UsefulMaterials" element={<UsefulMaterialsInfo />} /> */}
+          {/* <Route path="/UsefulMaterialsInfo/:name" element={<UsefulMaterialsInfo />} /> */}
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>}

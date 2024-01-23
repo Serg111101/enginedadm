@@ -4,7 +4,7 @@ import { ITeacher } from '../../models'
 interface ITeachers {
   loading: boolean,
   error: string,
-  Teacher: ITeacher[]|null
+  Teacher: ITeacher[]
 }
 
 const initialState:ITeachers= {
