@@ -1,3 +1,4 @@
+/*eslint-desble*/
 import React, { useEffect, useState } from 'react'
 import './Teacher.scss'
 import { getTeacher, editeTeacher, deleteTeacher } from '../../store/action/TeacherAction'
@@ -7,7 +8,7 @@ import { EditOutlined, DeleteOutlined, ArrowRightOutlined } from '@ant-design/ic
 import { EditClassModal } from '../EditClassRoom/EditClassModal'
 import DeleteAll from '../DeleteComponent'
 
-import { EyeFilled, EyeInvisibleFilled } from "@ant-design/icons"
+import { EyeFilled } from "@ant-design/icons"
 import Swal from 'sweetalert2'
 
 
@@ -195,8 +196,7 @@ export function Teacher() {
                             <table>
                                 <thead>
                                     <tr>
-                                        {/* <th>{LocalValue === 'AM' ? "Անուն Ազգանուն" : 'Name Surname'}</th>
-                                <th>{LocalValue === 'AM' ? 'Առարկա' : 'Subject'}</th> */}
+                                        
                                         <th >{LocalValue === 'AM' ? "Հղումներ" : 'Links'}</th>
                                         <th colSpan={2} ><EyeFilled /></th>
                                     </tr>

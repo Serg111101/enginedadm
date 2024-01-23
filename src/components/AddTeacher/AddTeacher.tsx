@@ -21,7 +21,6 @@ const AddTeacher = ({ setOpen }: any) => {
       ...values,
       cubesat_link:links,
     }
-    console.log(obj);
     
 
     await dispatch(fetchAddTeacher(obj, setError, setLoadnig));

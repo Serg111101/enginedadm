@@ -7,7 +7,6 @@ let refresh
 let localAuth
 
 if(local){
-  console.log(local,"hujjhj");
    localAuth = JSON.parse(local)
    token= localAuth?.accessToken
    refresh = localAuth?.refreshToken

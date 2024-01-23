@@ -1,8 +1,8 @@
-import React, { useState,useEffect } from 'react'
+/*eslint-disable*/
+import React, { useEffect } from 'react'
 import './EditClassModal.scss'
 import { CloseOutlined } from '@ant-design/icons'
 import Swal from 'sweetalert2'
-import { useAppDispatch } from '../../hooks'
 
 interface props{
     seteditTeacher:any,
@@ -17,12 +17,10 @@ interface props{
 export const EditClassModal = ({error,setError,loading, setLoadnig,seteditTeacher, editTeacher,EditTeacher,}:props) => {
   
     
-    const dispatch = useAppDispatch();
 
     const obj={...editTeacher}
 
 useEffect(()=>{
-    console.log(25);
   delete obj.password
 },[])
 

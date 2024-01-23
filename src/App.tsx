@@ -23,7 +23,6 @@ import axios from "./axios/axios";
 import { Loading } from "./components/Loading";
 
 function App() {
-console.log(axios?.interceptors);
 
   const navigate = useNavigate();
   const [auth, setAuth] = useState<any>("")
@@ -59,7 +58,6 @@ console.log(axios?.interceptors);
     }
   }, [auth])
 
-console.log(window.location.pathname);
 
 
   return (

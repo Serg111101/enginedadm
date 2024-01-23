@@ -96,7 +96,6 @@ export function LessonEdit() {
 
     async function DeleteLesson(id: number,title:string) {
         try {
-            console.log(title,'fdgfdgs');
             await DeleteAll({
                 title: LocalValue === 'AM' ? "Ցանկանում եք ջնջե՞լ" : 'Do you want to delete?',
                 text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող" : 'If you delete it, you cannot restore it',
