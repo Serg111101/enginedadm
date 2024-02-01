@@ -60,6 +60,8 @@ export const editFetchQuiz = (value:any,id:any) => {
     }
 }
 export const addFetchQuiz = (value:any) => {
+    console.log(value,"vvvvvvvvvvvvvvv");
+    
     return async (dispatch:Dispatch)=>{
         try{
         

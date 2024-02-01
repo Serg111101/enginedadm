@@ -14,18 +14,24 @@ import { editHeader, getFetchHeader } from "../../store/action/HeaderAction";
 import { getFetchLogo, uploadImage } from "../../store/action/LogoAction";
 import { IHeader } from "../../models";
 import Swal from "sweetalert2";
+import { title } from "process";
 
 export function EditHeader() {
   const { Logo, Header } = useAppSelector((state: any) => ({
     Logo: state.Logo.Logo,
     Header: state.Header.Header,
   }));
+
+  
   const url = window.location.href;
   const [done, setDone] = useState<boolean>(false);
   const navigate = useNavigate();
   const [mobile, setMobile] = useState(false);
   const [editShow, setEditShow] = useState<any>(0);
-  const [edit, setEdit] = useState<string>("");
+  const [edit, setEdit] = useState<any>({
+    title:"",
+    link:"",
+  });
   const [image,setImage] = useState(Logo?.logo||"") ;
   const [languages, setLanguages] = useState<string | any >("AM");
   const [item,setItem] = useState<any>() ;
@@ -91,8 +97,8 @@ export function EditHeader() {
 
 
 
-  function navigateTo(val:number) {
-    switch (val) {
+  function navigateTo(val:any) {
+    switch (val.id) {
       case 1:
         navigate("/");
         break;
@@ -100,7 +106,7 @@ export function EditHeader() {
         navigate("/about");
         break;
       case 3:
-        navigate("/");
+        window.open(val.link,"_blank")
         break;
       case 4:
         navigate("/ContactUS");
@@ -109,8 +115,8 @@ export function EditHeader() {
         navigate("/");
     }
   }
-  async function validateAndEditHeader(id: number, newTitle: string) {
-    if (!newTitle.trim()) {
+  async function validateAndEditHeader(id: number, newTitle: any  ) {
+    if (!newTitle?.title.trim()) {
       Swal.fire({
         title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
         icon: 'error',
@@ -131,7 +137,8 @@ export function EditHeader() {
     await dispatch(uploadImage(e,setImage))
     await dispatch(getFetchLogo());
   }
-
+ 
+  
   return (
     <header className="editheader">
       <div className="editconstainerHeader">
@@ -186,11 +193,11 @@ export function EditHeader() {
                 
                 key={index}
               >
-                { editShow !== el?.id && <p onClick={() => navigateTo(el?.id)} >{el?.title}</p>}
+                { editShow !== el?.id && <p onClick={() => navigateTo(el)} >{el?.title}</p>}
                 
                 {done  && editShow !== el?.id && item === '"Header"' && <div className={!mobile ? "items editButtons" : "items-mobile editButtons"} >
                     <button className="editBtn"   onClick={() => setEditShow(el?.id)}>
-                      <EditOutlined className="iconantd"  onClick={()=>setEdit(el?.title)} />
+                      <EditOutlined className="iconantd"  onClick={()=>setEdit(el)} />
                     </button>
                   </div>
                 }
@@ -198,10 +205,21 @@ export function EditHeader() {
                   <div  >
                   <div>  <input
                       type="text"
-                      value={edit}
-                      onChange={(e) => setEdit(e.target.value)}
+                      value={edit.title}
+                      onChange={(e) => setEdit({...edit,title:e.target.value})}
                       required={true}
                     />
+                    </div>
+                    <br/>
+                    <div>
+                    {
+                      el?.link?.length>0&&<input
+                      type="text"
+                      value={edit.link}
+                      onChange={(e) => setEdit({...edit,link:e.target.value})}
+                      required={true}
+                    />
+                    }
                     </div>
                     <div className="okCloseButton" >
                     

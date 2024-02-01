@@ -383,7 +383,7 @@ export const EditInformation = ({ title, indexing, setEditInformation }: { title
 
             <div className='EditInformation'>
                 {
-                    !slideState ? <div>aaaaaaaaaaa</div> :
+                    !slideState ? <div>loading...</div> :
 
                         <div className='EditInformation_div'>
 

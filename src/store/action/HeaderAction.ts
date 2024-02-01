@@ -25,10 +25,10 @@ export const getFetchHeader = () => {
 }
 
 export const editHeader=(id: number,edit:any)=> {
-    return async(dispatch:Dispatch)=>{
+    return async()=>{
 
       try {
-      await axios.put(`${URL}aeroSpace/editHeader/${LocalValue}/${id}`, { title: edit });
+      await axios.put(`${URL}aeroSpace/editHeader/${LocalValue}/${id}`, edit);
        
     } catch (error) {
       console.log(error as Error);

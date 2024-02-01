@@ -31,7 +31,7 @@ import { Teacher } from '../../components/Teacher';
 
 export const Settings = () => {
   const dispatch = useAppDispatch();
-  const [item, setItem] = useState<any>("Home");
+  const [item, setItem] = useState<any>("Teacher");
   const [show, setShow] = useState<boolean>(true);
   const id: string = 'linkIdentifikator';
   const [menuOpen, setMenuOpen] = useState<boolean>(false);

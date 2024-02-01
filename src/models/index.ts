@@ -46,6 +46,7 @@ export interface IHeader  {
   created_at:string,
   id:number,
   title:string,
+  link:string,
 };
 
 export interface IHomeAuthor  {

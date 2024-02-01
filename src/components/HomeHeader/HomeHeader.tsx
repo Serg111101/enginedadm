@@ -103,6 +103,7 @@ export function HomeHeader() {
   }
   async function uploadImageHandleradd(e: any) {
     const formData = new FormData();
+    
     formData.append("image", e.target.files[0]);
     if (formData.has("image")) {
       try {

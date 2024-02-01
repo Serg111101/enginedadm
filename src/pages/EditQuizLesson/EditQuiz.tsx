@@ -115,25 +115,26 @@ export const EditQuiz = () => {
 
                 {loading ? <Loading />
                     : <div className='quiz'>
-                        {Quiz.map((el: any, i: any) => <div key={i} >
+                        {Quiz.map((el: any, i: any) =>
+                         <div key={i} >
                             <div className='head' >
                                 {active === el.question ? <input type="text" value={value} onChange={(e) => { setValue(e.target.value) }} /> : <h3>{el.question}</h3>}
                                 {active === el.question ? <div> <CloseOutlined className="iconantd" onClick={() => { setActive('') }} /> < CheckSquareOutlined className="iconantd" onClick={() => { editQuestion(value, i, "", el.id, "question") }} /> </div> : <EditOutlined className="iconantd" onClick={() => { setValue(el.question); setActive(el.question) }} />}
                             </div>
 
-                            <div className='answer_box'>
+                            {active !== el.correctAnswer && <div className='answer_box'>
                                 <div className='answer_correct'>
                                     <h4>{LocalValue === "AM" ? "Ճիշտ պատասխան" : "CorrectAnswer"}</h4>
                                     <div className='answer_text'>
-                                        {active === el.correctAnswer ? <input type="text" value={value} onChange={(e) => { setValue(e.target.value) }} /> : <p>1.{el.correctAnswer}</p>}
+                                        {active === el.correctAnswer  ? <input type="text" value={value} onChange={(e) => { setValue(e.target.value) }} /> : <p>{el.correctAnswer}</p>}
                                         {active === el.correctAnswer ? <div> <CloseOutlined className="iconantd" onClick={() => { setActive('') }} /> < CheckSquareOutlined className="iconantd" onClick={() => { editQuestion(value, i, '', el.id, "correctAnswer") }} /> </div> : <EditOutlined className="iconantd" onClick={() => { setValue(el.correctAnswer); setActive(el.correctAnswer) }} />}
                                     </div>
 
                                 </div>
-                                <div className='answer_wrong'>
-                                    <h4>{LocalValue === "AM" ? "Սխալ պատասխան" : "IncorrectAnswer"}</h4>
+                                <div className='answer_wrong'  >
+                                    <h4  >{LocalValue === "AM" ? "Սխալ պատասխան" : "IncorrectAnswer"}</h4>
                                     <div className='answer_wrongtext'>
-                                        {el.incorrectAnswer.map((elem: any, index: number) => <div>
+                                        {el.incorrectAnswer.map((elem: any, index: number) => <div key={index +43}>
                                             {active === elem ? <input type="text" value={value} onChange={(e) => { setValue(e.target.value) }} /> : <p>{index + 1}.{elem}</p>}
                                             {active === elem ? <div> <CloseOutlined className="iconantd" onClick={() => { setActive('') }} /> < CheckSquareOutlined className="iconantd" onClick={() => { editQuestion({ incorrectAnswer: value }, i, index, el.id, 'incorrectAnswer') }} /> </div> : <EditOutlined className="iconantd" onClick={() => { setValue(elem); setActive(elem) }} />}
 
@@ -141,7 +142,7 @@ export const EditQuiz = () => {
                                     </div>
 
                                 </div>
-                            </div>
+                            </div>}
 
 
                             <DeleteOutlined className="iconantd" onClick={() => setDeleteState([el.id, ''])} />

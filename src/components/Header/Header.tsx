@@ -89,8 +89,8 @@ export function Header() {
     window.location.reload();
   }
 
-  function navigateTo(val:number) {
-    switch (val) {
+  function navigateTo(val:any) {
+    switch (val.id) {
       case 1:
         navigate("/");
         break;
@@ -98,7 +98,7 @@ export function Header() {
         navigate("/about");
         break;
       case 3:
-        navigate("/");
+        window.open(val.link,"_blank")
         break;
       case 4:
         navigate("/ContactUS");
@@ -155,7 +155,7 @@ export function Header() {
                 
                 key={index}
               >
-                <p onClick={() => navigateTo(el?.id)} >{el?.title}</p>
+                <p onClick={() => navigateTo(el)} >{el?.title}</p>
                 
               
               </div>
