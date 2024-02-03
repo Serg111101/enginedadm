@@ -85,14 +85,14 @@ export function Header() {
   function changeLanguage(e: any) {
     localStorage.setItem("language", JSON.stringify(e));
     setLanguages(e);
-    navigate("/");
+    navigate("/home");
     window.location.reload();
   }
 
   function navigateTo(val:any) {
     switch (val.id) {
       case 1:
-        navigate("/");
+        navigate("/home");
         break;
       case 2:
         navigate("/about");
@@ -104,7 +104,7 @@ export function Header() {
         navigate("/ContactUS");
         break;
       default:
-        navigate("/");
+        navigate("/home");
     }
   }
 
@@ -114,10 +114,10 @@ export function Header() {
       <div className="constainerHeader">
         <div className="imageHeader">
           <a
-            href="/"
+            
             onClick={(e) => {
               e.preventDefault();
-              navigate("/");
+              navigate("/home");
             }}
           >
             <img src={Logo?.logo?Logo?.logo:image} alt={"Web Page Logo is not difind"} />
@@ -146,7 +146,7 @@ export function Header() {
             {  Header?.map((el: IHeader, index: number) => (
               <div
                 className={
-                  (index === 0 && bb === "/") ||
+                  (index === 0 && bb === "/home") ||
                   (index === 1 && bb === "/about") ||
                   (index === 3 && bb === "/ContactUS")
                     ? "item active"
@@ -168,14 +168,14 @@ export function Header() {
             </div>}
            {auth ? <div
               className={url === `${URL}aeroSpace/Login` ? "item active" : "item"}
-              onClick={() => {localStorage.removeItem('auth');setAuth('');navigate("/Login")}}
+              onClick={() => {localStorage.removeItem('auth');setAuth('');navigate("/")}}
               >
              {LocalValue === "AM"?"Դուրս գալ":" Log out"}
 
            
             </div> : <div
               className={url === `${URL}aeroSpace/Login` ? "item active" : "item"}
-              onClick={() => navigate("/Login")}
+              onClick={() => navigate("/")}
             >
               {LocalValue === "AM"?"Մուտք":" Log in"}
             </div>}

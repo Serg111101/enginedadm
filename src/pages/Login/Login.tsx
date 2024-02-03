@@ -36,7 +36,7 @@ export const Login = () => {
         config.headers.Authorization = `Bearer ${user?.data?.accessToken}`;
     return config;
 });
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       loginError.login = "error";
       setLoginError({ ...loginError });

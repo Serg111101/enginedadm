@@ -48,7 +48,7 @@ export function HomeNextRoute() {
       } else if (id === 3) {
         window.open("http://cubesat.local/", "_blank");
       } else {
-        navigate("/")
+        navigate("/home")
       }
     }
 

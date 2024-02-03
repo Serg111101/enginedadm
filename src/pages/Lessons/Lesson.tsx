@@ -41,7 +41,7 @@ export function Lesson() {
     <div className='LessonContainer' style={{ backgroundImage: `url(${Background})` }}>
       <div className="Lesson">
         <div className='prevButton'>
-    <button onClick={()=>navigate("/")} >
+    <button onClick={()=>navigate("/home")} >
       {Lesson[0]?.button}
     </button>
         </div>

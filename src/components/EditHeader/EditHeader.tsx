@@ -100,7 +100,7 @@ export function EditHeader() {
   function navigateTo(val:any) {
     switch (val.id) {
       case 1:
-        navigate("/");
+        navigate("/home");
         break;
       case 2:
         navigate("/about");
@@ -112,7 +112,7 @@ export function EditHeader() {
         navigate("/ContactUS");
         break;
       default:
-        navigate("/");
+        navigate("/home");
     }
   }
   async function validateAndEditHeader(id: number, newTitle: any  ) {
@@ -144,10 +144,10 @@ export function EditHeader() {
       <div className="editconstainerHeader">
         <div className="editimageHeader">
           <a
-            href="/"
+            href="/home"
             onClick={(e) => {
               e.preventDefault();
-              navigate("/");
+              navigate("/home");
             }}
           >
             <img src={Logo?.logo?Logo?.logo:image} alt={"Web Page Logo is not difind"} />
@@ -184,7 +184,7 @@ export function EditHeader() {
             {  Header?.map((el: IHeader, index: number) => (
               <div
                 className={
-                  (index === 0 && bb === "/") ||
+                  (index === 0 && bb === "/home") ||
                   (index === 1 && bb === "/about") ||
                   (index === 3 && bb === "/ContactUS")
                     ? "item active"

@@ -36,7 +36,7 @@ function App() {
         setAuth(json);
       }
     } else {
-      navigate("/Login")
+      navigate("/")
     }
   }, [localStorage?.getItem("auth"),])
   const url = window.location.href;
@@ -51,7 +51,7 @@ function App() {
   useEffect(() => {
 
     if (!auth?.accessToken && !localStorage.getItem("auth")) {
-      navigate('/Login')
+      navigate('/')
       setAuth1(false)
     }else{
       setAuth1(true)
@@ -76,7 +76,7 @@ function App() {
         {auth1 && window.location.pathname!=="/Login" && <Header />}
 
         { !auth.accessToken && window.location.pathname!=="/Login"  ? <Loading/>: <Routes> 
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/ContactUS" element={<ContactUs />} />
           <Route path="/Lessons" element={<Lesson />} />
@@ -85,7 +85,7 @@ function App() {
           <Route path="/EditQuiz" element={<EditQuiz />} />
           <Route path="/Satellites" element={<Satellites />} />
           <Route path="/Setting" element={<Settings />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/SatelliteQuiz" element={<QuizSatelite />} />
           <Route path="/EditSatelliteQuiz" element={<EditQuizSatelite />} />
           <Route path="/EditHeader" element={<EditHeader />} />
