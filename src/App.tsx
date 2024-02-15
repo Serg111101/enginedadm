@@ -39,6 +39,7 @@ function App() {
       navigate("/")
     }
   }, [localStorage?.getItem("auth"),])
+  
   const url = window.location.href;
   const path = window.location.pathname;
 
@@ -73,9 +74,9 @@ function App() {
       autoHideDuration={200}
     >
       <div className="App">
-        {auth1 && window.location.pathname!=="/Login" && <Header />}
+        {auth1 && window.location.pathname!=="/" && <Header />}
 
-        { !auth.accessToken && window.location.pathname!=="/Login"  ? <Loading/>: <Routes> 
+        { !auth.accessToken && window.location.pathname!=="/"  ? <Loading/>: <Routes> 
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/ContactUS" element={<ContactUs />} />
@@ -94,7 +95,7 @@ function App() {
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>}
-        {auth1 && window.location.pathname!=="/Login" && <Footer />}
+        {auth1 && window.location.pathname!=="/" && <Footer />}
       </div>
     </Scrollbars>
   );
