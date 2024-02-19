@@ -1,9 +1,9 @@
+/*eslint-disable*/
 import { Routes, Route, useNavigate, } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About us";
 import { Header } from "./components/Header";
 import { EditHeader } from "./components/EditHeader";
-
 import { Footer } from "./components/Footer";
 import { ContactUs } from "./pages/ContactUs/ContactUs";
 import { Lesson } from "./pages/Lessons";
@@ -18,8 +18,8 @@ import { NotFoundPage } from "./pages/NotFoundPage";
 import { Login } from "./pages/Login";
 import { Settings } from "./pages/PageSettings/Settings";
 import { useEffect, useState } from "react";
-import { UsefulMaterialsInfo } from "./pages/UsefulMaterialsInfo";
-import axios from "./axios/axios";
+// import { UsefulMaterialsInfo } from "./pages/UsefulMaterialsInfo";
+// import axios from "./axios/axios";
 import { Loading } from "./components/Loading";
 
 function App() {
@@ -38,7 +38,7 @@ function App() {
     } else {
       navigate("/")
     }
-  }, [localStorage?.getItem("auth"),])
+  }, [localStorage?.getItem("auth")])
   
   const url = window.location.href;
   const path = window.location.pathname;

@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import  { useEffect, useState } from 'react';
 import "./Lesson.scss";
 import { getFetchLectures, getFetchLesson, getFetchQuiz } from '../../store/action/LessonAction';

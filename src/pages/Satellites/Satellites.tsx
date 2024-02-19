@@ -21,9 +21,7 @@ export function Satellites() {
   const navigate = useNavigate();
   const [upload, setupload] = useState<any>();
   const [loadingVideo, setLoadingVideo] = useState<any>();
-  const { Satellites, loading } = useAppSelector(
-    (state: any) => state.Satellites
-  );
+  const { Satellites, loading } = useAppSelector((state: any) => state.Satellites);
   const background = Satellites?.background;
   
   const [done, setDone] = useState(false);

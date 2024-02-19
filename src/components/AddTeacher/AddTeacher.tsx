@@ -1,12 +1,12 @@
-
+/*eslint-disable*/
 import { Form, Input, Button, } from "antd";
 import "./AddTeacher.scss";
 import { useAppDispatch } from "../../hooks";
 import { fetchAddTeacher, getTeacher, } from "../../store/action/TeacherAction";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { useForm } from "antd/es/form/Form";
-import { addSyntheticLeadingComment } from "typescript";
+// import { useForm } from "antd/es/form/Form";
+// import { addSyntheticLeadingComment } from "typescript";
 
 const AddTeacher = ({ setOpen }: any) => {
 

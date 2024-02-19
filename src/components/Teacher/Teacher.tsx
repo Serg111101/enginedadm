@@ -1,4 +1,4 @@
-/*eslint-desble*/
+/*eslint-disable*/
 import React, { useEffect, useState } from 'react'
 import './Teacher.scss'
 import { getTeacher, editeTeacher, deleteTeacher } from '../../store/action/TeacherAction'
