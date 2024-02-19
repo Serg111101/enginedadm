@@ -41,7 +41,7 @@ export function Satellites() {
     if (!doneShow) {
       setDone(false);
     } else {
-      setDone(JSON.parse(doneShow));
+      setDone(JSON?.parse(doneShow));
     }
   }, [doneShow]);
 

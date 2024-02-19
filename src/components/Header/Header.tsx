@@ -15,10 +15,8 @@ import ReactFlagsSelect from "react-flags-select";
 const URL = process.env.REACT_APP_BASE_URL;
 
 export function Header() {
-  const { Logo, Header } = useAppSelector((state: any) => ({
-    Logo: state.Logo.Logo,
-    Header: state.Header.Header,
-  }));
+  const { Logo } = useAppSelector((state: any) => (state?.Logo));
+  const {Header} = useAppSelector((state:any)=>state?.Header)
   const url = window.location.href;
   const [done, setDone] = useState<boolean>(false);
   const navigate = useNavigate();
