@@ -368,8 +368,7 @@ export function Contact() {
             </Form.Item>
 
               
-                <p>SEND MAil RESPONSE</p>
-              <div className="resonseMessage">
+             { done && <div className="resonseMessage">
                 { show !== 6 && SendMail[5]?.title}
 
                 {show === 6 && (
@@ -388,8 +387,8 @@ export function Contact() {
                 </div>
               )}
                 
-              </div>
-              <div className="resonseMessage">
+              </div>}
+              {done && <div className="resonseMessage">
                  { show !== 6 && SendMail[5]?.text}
                  {show === 6 && (
                 <div className="inputTextTitle">
@@ -404,13 +403,13 @@ export function Contact() {
                     }}
                   />
                   <div className="okCloseButtons" >
-                <CloseOutlined className="iconantd" onClick={()=>{setShow(0);setIndex(0)}}/>
+                  <CloseOutlined className="iconantd" onClick={()=>{setShow(0);setIndex(0)}}/>
                   <CheckSquareOutlined className="iconantd" onClick={()=>{ validateAndEditContact()}}/>
                 </div>
                 </div>
               )}
                 
-              </div>
+              </div>}
                     
               {done && show !== 6 && (
                 <div className="editAuthorButton">

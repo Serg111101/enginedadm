@@ -20,7 +20,9 @@
 
       .itemsContainer{
           display: flex;
-
+       .selectDiv{
+        margin-right: 2px;
+       }
       }
 
       .imageHeader {
@@ -171,7 +173,7 @@
   }
 }
 
-@media(max-width:730px){
+@media(max-width:768px){
   .header{
       .constainerHeader{
 
