@@ -31,7 +31,7 @@ export const editHeader=(id: number,edit:any)=> {
       await axios.put(`${URL}aeroSpace/editHeader/${LocalValue}/${id}`, edit);
        
     } catch (error) {
-      console.log(error as Error);
+      console.error(error as Error);
     }
   }
 

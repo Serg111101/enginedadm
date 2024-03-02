@@ -29,7 +29,7 @@ export const editFooter = (id:number,value:any)=>{
         try{
             await axios.put(`${URL}aeroSpace/editFooter/${LocalValue}/${id}`,{text:value})
           }catch(error){
-            console.log(error as Error);
+            console.error(error as Error);
             
           }
     }
@@ -39,7 +39,7 @@ export const editFooterSociall = (id:number,value:any)=>{
         try{
             await axios.put(`${URL}aeroSpace/editFooter/${LocalValue}/${id}`,value)
           }catch(error){
-            console.log(error as Error);
+            console.error(error as Error);
             
           }
     }
@@ -49,7 +49,7 @@ export const addFooterSociall = (obj:any)=>{
         try{
             await axios.post(`${URL}aeroSpace/addFooter/${LocalValue}`,obj)
           }catch(error){
-            console.log(error as Error);
+            console.error(error as Error);
             
           }
     }
@@ -60,7 +60,7 @@ export const DeleteFooter=(id:number)=>{
             await axios.delete(`${URL}aeroSpace/deleteFooter/${id}/${LocalValue}`)
             dispatch(getFetchFooter())
         }catch(error){
-            console.log(error as Error)
+            console.error(error as Error)
         }
     }
 }

@@ -7,6 +7,11 @@ import { Loading } from "../../components/Loading/Loading";
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 const Informatoin = () => {
+  let LocalValue: any;
+  if (localStorage.getItem("language")) {
+      let local: any = localStorage.getItem("language");
+      LocalValue = JSON.parse(local);
+  }
   const { Lectures, loading } = useAppSelector((state:any) => state.Lectures);
   const { Slide } = useAppSelector((state:any) => state.Slide);
   const [lectures, setLectures] = useState(Lectures);
@@ -61,6 +66,7 @@ const Informatoin = () => {
     }
   }
 
+  
 
 
   const Background = Lectures[0]?.background;
@@ -69,7 +75,7 @@ const Informatoin = () => {
       <div className="Lecturee" style={elem ? { display: "none" } : { backgroundImage: `url(${Background})`, }}>
         {!elem && lectures?.length > 0 && <div className='prevButton'>
           <button onClick={() => navigate("/Lessons")} >
-            {Slide[0]?.button[0]}
+          {LocalValue === "AM" ? 'Հետ' : "Back"}
           </button>
         </div>}
         <div className={!elem ? 'lectureTitle' : ''}>

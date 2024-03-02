@@ -4,8 +4,21 @@ import './quiz.scss'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Loading } from '../../components/Loading/Loading'
+import { useAppDispatch } from '../../hooks'
+import { getFetchQuiz } from '../../store/action/LessonAction'
 export const Quiz = () => {
+    let LocalValue: any;
+    if (localStorage.getItem("language")) {
+        let local: any = localStorage.getItem("language");
+        LocalValue = JSON.parse(local);
+    }
+    let les:any;
+    if(localStorage.getItem("lessons")){
+        let getLes:any = localStorage.getItem("lessons");
+        les = JSON?.parse(getLes);
+    }
     const navigate = useNavigate();
+    const dispatch = useAppDispatch()
     const { Quiz,loading } = useSelector((state:any) => state.Quiz);
     const [item,setItem]= useState(Quiz)
     const [active,setActive] = useState<any>(false)
@@ -16,9 +29,15 @@ export const Quiz = () => {
            const Quizs = JSON.parse(quz);
             setItem(Quizs)
         }}
-
     
     },[Quiz])
+
+    useEffect(()=>{
+        if(les?.length>0){
+
+            dispatch(getFetchQuiz(les))
+        }
+    },[dispatch])
 
   
     let [question, setQuestion] = useState(0)
@@ -41,7 +60,6 @@ export const Quiz = () => {
             if (item[question]?.correctAnswer === corectAnswers && count <= question) {
                 setCount(++count)
             }
-           
             setQuestion(++question)
             setActive(false)
         }else{
@@ -70,18 +88,20 @@ export const Quiz = () => {
         setActive(el)
     }
     const Background = item[0]?.background;
-
+    
+        
+        
     return (
         <div className='answer' style={{ backgroundImage: `url(${Background})`}} >
             <div className='prevButton'>
-    <button onClick={()=>navigate("/Leqtures")} >
-      {item[0]?.button[3]}
+    <button onClick={()=>navigate("/Leqtures")}>
+    {LocalValue === "AM" ? 'Հետ' : "Back"}
     </button>
     </div>
             {loading ? <Loading/>:
           finish ? <div className='answer_next'>
-            <p>{item[0]?.button[0]}{count}/{item.length}</p>
-            <button onClick={()=>{ navigate('/Lessons')}}> {item[0]?.button[1]}  </button>
+            <p>{LocalValue === "AM" ? 'Դուք հավաքեցիք' : "You collected"+ "  "}{count}/{item.length}</p>
+            {/* <button onClick={()=>{ navigate('/Lessons')}}> {item[0]?.button[1]}  </button> */}
           </div> : <div className='quiz'>
                 <div>
                     <h1>{item[question]?.question}</h1>
@@ -92,7 +112,7 @@ export const Quiz = () => {
                         <p >{el}</p>
                      </div>)}
                 </div>
-                <button className={active ? "btnActive":"btnDisable"} onClick={() => {next()}}><p>{item[0]?.button[2]}</p></button>
+                <button className={active ? "btnActive":"btnDisable"} onClick={() => {next()}}><p>{LocalValue === "AM" ? 'Առաջ' : "Next"}</p></button>
             </div>}
 
         </div>

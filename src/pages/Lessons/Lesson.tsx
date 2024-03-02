@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import  { useEffect, useState } from 'react';
 import "./Lesson.scss";
-import { getFetchLectures, getFetchLesson, getFetchQuiz } from '../../store/action/LessonAction';
+import { getFetchLectures, getFetchLesson } from '../../store/action/LessonAction';
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { Loading } from "../../components/Loading/Loading";
@@ -13,17 +13,16 @@ export function Lesson() {
   const dispatch = useAppDispatch();
   const { Lesson,loading } = useAppSelector((state) => state.Lesson);
   const Background = Lesson[0]?.background;
-  const [count,setCount]=useState(1)
+  // const [count,setCount]=useState(1)
 
-  useEffect(() => {
-    if (!sessionStorage.getItem('count')) {
-      sessionStorage.setItem('count', '1');
-    }else{
-      let counting:any=sessionStorage.getItem('count');
-      setCount(JSON.parse(counting))
-      
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!sessionStorage.getItem('count')) {
+  //     sessionStorage.setItem('count', '1');
+  //   }else{
+  //     let counting:any=sessionStorage.getItem('count');
+  //     setCount(JSON.parse(counting))
+  //   }
+  // }, []);
 
   useEffect(() => {
     dispatch(getFetchLesson());

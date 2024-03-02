@@ -34,7 +34,7 @@ export const getAboutOutTeam = () => {
       dispatch(fetchAboutOurTeam(response?.data));
     }
     catch (error) {
-      console.log(error, 'error');
+      console.error(error, 'error');
       dispatch(fetchErrorAboutOurTeam(error as Error));
     }
   }
@@ -59,7 +59,7 @@ export const uploadImage = (e: any, id: number, setImage: (e: string) => void) =
       setImage(response?.data?.dirname)
 
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
 
   }
@@ -73,7 +73,7 @@ export const editePerson = (id: number, editvalue: any) => {
 
       await axios.put(`${URL}aeroSpace/editAboutPage/${LocalValue}/${id}`, editvalue)
     } catch (error) {
-      console.log(error as Error);
+      console.error(error as Error);
     }
   }
 }
@@ -88,7 +88,7 @@ export const addPerson = (obj: any, image: any) => {
     try {
       await axios.post(`${URL}aeroSpace/addNewAboutBox/${LocalValue}`, objj);
     } catch (error) {
-      console.log(error as Error);
+      console.error(error as Error);
     }
   }
 }
@@ -108,7 +108,7 @@ export const addPersonImage = (e: any,setAddImage:any) => {
       });
       setAddImage(response?.data?.dirname);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -123,7 +123,7 @@ export const deletePersons = (id: number) => {
       dispatch(getAboutOutTeam())
     }
     catch (error) {
-      console.log(error as Error);
+      console.error(error as Error);
     }
   }
 }
@@ -135,7 +135,7 @@ export const editeTeam = (id: number, editvalue: any) => {
     try {
       await axios.put(`${URL}aeroSpace/editAbout/${LocalValue}/${id}`, editvalue)
     } catch (error) {
-      console.log(error as Error);
+      console.error(error as Error);
     }
   }
 }
@@ -145,7 +145,7 @@ export const editeTeamImage = (id: number, addImg: any) => {
     try {
       await axios.put(`${URL}aeroSpace/editAbout/${LocalValue}/${id}`, { image: addImg })
     } catch (error) {
-      console.log(error as Error);
+      console.error(error as Error);
     }
   }
 }

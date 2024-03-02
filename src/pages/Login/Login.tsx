@@ -24,7 +24,7 @@ export const Login = () => {
         password: password.password.trim(),
       });
       const lifetime = active
-        ? new Date().setDate(new Date().getDate() + 356)
+        ? new Date().setDate(new Date().getDate() + 6)
         : new Date().setDate(new Date().getDate() + 1);
 
 
@@ -36,7 +36,18 @@ export const Login = () => {
         config.headers.Authorization = `Bearer ${user?.data?.accessToken}`;
     return config;
 });
-      navigate("/home");
+
+if(user.data.role==="superadmin"){
+  navigate("/home");
+}
+else{
+  throw new Error
+}
+
+      
+
+
+
     } catch (error) {
       loginError.login = "error";
       setLoginError({ ...loginError });

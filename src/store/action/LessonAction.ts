@@ -138,7 +138,7 @@ export const editLessonSlides = (id: number, props: any) => {
             await axios.put(`${URL}aeroSpace/editExistTopics/${LocalValue}/${id}`, props)
         }
         catch (error) {
-            console.log(error as Error);
+            console.error(error as Error);
         }
     }
 }
@@ -151,7 +151,7 @@ export const editLessonAction = (id: number, props: any,title:string) => {
             await axios.put(`${URL}aeroSpace/editExistLesson/${LocalValue}/${id}`, [props,title])
         }
         catch (error) {
-            console.log(error as Error);
+            console.error(error as Error);
         }
     }
 }
@@ -171,7 +171,7 @@ export const uploadImageFunction = (e: any, setImage: any) => {
             setImage(response?.data?.dirname)
 
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
 
     }
@@ -184,7 +184,7 @@ export const addLesson = (obj: any) => {
             await axios.put(`${URL}aeroSpace/addNewLesson/${LocalValue}`, obj)
         }
         catch (error) {
-            console.log(error as Error);
+            console.error(error as Error);
         }
 
     }
@@ -196,7 +196,7 @@ export const addTopics = (obj: any) => {
             await axios.post(`${URL}aeroSpace/addNewTopics/${LocalValue}`, obj)
         }
         catch (error) {
-            console.log(error as Error);
+            console.error(error as Error);
         }
 
     }
@@ -210,7 +210,7 @@ export const deleteLesson = (id: number,title:string) => {
              dispatch(getFetchLesson())
         }
         catch (error) {
-            console.log(error as Error);
+            console.error(error as Error);
         }
 
     }
@@ -224,7 +224,7 @@ export const addnewLesson = (obj:any) => {
             await axios.post(`${URL}aeroSpace/addNewLesson/${LocalValue? LocalValue :"AM"}`, obj)
         }
         catch (error) {
-            console.log(error as Error);
+            console.error(error as Error);
         }
     }
 }

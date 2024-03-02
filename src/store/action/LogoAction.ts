@@ -41,7 +41,7 @@ export const uploadImage=(e: any,setImage:any)=> {
           setImage(response?.data?.dirname)
           
         } catch (error) {
-          console.log(error);
+          console.error(error);
         }
 
     }

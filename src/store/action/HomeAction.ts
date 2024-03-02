@@ -133,7 +133,7 @@ export const editHomeHeaderText=(editvalue:any)=>{
         try{
             await axios.put(`${URL}aeroSpace/editBlok/${LocalValue}/text/0/0`,{title:editvalue})
           }catch(error){
-            console.log(error as Error);
+            console.error(error as Error);
             
           }
     }
@@ -147,7 +147,7 @@ export const deleteHomeHeaderImages =(index:number)=>{
               dispatch(getfetchHomeHeader())
         }
         catch(error){
-          console.log(error as Error);
+          console.error(error as Error);
         }
     }
 }
@@ -157,7 +157,7 @@ export const editeHomeHeaderImage=(index:number,addImg:any)=>{
             await axios.put(`${URL}aeroSpace/editBlok/${LocalValue}/text/${index-1}/${index-1}`,{logo:addImg,index:index-1})
             
         }catch(error){
-            console.log(error as Error);
+            console.error(error as Error);
         }
 
     }
@@ -170,7 +170,7 @@ export const addHomeHeaderImages =(addImg:string)=>{
               await axios.post(`${URL}aeroSpace/addNewBlok/${LocalValue}/text/`,{logo:addImg},)
         }
         catch(error){
-          console.log(error as Error);
+          console.error(error as Error);
         }
     }
 }
@@ -184,7 +184,7 @@ export const editNextRoute = (obj:any,id:number) => {
         try{
             await axios.put(`${URL}aeroSpace/editBlok/${LocalValue}/lessonBox/${id}/${id}`,obj)
         }catch(error){
-            console.log(error as Error);
+            console.error(error as Error);
             
         }
     }
@@ -196,7 +196,7 @@ export const editHomeAuthor = (obj:any) => {
         try{
             await axios.put(`${URL}aeroSpace/editBlok/${LocalValue}/Box/${0}/${0}`,obj)
         }catch(error){
-            console.log(error as Error);
+            console.error(error as Error);
         }
     }
 }
@@ -206,7 +206,7 @@ export const editHomeInfo = (obj:any,index:number) => {
         try{
             await axios.put(`${URL}aeroSpace/editBlok/${LocalValue}/downBox/${index}/${index}`,obj)
         }catch(error){
-            console.log(error as Error);
+            console.error(error as Error);
         }
     }
 }
@@ -218,7 +218,7 @@ export const editSendMail=(index:number,obj:any)=>{
         try{
             await axios.put(`${URL}aeroSpace/editBlok/${LocalValue}/sendMail/${index}/${index}`,obj)
         }catch(error){
-            console.log(error as Error);
+            console.error(error as Error);
         }
 
     }
@@ -231,7 +231,7 @@ export const editInfo = (obj:any,index:number) => {
         try{
             await axios.put(`${URL}aeroSpace/editBlok/${LocalValue}/contact/${index}/${index}`,obj)
         }catch(error){
-            console.log(error as Error);
+            console.error(error as Error);
         }
     }
 }

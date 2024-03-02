@@ -30,7 +30,7 @@ export const editContactUsInfo = (obj:any,) => {
         try{
             await axios.put(`${URL}aeroSpace/editBlok/${LocalValue}/contactUs/0/0`,obj)
         }catch(error){
-            console.log(error as Error);
+            console.error(error as Error);
             
         }
     }
