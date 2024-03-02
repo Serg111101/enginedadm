@@ -101,10 +101,10 @@ export const Quiz = () => {
             {loading ? <Loading/>:
           finish ? <div className='answer_next'>
             <p>{LocalValue === "AM" ? 'Դուք հավաքեցիք' : "You collected"+ "  "}{count}/{item.length}</p>
-            {/* <button onClick={()=>{ navigate('/Lessons')}}> {item[0]?.button[1]}  </button> */}
+            <button onClick={()=>{ navigate('/Lessons')}}> {LocalValue === "AM" ? 'Դասնթացներ' : "Lessons"+ "  "}  </button>
           </div> : <div className='quiz'>
                 <div>
-                    <h1>{item[question]?.question}</h1>
+                    <h1>{question+1+" . " + item[question]?.question}</h1>
                 </div>
                 <div className='item'>
                     {answer.length>0 && answer?.map((el:any,index:number) =>

@@ -13,6 +13,7 @@ export function Lesson() {
   const dispatch = useAppDispatch();
   const { Lesson,loading } = useAppSelector((state) => state.Lesson);
   const Background = Lesson[0]?.background;
+ 
   // const [count,setCount]=useState(1)
 
   // useEffect(() => {
