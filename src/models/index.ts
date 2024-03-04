@@ -189,7 +189,7 @@ export interface ITeacher
   role:string,
   info:string,
   school:string,
-  cubesat_link:any | any[],
+  links:any | any[],
   updated_at:string,
   created_at:string,
 };

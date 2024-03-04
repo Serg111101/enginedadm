@@ -4,13 +4,14 @@ import './Teacher.scss'
 import { getTeacher, editeTeacher, deleteTeacher } from '../../store/action/TeacherAction'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { AddTeacher } from '../AddTeacher'
-import { EditOutlined, DeleteOutlined, ArrowRightOutlined } from '@ant-design/icons'
+import { EditOutlined, DeleteOutlined, ArrowRightOutlined, EyeFilled, CheckSquareOutlined, PlusCircleFilled, CloseCircleFilled } from '@ant-design/icons'
 import { EditClassModal } from '../EditClassRoom/EditClassModal'
 import DeleteAll from '../DeleteComponent'
 
-import { EyeFilled } from "@ant-design/icons"
 import Swal from 'sweetalert2'
+import axios from '../../axios/axios'
 
+const URL = process.env.REACT_APP_BASE_URL;
 
 export function Teacher() {
 
@@ -20,10 +21,12 @@ export function Teacher() {
     const [editTeacher, seteditTeacher] = useState<any>(false)
     const [openLinks, setOpenLinks] = useState<any>(false);
     const [linkVal, setLinkVal] = useState("");
-    const [editLink, setEditLink] = useState(false);
+    const [editLink, setEditLink] = useState<any>(false);
     const [teacherIndex, setTeacherIndex] = useState(0)
     const [error, setError] = useState<any>()
     const [loading, setLoadnig] = useState(false);
+    const [image, setImage] = useState("");
+    const [cameraLink, setCameraLink] = useState("")
     useEffect(() => {
         dispatch(getTeacher("admin"))
     }, [dispatch])
@@ -65,21 +68,23 @@ export function Teacher() {
 
     }
     async function addLinks() {
-        if (linkVal?.length > 2) {
-            setOpenLinks({ ...openLinks, cubesat_link: [...openLinks.cubesat_link, linkVal] })
+        if (linkVal?.length > 2 && cameraLink?.length > 2) {
+            setOpenLinks({ ...openLinks, links: [...openLinks.links, { cubesat_link: linkVal, camera_link: cameraLink, image: image }] });
         }
-
-
     }
 
     useEffect(() => {
-        if (openLinks?.cubesat_link && linkVal?.length > 2) {
+        if (openLinks && linkVal?.length > 2 && cameraLink?.length > 2) {
             EditTeacher(openLinks, setError, setLoadnig);
             setOpen(false);
             setEditLink(false);
-            setLinkVal("")
+            setLinkVal("");
+            setCameraLink("");
+            setImage("");
+
+
         }
-    }, [openLinks?.cubesat_link])
+    }, [openLinks])
 
     useEffect(() => {
 
@@ -111,17 +116,25 @@ export function Teacher() {
         }
     }, [error, loading]);
 
+
+
+
     async function editLinks() {
-        const newLinks = openLinks?.cubesat_link.filter((el: any,) => el !== editLink)
-        const arr = [
-            ...newLinks,
-            linkVal
-        ]
-        await EditTeacher({ ...openLinks, cubesat_link: arr }, setError, setLoadnig);
+        const newLinks = openLinks?.links.map((el: any, index: any) => {
+            if (index !== editLink[1]) {
+                return el
+            } else {
+
+                editLink[0].image = image
+                return editLink[0]
+            }
+        })
+
+        await EditTeacher({ ...openLinks, links: newLinks }, setError, setLoadnig);
         setOpen(false);
-        setOpenLinks({ ...openLinks, cubesat_link: arr });
         setLinkVal("")
         setEditLink(false);
+        setImage("")
 
     }
 
@@ -139,18 +152,48 @@ export function Teacher() {
 
         }
     }
-    async function deleteLink(el: any) {
-
-        const newLinks = openLinks?.cubesat_link.filter((item: any,) => item !== el)
 
 
-        EditTeacher({ ...openLinks, cubesat_link: newLinks }, setError, setLoadnig);
-        setOpenLinks({ ...openLinks, cubesat_link: newLinks })
+
+
+    async function deleteLink(item: any) {
+        const newLinks = openLinks?.links.filter((el: any) => {
+            if (el?.camera_link !== item?.camera_link && el?.cubesat_link !== item?.cubesat_link) {
+                return el
+            }
+        })
+
+
+        EditTeacher({ ...openLinks, links: newLinks }, setError, setLoadnig);
+        setOpenLinks({ ...openLinks, links: newLinks })
         setOpen(false);
         setLinkVal("")
         setEditLink(false);
-
     }
+
+
+
+
+    async function uploadImageHandler(e: any) {
+        const formData = new FormData();
+        formData.append("image", e.target.files[0]);
+        if (formData.has("image")) {
+            try {
+                const response = await axios.post(`${URL}aeroSpace/addPicture`, formData, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
+                setImage(response?.data?.dirname);
+            } catch (error) {
+                return "Server request is failed";
+            }
+        }
+    }
+
+
+
+
     return (
         <div className='ClassItem'>
             {!openLinks ? <div className='teacherContainer'>
@@ -160,7 +203,7 @@ export function Teacher() {
                             <tr>
                                 <th>{LocalValue === 'AM' ? "Անուն Ազգանուն" : 'Name Surname'}</th>
                                 <th>{LocalValue === 'AM' ? 'Առարկա' : 'Subject'}</th>
-                                <th >{LocalValue === 'AM' ? "Հղումներ" : 'Links'}</th>
+                                <th >{LocalValue === 'AM' ? "Արբանյակներ" : 'Satellites'}</th>
                                 <th colSpan={2} ><EyeFilled /></th>
                             </tr>
                         </thead>
@@ -196,25 +239,31 @@ export function Teacher() {
                             <table>
                                 <thead>
                                     <tr>
-                                        
                                         <th >{LocalValue === 'AM' ? "Հղումներ" : 'Links'}</th>
+                                        <th>{LocalValue === 'AM' ? "Արբանյակի հղում" : 'Satellite link'}</th>
+                                        <th>{LocalValue === 'AM' ? "Տեսախցիկի հղում" : 'Camera link'}</th>
                                         <th colSpan={2} ><EyeFilled /></th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
-                                    {Teacher[teacherIndex]?.cubesat_link?.map((el: any, index: number) => <tr key={index + 1}>
-                                        {/* <td>{el?.fullName}</td> */}
-                                        {/* <td><strong>{el?.position}</strong></td> */}
+                                    {Teacher[teacherIndex]?.links?.map((el: any, index: number) => <tr key={index + 1}>
+
                                         <td className=' editdelete'>
-                                            {el}
+                                            <img src={el?.image} alt={el?.cubesat_link} />
                                         </td>
                                         <td className=' editdelete'>
-                                            <EditOutlined className='edit' onClick={() => { setEditLink(el); setLinkVal(el) }} />
+                                            {el?.cubesat_link}
+                                        </td>
+                                        <td className=' editdelete'>
+                                            {el?.camera_link}
+                                        </td>
+                                        <td className=' editdelete'>
+                                            <EditOutlined className='edit' onClick={() => { setEditLink([el, index]); setLinkVal(el) }} />
                                         </td>
                                         <td>
                                             < DeleteOutlined className='delete' onClick={() => { deleteLinks(el) }} />
                                         </td>
+
                                     </tr>)
                                     }
 
@@ -223,18 +272,107 @@ export function Teacher() {
                             <button className='button' onClick={() => setOpen(true)}>{LocalValue === 'AM' ? 'Ավելացնել հղում' : 'Add link'}</button>
                         </div>}
                         {open && <div className='otherInput' >
-                            <input type='text' value={linkVal} onChange={(e) => { setLinkVal(e.target.value) }} />
+                            <div className="uploadImage">
+                                <input
+                                    value={""}
+                                    type="file"
+                                    onChange={(e) => {
+                                        uploadImageHandler(e);
+                                    }}
+                                    accept="image/*"
+                                    id="filess2"
+                                    name="filess2"
+                                    style={{ display: "none" }}
+                                />
+
+                                {
+                                    image?.length > 0 && <div className='cubesatImage' > <img src={image} alt='cubesat image' /></div>
+                                }
+                                <div className='uploadButton' > {image?.length > 0 ? (
+                                    <>
+                                        <CloseCircleFilled className="iconantd" onClick={() => { setImage("") }} />
+                                    </>
+
+                                ) : (
+                                    <label htmlFor="filess2">
+                                        <PlusCircleFilled className="iconantd" />
+                                    </label>
+                                )}
+                                </div>
+
+                            </div>
+                            {image?.length > 0 && <div className='inputContainer' >
+                                <div>
+                                    <label htmlFor="linkVal">{LocalValue === 'AM' ? "Ավելացրեք արբանյակի հղում" : 'Add a satellite link'}</label>
+                                    <input type='text' id='linkVal' name='linkVal' value={linkVal} onChange={(e) => { setLinkVal(e.target.value) }} />
+                                </div>
+
+                                <div>
+                                    <label htmlFor="cameraLinkVal">{LocalValue === 'AM' ? "Ավելացրեք տեսախցիկի հղում" : 'Add a camera link'}</label>
+                                    <input type='text' id='cameraLinkVal' name='cameraLinkVal' value={cameraLink} onChange={(e) => { setCameraLink(e.target.value) }} />
+                                </div>
+
+
+
+
+                            </div>}
+
+
+
+
+
                             <div className="contaButton">
-                                <button className='button' onClick={() => { addLinks() }} >Save</button>
                                 <button className='button' onClick={() => { setOpen(false) }} >{LocalValue === 'AM' ? "Հետ" : 'go back'}</button>
+                                <button className='button' onClick={() => { addLinks() }} >Save</button>
                             </div>
                         </div>}
                         {editLink && <div className='otherInput'>
-                            <input type='text' value={linkVal} onChange={(e) => { setLinkVal(e.target.value) }} />
-                            <div className="contaButton">
-                                <button className='button' onClick={() => { editLinks(); }} >Save</button>
-                                <button className='button' onClick={() => { setEditLink(false); setLinkVal("") }} >{LocalValue === 'AM' ? "Հետ" : 'go back'}</button>
+                            <div> <img src={image || editLink[0]?.image} alt="Edited image" />
+                                <div className='uploadButton' > {image?.length > 0 ? (
+                                    <>
+                                        <CloseCircleFilled className="iconantd" onClick={() => { setImage("") }} />
+                                    </>
+
+                                ) : (
+                                    <label htmlFor="filess2">
+                                        <PlusCircleFilled className="iconantd" />
+                                    </label>
+                                )}
+
+
+                                    <input
+                                        value={""}
+                                        type="file"
+                                        onChange={(e) => {
+                                            uploadImageHandler(e);
+                                        }}
+                                        accept="image/*"
+                                        id="filess2"
+                                        name="filess2"
+                                        style={{ display: "none" }}
+                                    />
+
+                                </div>
+
                             </div>
+                            <div className='inputContainer' >
+                                <div>
+                                    <label htmlFor="linkVal">{LocalValue === 'AM' ? "Ավելացրեք արբանյակի հղում" : 'Add a satellite link'}</label>
+                                    <input type='text' name='linkVal' id='linkVal' value={editLink[0]?.cubesat_link} onChange={(e) => { setEditLink([{ ...editLink[0], cubesat_link: e.target.value }, editLink[1]]) }} />
+
+                                </div>
+                                <div>
+                                    <label htmlFor="cameraLinkVal">{LocalValue === 'AM' ? "Ավելացրեք տեսախցիկի հղում" : 'Add a camera link'}</label>
+                                    <input type='text' id='cameraLinkVal' name='cameraLinkVal' value={editLink[0]?.camera_link} onChange={(e) => { setEditLink([{ ...editLink[0], camera_link: e.target.value }, editLink[1]]) }} />
+                                </div>
+                            </div>
+
+
+                            <div className="contaButton">
+                                <button className='button' onClick={() => { setEditLink(false); setLinkVal("") }} >{LocalValue === 'AM' ? "Հետ" : 'go back'}</button>
+                                <button className='button' onClick={() => { editLinks(); }} >Save</button>
+                            </div>
+
                         </div>}
                     </div>
                 </>

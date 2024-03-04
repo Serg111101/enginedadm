@@ -170,5 +170,46 @@
         }
       }
     }
+
+    .cubesatImage{
+      margin: 0 auto;
+      width: 200px;
+      margin-bottom: 50px;
+      img{
+        width: 100%;
+        height: 200px;
+      }
+    }
+    .uploadButton{
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .inputContainer{
+      width: 80%;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      align-items: center;
+
+
+      label{
+        margin-bottom: 20px;
+        display: block;
+        color: white;
+      }
+    }
+
+    .otherInput{
+      margin: 0 auto;
+      // width: 200px;
+      margin-bottom: 50px;
+      img{
+        width: 100%;
+        height: 200px;
+      }
+    }
   }
   

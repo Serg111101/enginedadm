@@ -19,7 +19,7 @@ const AddTeacher = ({ setOpen }: any) => {
 
     const obj = {
       ...values,
-      cubesat_link:links,
+      links:[],
     }
     
 
@@ -107,12 +107,12 @@ const AddTeacher = ({ setOpen }: any) => {
         >
           <Input />
         </Form.Item>
-        <Form.Item
+        {/* <Form.Item
           label={LocalValue === 'AM' ? "Հղում" : 'Link'}
           rules={[{ required: true, message: LocalValue === 'AM' ? "Պարտադիր դաշտ!" : 'Required field' }]}
         >
           <Input onChange={(e:any)=>{setLinks([e.target.value])}} />
-        </Form.Item>
+        </Form.Item> */}
 
 
         <Form.Item

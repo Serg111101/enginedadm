@@ -42,7 +42,10 @@ export const getTeacher = (role:any) => {
 }
 
 export const editeTeacher = (obj:any,setError:any) => {
+
+    
     return async (dispatch:Dispatch)=>{
+        
         try{
         
             await axios.put(`${URL}v2/putTeacher/${obj.id}`,obj); 
