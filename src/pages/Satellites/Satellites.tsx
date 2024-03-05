@@ -78,9 +78,13 @@ export function Satellites() {
 
   async function handleSubmit(name: string) {
     let name1 = name;
-    await axios.put(`${URL}aeroSpace/editSatellite/${LocalValue ? LocalValue : "AM"}/1`, {
+    
+    
+    await axios.put(`${URL}aeroSpace/editSatellite/${LocalValue ? LocalValue : "AM"}/${1}`, {
+      
       [name1]: upload,
     });
+    
     dispatch(getFetchSatellites());
     setupload("");
   }
@@ -216,7 +220,7 @@ export function Satellites() {
               </div>
             )}
           </div>
-          {loadingVideo==='video1' ? <h2 className="editbutton">Loading...</h2> : <ReactPlayer key={1} url={upload ? upload : Satellites?.animationCubeSat1} width="100%" height="auto" controls={true} autoplayer={"false"} />}
+          {loadingVideo==='video1' ? <h2 className="editbutton">Loading...</h2> : <ReactPlayer  key={1} url={upload ? upload : Satellites?.animationCubeSat1} width="100%" height="auto" controls={true} autoplayer={"false"} />}
           <div className="editbutton1">
             {!upload && Satellites?.animationCubeSat1 && done && (
               <DeleteOutlined className="iconantd" onClick={() => { deleteItemmm("animationCubeSat1", 0, Satellites.id); }} />
@@ -762,7 +766,7 @@ export function Satellites() {
           {done && upload && (
             <div className="editbutton1" >
               <CloseOutlined onClick={() => { setAdd(''); setupload('') }} className="iconantd" />
-              <CheckSquareOutlined onClick={() => handleSubmit("animationCubeSat1")} className="iconantd" />
+              <CheckSquareOutlined onClick={() => handleSubmit("animationCubeSat3")} className="iconantd" />
             </div>
           )}
           {Satellites?.text5?.map((el: any, i: number) => (
@@ -875,7 +879,7 @@ export function Satellites() {
               {upload && done && (
                 <div className="editbutton1" >
                   <CloseOutlined className="iconantd" onClick={() => { setAdd(""); setupload("") }} />
-                  <CheckSquareOutlined onClick={() => handleSubmit("animationCubeSat1")} className="iconantd" />
+                  <CheckSquareOutlined onClick={() => handleSubmit("animationCubeSat4")} className="iconantd" />
                 </div>
               )}
             </div>

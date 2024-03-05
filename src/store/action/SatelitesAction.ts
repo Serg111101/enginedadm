@@ -13,6 +13,7 @@ export const getFetchSatellites = () => {
         try{
             dispatch(fetchingSatellites());
             const response =await axios.get(`${URL}aeroSpace/satellite/${LocalValue ? LocalValue:"AM"}`);
+            
             dispatch(fetchSatellites(response?.data[0]));
             
         }
