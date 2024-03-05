@@ -33,6 +33,7 @@ export function Teacher() {
 
     async function EditTeacher(item: any, setError: any, setLoading: any) {
         try {
+            
             setLoading(true);
             await dispatch(editeTeacher(item, setError))
             setLoading(false)
@@ -69,8 +70,10 @@ export function Teacher() {
     }
     async function addLinks() {
         if (linkVal?.length > 2 && cameraLink?.length > 2) {
-            setOpenLinks({ ...openLinks, links: [...openLinks.links, { cubesat_link: linkVal, camera_link: cameraLink, image: image }] });
+            const obj = { ...openLinks, links: [...openLinks?.links, { cubesat_link: linkVal, camera_link: cameraLink, image: image }] }
+            setOpenLinks(obj);
         }
+        
     }
 
     useEffect(() => {
@@ -124,12 +127,15 @@ export function Teacher() {
             if (index !== editLink[1]) {
                 return el
             } else {
-
-                editLink[0].image = image
-                return editLink[0]
+                if(image){
+                    return {...editLink[0],image:image}
+                }else{
+                    return {...editLink[0]}
+                }
+          
+                
             }
         })
-
         await EditTeacher({ ...openLinks, links: newLinks }, setError, setLoadnig);
         setOpen(false);
         setLinkVal("")
@@ -137,6 +143,7 @@ export function Teacher() {
         setImage("")
 
     }
+
 
     async function deleteLinks(el: any) {
         try {
@@ -184,6 +191,8 @@ export function Teacher() {
                         "Content-Type": "multipart/form-data",
                     },
                 });
+           
+                
                 setImage(response?.data?.dirname);
             } catch (error) {
                 return "Server request is failed";
