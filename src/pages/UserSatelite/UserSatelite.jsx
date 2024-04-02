@@ -37,7 +37,6 @@ const UserSatelite = () => {
     dispatch(getLinksSuperAdmin());
   
   }, [dispatch]);
-console.log(LinksSuperAdmin);
   async function navigateTo(el) {
     if (el?.includes("http://")) {
       window.open(el, "_blank");

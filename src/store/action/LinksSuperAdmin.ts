@@ -30,8 +30,7 @@ export const addLinksSuperAdmin = (obj:any) => {
         
         try{
         
-            const res=await axios.post(`${URL}aeroSpace/addLinksAdmin/${LocalValue}`,obj); 
-            console.log(res);
+            await axios.post(`${URL}aeroSpace/addLinksAdmin/${LocalValue}`,obj); 
             
         }
         catch(error){
@@ -47,8 +46,7 @@ export const editLinksSuperAdmin = (obj:any) => {
         
         try{
         
-            const res=await axios.put(`${URL}aeroSpace/editLinksAdmin/${LocalValue}/${obj.id}`,obj); 
-            console.log(res);
+            await axios.put(`${URL}aeroSpace/editLinksAdmin/${LocalValue}/${obj.id}`,obj); 
             
         }
         catch(error){

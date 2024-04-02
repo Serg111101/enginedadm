@@ -204,7 +204,6 @@ export function Teacher() {
         }
     }
 
-console.log(Teacher,"ttttttttttt");
 
 
 
