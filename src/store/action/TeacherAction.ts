@@ -44,9 +44,12 @@ export const getTeacher = (role:any) => {
 export const editeTeacher = (obj:any,setError:any) => {
 
     
-    return async (dispatch:Dispatch)=>{
+    return async ()=>{
         
         try{
+            if(obj?.password?.length){
+                delete obj?.password
+            }
         
             await axios.put(`${URL}v2/putTeacher/${obj.id}`,obj); 
             setError("ok") 

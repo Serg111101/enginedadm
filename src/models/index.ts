@@ -192,4 +192,11 @@ export interface ITeacher
   links:any | any[],
   updated_at:string,
   created_at:string,
-};
+}
+export interface ILinksSuperAdmin{
+  id:number,
+  cameraLinks:string,
+  spaceLinks:string,
+  updated_at:string,
+  created_at:string,
+}

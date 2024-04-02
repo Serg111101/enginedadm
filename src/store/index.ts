@@ -21,6 +21,7 @@ import SatellitesSliceReducer from'./slice/SatelitesSlice';
 import QuizSateliteReducer from './slice/QuizSateliteSlice';
 import ImageReducer from './slice/ImageSlice';
 import TeacherReducer from './slice/TeacherSlice'
+import LinksSuperAdminReducer from './slice/LinksSuperAdmin'
 
 export const store = configureStore({
   reducer: {
@@ -46,6 +47,7 @@ export const store = configureStore({
     QuizSatelite:QuizSateliteReducer,
     Image:ImageReducer,
     Teacher:TeacherReducer,
+    LinksSuperAdmin:LinksSuperAdminReducer,
     
   }
 })

@@ -10,6 +10,7 @@ import DeleteAll from '../DeleteComponent'
 
 import Swal from 'sweetalert2'
 import axios from '../../axios/axios'
+import Password from 'antd/es/input/Password'
 
 const URL = process.env.REACT_APP_BASE_URL;
 
@@ -32,6 +33,9 @@ export function Teacher() {
     }, [dispatch])
 
     async function EditTeacher(item: any, setError: any, setLoading: any) {
+       
+        
+        
         try {
             
             setLoading(true);
@@ -69,7 +73,7 @@ export function Teacher() {
 
     }
     async function addLinks() {
-        if (linkVal?.length > 2 && cameraLink?.length > 2) {
+        if (linkVal?.length > 2 ) {
             const obj = { ...openLinks, links: [...openLinks?.links, { cubesat_link: linkVal, camera_link: cameraLink, image: image }] }
             setOpenLinks(obj);
         }
@@ -77,7 +81,7 @@ export function Teacher() {
     }
 
     useEffect(() => {
-        if (openLinks && linkVal?.length > 2 && cameraLink?.length > 2) {
+        if (openLinks && linkVal?.length > 2 ) {
             EditTeacher(openLinks, setError, setLoadnig);
             setOpen(false);
             setEditLink(false);
@@ -200,6 +204,7 @@ export function Teacher() {
         }
     }
 
+console.log(Teacher,"ttttttttttt");
 
 
 
@@ -332,10 +337,11 @@ export function Teacher() {
 
                             <div className="contaButton">
                                 <button className='button' onClick={() => { setOpen(false) }} >{LocalValue === 'AM' ? "Հետ" : 'go back'}</button>
-                                <button className='button' onClick={() => { addLinks() }} >Save</button>
+                                <button className='button' onClick={() => { addLinks() }} >{LocalValue === 'AM' ? "Պահպանել" : 'Save'}</button>
                             </div>
                         </div>}
-                        {editLink && <div className='otherInput'>
+                        {editLink &&
+                         <div className='otherInput'>
                             <div> <img src={image || editLink[0]?.image} alt="Edited image" />
                                 <div className='uploadButton' > {image?.length > 0 ? (
                                     <>
