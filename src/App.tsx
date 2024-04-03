@@ -21,7 +21,7 @@ import { useEffect, useState } from "react";
 // import { UsefulMaterialsInfo } from "./pages/UsefulMaterialsInfo";
 // import axios from "./axios/axios";
 import { Loading } from "./components/Loading";
-import { UserSatelite } from "./pages/UserSatelite";
+import { AdminSatelite } from "./pages/AdminSatelite";
 
 
 function App() {
@@ -92,7 +92,7 @@ function App() {
           <Route path="/SatelliteQuiz" element={<QuizSatelite />} />
           <Route path="/EditSatelliteQuiz" element={<EditQuizSatelite />} />
           <Route path="/EditHeader" element={<EditHeader />} />
-          <Route path="/UserSatelite" element={<UserSatelite/>}/>
+          <Route path="/UserSatelite" element={<AdminSatelite/>}/>
           {/* <Route path="/UsefulMaterials" element={<UsefulMaterialsInfo />} /> */}
           {/* <Route path="/UsefulMaterialsInfo/:name" element={<UsefulMaterialsInfo />} /> */}
 

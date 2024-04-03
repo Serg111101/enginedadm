@@ -42,6 +42,7 @@
             background-color: rgb(255, 255, 255);
             cursor: pointer;
           }
+         
         }
         .inputContainer{
           width: 90%;
@@ -96,7 +97,17 @@
               background-color: rgb(255, 255, 255);
               cursor: pointer;
             }
-        
+            .button1 {
+              display: flex;
+              margin: 0 auto;
+              border: none;
+              font-size: 16px;
+              border-radius: 10px;
+              align-items: center;
+              padding: 7px;
+              background-color: rgb(114, 106, 106);
+              cursor: pointer;
+            }
             strong {
               font-weight: bold;
             }

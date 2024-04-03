@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './UserSatelite.scss';
+import './AdminSatelite.scss';
 // import useAuth from '../../hooks/index';
 import { useNavigate } from "react-router-dom"
 // import LinksModal from '../../components/LinksModal/LinksModal';
@@ -10,7 +10,7 @@ import { addLinksSuperAdmin, deleteLinksSuperAdmin, editLinksSuperAdmin, getLink
 import locale from 'antd/es/date-picker/locale/en_US';
 
 
-const UserSatelite = () => {
+const AdminSatelite = () => {
   let URL = process.env.REACT_APP_BASE_URL
   let loacal;
   if (localStorage?.getItem('language')) {
@@ -248,7 +248,7 @@ await setEditLink('')
                                 </select>
                                 :
                                 <div>
-                                    <button onClick={()=>{navigateTo(el?.spaceLinks)}} >{loacal==="AM" ? "Արբանյակի կառավարում":"Satelite control"}</button>
+                                    <button className='button1' onClick={()=>{navigateTo(el?.spaceLinks)}} >{loacal==="AM" ? "Արբանյակի կառավարում":"Satelite control"}</button>
 
                                 </div>  
                               
@@ -270,4 +270,4 @@ await setEditLink('')
   );
 };
 
-export default UserSatelite;
+export default AdminSatelite;
