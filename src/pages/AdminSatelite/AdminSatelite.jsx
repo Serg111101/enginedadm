@@ -18,7 +18,7 @@ const AdminSatelite = () => {
     loacal = JSON.parse(languageLocal)
   }
   const [selectVal, setSelectVal] = useState('');
-  const [openLinks, setOpenLinks] = useState('')
+  // const [openLinks, setOpenLinks] = useState('')
   const [editLinks, setEditLink] = useState(false)
   const [image, setImage] = useState("");
   const [open, setOpen] = useState('');
@@ -60,19 +60,19 @@ const AdminSatelite = () => {
 };
 
 
-async function navigateTo(el){
-    if(el?.includes("http://")){
-      window.open(el, "_blank");
+// async function navigateTo(el){
+//     if(el?.includes("http://")){
+//       window.open(el, "_blank");
 
-    }else{
-      window.open("http://"+el, "_blank");
-    }
-    if(el.includes("https://")){
-      window.open(el, "_blank")
-    }else{
-      window.open("http://"+el, "_blank");
-    }
-  }
+//     }else{
+//       window.open("http://"+el, "_blank");
+//     }
+//     if(el.includes("https://")){
+//       window.open(el, "_blank")
+//     }else{
+//       window.open("http://"+el, "_blank");
+//     }
+//   }
   
  useEffect(()=>{
     if(selectVal?.length>0){
@@ -101,16 +101,24 @@ async function navigateTo(el){
     }
   }
   async function addLinks() {
- 
- await   dispatch(addLinksSuperAdmin({image:image,cameraLinks:cameraLink,spaceLinks:linkVal}))
+ if(image?.length>0 && linkVal?.length>0){
+  await   dispatch(addLinksSuperAdmin({image:image,cameraLinks:cameraLink,spaceLinks:linkVal}))
   await  dispatch(getLinksSuperAdmin());
-    setOpen(false)
+    setOpen(false);
+    setImage("");
+    setCameraLink("");
+    setLinkVal("")
+ }
+ 
 
   }
   async function edit(){
-await dispatch(editLinksSuperAdmin(editLinks))
-await dispatch(getLinksSuperAdmin());
-await setEditLink('')
+    if(editLinks?.image?.length>0&&editLinks?.spaceLinks?.length>0){
+      await dispatch(editLinksSuperAdmin(editLinks))
+      await dispatch(getLinksSuperAdmin());
+      await setEditLink('')
+      
+    }
   }
   async function deleteItem(id){
    await dispatch(deleteLinksSuperAdmin(id))
@@ -228,15 +236,13 @@ await setEditLink('')
         </div>
 
     </div>}
-        {<div className='ClassTable'>
-          
-        </div>}
+       
         <div className='AllLinks'>
       {!open && !editLinks && LinksSuperAdmin?.map((el, i) => (
                     <div className="linksContainer" key={i}>
-                        { el.spaceLinks && el.image &&<div className="item">
+                        { el?.spaceLinks && el?.image &&<div className="item">
                             <div onClick={()=>{!el?.cameraLinks?.length&&navigateTo(el?.spaceLinks)}} className="imageDiv">
-                                {<img  src={el?.image} alt="picture with cubesat" />}
+                                <img  src={el?.image} alt="picture with cubesat" />
                             </div>
                             <div className="selectDiv">
                                 {el?.cameraLinks?<select onChange={(e)=>handleSelectChange(e,el)}>
