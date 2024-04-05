@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import "./EditQuiz.scss";
 import { useEffect } from 'react'
-import { getFetchQuiz, editFetchQuiz, addFetchQuiz, deleteFetchQuiz } from '../../store/action/LessonAction';
+import { getFetchQuiz, editFetchQuiz, addFetchQuiz, deleteFetchQuiz, getFetchQuizSuperadmin } from '../../store/action/LessonAction';
 import { Loading } from '../../components/Loading/Loading';
 import Swal from "sweetalert2";
 
@@ -40,7 +40,7 @@ export const EditQuiz = () => {
         title = JSON.parse(loc)
     }
     useEffect(() => {
-        dispatch(getFetchQuiz(title));
+        dispatch(getFetchQuizSuperadmin(title));
     }, [dispatch,title])
 
     async function editQuestion(value: any, index: any, indexItem: any, id: any, keys: string) {
@@ -98,12 +98,12 @@ export const EditQuiz = () => {
             setCorrectAnswer('')
             setIncorrectAnswer(["", "", ""])
             setQuestion('')
-            dispatch(getFetchQuiz(title));
+            dispatch(getFetchQuizSuperadmin(title));
         }
     }
     async function deleteQuestion(id: number) {
         await dispatch(deleteFetchQuiz(id))
-        await dispatch(getFetchQuiz(title))
+        await dispatch(getFetchQuizSuperadmin(title))
         setDeleteState([-1, ''])
     }
 

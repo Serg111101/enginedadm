@@ -44,6 +44,30 @@ export const getFetchQuiz = (titlee: any) => {
     }
 }
 
+
+
+export const getFetchQuizSuperadmin = (titlee: any) => {
+    return async (dispatch: Dispatch) => {
+        try {
+            dispatch(fetchingQuiz());
+            const response = await axios.get(`${URL}aeroSpace/getQuizSuperadmin/${titlee}/${LocalValue ? LocalValue : "AM"}`);
+            if (!localStorage.getItem("quizz")) {
+                localStorage.setItem('quizz', JSON.stringify(response?.data));
+            }
+            else {
+                localStorage.setItem('quizz', JSON.stringify(response?.data));
+            }
+            
+            dispatch(fetchQuiz(response?.data));
+        }
+        catch (error) {
+            dispatch(fetchErrorQuiz(error as Error));
+        }
+    }
+}
+
+
+
 export const editFetchQuiz = (value:any,id:any) => {
     return async (dispatch:Dispatch)=>{
         try{
