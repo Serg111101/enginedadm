@@ -122,7 +122,7 @@ export const EditQuiz = () => {
                                 {active === el.question ? <div> <CloseOutlined className="iconantd" onClick={() => { setActive('') }} /> < CheckSquareOutlined className="iconantd" onClick={() => { editQuestion(value, i, "", el.id, "question") }} /> </div> : <EditOutlined className="iconantd" onClick={() => { setValue(el.question); setActive(el.question) }} />}
                             </div>
 
-                            {active !== el.correctAnswer && <div className='answer_box'>
+                            { <div className='answer_box'>
                                 <div className='answer_correct'>
                                     <h4>{LocalValue === "AM" ? "Ճիշտ պատասխան" : "CorrectAnswer"}</h4>
                                     <div className='answer_text'>
