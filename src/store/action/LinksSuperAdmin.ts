@@ -42,7 +42,6 @@ export const addLinksSuperAdmin = (obj:any) => {
     }
 }
 export const editLinksSuperAdmin = (obj:any) => {
-    console.log(obj);
     
     return async (dispatch:Dispatch)=>{
         

@@ -29,8 +29,8 @@ export function Lesson() {
     dispatch(getFetchLesson());
   }, [dispatch]);
 
-  async function Quizz(lesson:string) {
-    localStorage.setItem("lessons", JSON.stringify(lesson));
+  async function Quizz(unique_key:string) {
+    localStorage.setItem("lessons", JSON.stringify(unique_key));
     setQuiz(!quiz);
     navigate('/Leqtures');
   }
@@ -53,7 +53,7 @@ export function Lesson() {
 
               <div key={index} className=
                "product-card"
-                 onClick={() => Quizz(item?.lesson)}
+                 onClick={() => Quizz(item?.unique_key)}
                 >
                 <img className='imageDiv' src={item?.icon} alt={item.lesson} />
                 <div className="color" id='color' style={{ background: item?.color }}>

@@ -1,4 +1,3 @@
-import { AboutPersons } from "../../components/AboutPersons/AboutPersons";
 import { AboutTeam } from "../../components/AboutTeam/AboutTeam";
 import { getAboutOutTeam, getFetchAbout } from "../../store/action/AboutAction";
 import "./About.scss";
@@ -13,7 +12,6 @@ export function About() {
   const {About} = useAppSelector((state:any)=>state.About);
 
   const Background = HomeAuthor?.logo;
-  const [show,setShow] = useState<boolean>(false);
   
 
   const dispatch = useAppDispatch()
@@ -36,11 +34,11 @@ export function About() {
       <h1 className="aboutTitle" >{About[About.length - 1]?.title}</h1>
       {
     
-    !sessionStorage.getItem('friend')&&<div className="componentTheam" > <AboutTeam show={show} setShow = {setShow} id = {id}/></div>
+    !sessionStorage.getItem('friend')&&<div className="componentTheam" > <AboutTeam /></div>
       }
       {
     
-    (sessionStorage.getItem('friend')||show) &&  <div className="personComponent" >  <AboutPersons id={id} show={show} setShow = {setShow} /> </div>
+    // (sessionStorage.getItem('friend')||show) &&  <div className="personComponent" >  <AboutPersons id={id} show={show} setShow = {setShow} /> </div>
    }
    
     </div>

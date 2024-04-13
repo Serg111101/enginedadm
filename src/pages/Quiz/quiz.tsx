@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { Loading } from '../../components/Loading/Loading'
 import { useAppDispatch } from '../../hooks'
 import { getFetchQuiz } from '../../store/action/LessonAction'
+import { Divider } from 'antd'
 export const Quiz = () => {
     let LocalValue: any;
     if (localStorage.getItem("language")) {
@@ -28,9 +29,13 @@ export const Quiz = () => {
            const quz:any = localStorage.getItem('quizz')
            const Quizs = JSON.parse(quz);
             setItem(Quizs)
-        }}
+        }}else{
+            setItem(Quiz)
+        }
     
     },[Quiz])
+  
+    
 
     useEffect(()=>{
         if(les?.length>0){
@@ -55,6 +60,7 @@ export const Quiz = () => {
         setAnswer(answers)
     }
     },[question,item])
+    
     function next() {
         if(question < item.length-1){
             if (item[question]?.correctAnswer === corectAnswers && count <= question) {
@@ -94,7 +100,7 @@ export const Quiz = () => {
     return (
         <div className='answer' style={{ backgroundImage: `url(${Background})`}} >
             <div className='prevButton'>
-    <button onClick={()=>navigate("/Leqtures")}>
+    <button onClick={()=>{navigate("/Leqtures");localStorage.removeItem('elem')}}>
     {LocalValue === "AM" ? 'Հետ' : "Back"}
     </button>
     </div>
@@ -102,7 +108,7 @@ export const Quiz = () => {
           finish ? <div className='answer_next'>
             <p>{LocalValue === "AM" ? 'Դուք հավաքեցիք' : "You collected"+ "  "}{count}/{item.length}</p>
             <button onClick={()=>{ navigate('/Lessons')}}> {LocalValue === "AM" ? 'Դասնթացներ' : "Lessons"+ "  "}  </button>
-          </div> : <div className='quiz'>
+          </div> : Quiz.length > 0 ? <div className='quiz'>
                 <div>
                     <h1>{question+1+" . " + item[question]?.question}</h1>
                 </div>
@@ -113,7 +119,8 @@ export const Quiz = () => {
                      </div>)}
                 </div>
                 <button className={active ? "btnActive":"btnDisable"} onClick={() => {next()}}><p>{LocalValue === "AM" ? 'Առաջ' : "Next"}</p></button>
-            </div>}
+            </div>:  <div className='infoParentSlide1'>{LocalValue==="AM"?"Այս թեմայի համար նյութ չկա":"There is no material for this topic"}</div>
+}
 
         </div>
     )

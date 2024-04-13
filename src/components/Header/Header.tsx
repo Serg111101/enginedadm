@@ -83,7 +83,7 @@ export function Header() {
   function changeLanguage(e: any) {
     localStorage.setItem("language", JSON.stringify(e));
     setLanguages(e);
-    navigate("/home");
+    // navigate("/home");
     window.location.reload();
   }
 

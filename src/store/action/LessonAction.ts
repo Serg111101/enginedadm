@@ -87,7 +87,7 @@ export const addFetchQuiz = (value:any) => {
     
     return async (dispatch:Dispatch)=>{
         try{
-        
+    
            
             const response =await axios.post(`${URL}aeroSpace/addNewQuestion/${LocalValue ? LocalValue:"AM"}`,value);  
           
@@ -141,7 +141,7 @@ export const getFetchLectures = (titlee: any) => {
 }
 
 export const getFetchSlides = (id: any) => {
-
+        
     return async (dispatch: Dispatch) => {
         try {
             dispatch(fetchingSlide());
@@ -167,12 +167,12 @@ export const editLessonSlides = (id: number, props: any) => {
     }
 }
 
-export const editLessonAction = (id: number, props: any,title:string) => {
+export const editLessonAction = (id: number, props: any,title:any) => {
    
     
     return async () => {
         try {
-            await axios.put(`${URL}aeroSpace/editExistLesson/${LocalValue}/${id}`, [props,title])
+            await axios.put(`${URL}aeroSpace/editExistLesson/${LocalValue}/${props.unique_key}`, [props,title])
         }
         catch (error) {
             console.error(error as Error);
@@ -202,7 +202,8 @@ export const uploadImageFunction = (e: any, setImage: any) => {
 }
 
 export const addLesson = (obj: any) => {
-
+    let newKay = Date.now()
+    obj.unique_key= newKay
     return async () => {
         try {
             await axios.put(`${URL}aeroSpace/addNewLesson/${LocalValue}`, obj)
@@ -214,7 +215,8 @@ export const addLesson = (obj: any) => {
     }
 }
 export const addTopics = (obj: any) => {
-
+ 
+    
     return async () => {
         try {
             await axios.post(`${URL}aeroSpace/addNewTopics/${LocalValue}`, obj)
@@ -227,7 +229,7 @@ export const addTopics = (obj: any) => {
 }
 
 export const deleteLesson = (id: number,title:string) => {
-
+   
     return async (dispatch:any) => {
         try {
             await axios.delete(`${URL}aeroSpace/deleteExistLesson/${LocalValue}/${id}/${title}`)
@@ -242,7 +244,8 @@ export const deleteLesson = (id: number,title:string) => {
 
 
 export const addnewLesson = (obj:any) => {
-    
+    let newKay = Date.now()
+    obj.unique_key= newKay
     return async () => {
         try {
             await axios.post(`${URL}aeroSpace/addNewLesson/${LocalValue? LocalValue :"AM"}`, obj)

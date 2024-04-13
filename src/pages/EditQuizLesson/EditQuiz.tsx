@@ -14,11 +14,12 @@ import {
     DeleteOutlined
 } from "@ant-design/icons";
 import { RemoveItem } from '../../components/removeItem';
+import { useNavigate } from 'react-router-dom';
 
 export const EditQuiz = () => {
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate()
     const { Quiz, loading } = useAppSelector((state: any) => state.Quiz);
-
     const [active, setActive] = useState('');
     const [value, setValue] = useState('');
     const [add, setAdd] = useState(false);
@@ -86,12 +87,14 @@ export const EditQuiz = () => {
             })
         } else {
 
+
             let obj = {
                 button: ["Հետ", "Առաջ", "Հետ դեպի հարցաշար"],
                 lesson: title,
                 question: question,
                 correctAnswer: correctAnswer,
-                incorrectAnswer: incorrectAnswer
+                incorrectAnswer: incorrectAnswer,
+                unique_key:title
             }
             await dispatch(addFetchQuiz(obj))
             setAdd(false)
@@ -112,9 +115,15 @@ export const EditQuiz = () => {
         <>
 
             <div className='answer' >
-
+            <div className='prevButton'>
+          <button onClick={() => { navigate("/Setting") }} >
+          {LocalValue==="AM" ? "Հետ":"Go back"}
+          </button>
+        </div>
                 {loading ? <Loading />
-                    : <div className='quiz'>
+                    :
+                     <div className='quiz'>
+                          
                         {Quiz.map((el: any, i: any) =>
                          <div key={i} >
                             <div className='head' >
@@ -147,7 +156,8 @@ export const EditQuiz = () => {
 
                             <DeleteOutlined className="iconantd" onClick={() => setDeleteState([el.id, ''])} />
                         </div>)}
-                    </div>}
+                    </div>
+                    }
 
                 < PlusCircleFilled onClick={() => { setAdd(!add) }} />
                 {add && <form className='addQuestion'>

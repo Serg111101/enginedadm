@@ -17,27 +17,43 @@ if (localStorage.getItem("language")) {
 }
 
 export function LessonEdit() {
-    const { Lesson, loading } = useAppSelector((state) => state.Lesson);
-    const dispatch = useAppDispatch();
-    const [editLesson, setEditLesson] = useState<any>()
-    const [deleteState, setDeleteState] = useState([-1, ''])
-    const [editInformation, setEditInformation] = useState('')
-    const [editInformationID, setEditInformationID] = useState(-1)
-    const [lectures, setLectures] = useState<any>([{ text: "", color: "" }, { text: "", color: "" }, { text: "", color: "" }, { text: "", color: "" }, { text: "", color: "" }])
-    const [image, setImage] = useState("")
-    const [addLesson, setAddLesson] = useState<any>({
-        lesson: "",
-        icon: "",
-        lectures: lectures,
-    })
     let LocalValue: any;
     if (localStorage.getItem("language")) {
         let local: any = localStorage.getItem("language");
         LocalValue = JSON.parse(local);
     }
+    const { Lesson, loading } = useAppSelector((state: any) => state.Lesson);
+    const dispatch = useAppDispatch();
+    const [editLesson, setEditLesson] = useState<any>()
+    const [deleteState, setDeleteState] = useState([-1, ''])
+    const [editInformation, setEditInformation] = useState('')
+    const [editInformationID, setEditInformationID] = useState(-1)
+    const [lectures, setLectures] = useState<any>([{ text: "", color: "" },])
+    const [image, setImage] = useState("")
+    const [colorQuestion, setColorQuestion] = useState({
+        text: LocalValue === "AM" ? "Հարցաշար" : "Question",
+        color: ""
+    })
+    const [addLesson, setAddLesson] = useState<any>({
+        lesson: "",
+        icon: "",
+        lectures: lectures,
+    })
+    const [showaddLectures, setShowAddLectures] = useState(false);
+    const [showAddLec, setShowAddLec] = useState(false);
+    const [addLecturesData, setAddLecturesData] = useState<any>({
+        text: "",
+        color: "",
+    });
+    const [createLec, setCreateLec] = useState({
+        text: "",
+        color: "",
+    })
+
 
     const [add, setAdd] = useState(false)
     const [done, setDone] = useState(false);
+    const [lessonName, setLessonName] = useState('');
     const sesion = sessionStorage.getItem("done")
     const navigate = useNavigate()
     useEffect(() => {
@@ -48,7 +64,6 @@ export function LessonEdit() {
 
     useEffect(() => {
         dispatch(getFetchLesson())
-
     }, [dispatch])
     useEffect(() => {
 
@@ -61,7 +76,8 @@ export function LessonEdit() {
                 color: editLesson.color,
                 icon: image,
                 iconka: editLesson.iconka,
-                lectures: editLesson.lectures
+                lectures: editLesson.lectures,
+                unique_key: editLesson.unique_key
             })
             setImage('')
         }
@@ -90,18 +106,14 @@ export function LessonEdit() {
     async function uploadedImage(e: any) {
         await dispatch(uploadImageFunction(e, setImage))
     }
-
-   
-
-
-    async function DeleteLesson(id: number,title:string) {
+    async function DeleteLesson(id: number, title: string) {
         try {
             await DeleteAll({
                 title: LocalValue === 'AM' ? "Ցանկանում եք ջնջե՞լ" : 'Do you want to delete?',
                 text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող" : 'If you delete it, you cannot restore it',
-                deleteItem: () => dispatch(deleteLesson(id,title))
-                
-                
+                deleteItem: () => dispatch(deleteLesson(id, title))
+
+
             });
 
         } catch (error) {
@@ -110,9 +122,6 @@ export function LessonEdit() {
         }
 
     }
-
-
-
     async function editLecturess(e: any, i: number, par: any) {
 
         if (par === "text") {
@@ -146,27 +155,32 @@ export function LessonEdit() {
 
         }
 
-        
+
         // setLectures(lectures)        
-        
+
     }
-    
+
     async function addLessons() {
-        if (image.length > 0 
+        if (image.length > 0
             && addLesson?.lesson?.trim() &&
-            lectures[0].text.trim() && lectures[0].color.trim() &&
-            lectures[1].text.trim() && lectures[1].color.trim() &&
-            lectures[2].text.trim() && lectures[2].color.trim() &&
-            lectures[3].text.trim() && lectures[3].color.trim() &&
-            lectures[4].text.trim() && lectures[4].color.trim()) {
-                
-                
-            let newLesson={
+            lectures[0].text.trim()
+            && lectures[0].color.trim()
+            //  &&
+            // lectures[1].text.trim() && lectures[1].color.trim() &&
+            // lectures[2].text.trim() && lectures[2].color.trim() &&
+            // lectures[3].text.trim() && lectures[3].color.trim() &&
+            // lectures[4].text.trim() && lectures[4].color.trim()
+
+        ) {
+
+
+            let newLesson = {
                 lesson: addLesson.lesson,
                 icon: image,
-                lectures: lectures,
+                lectures: [...lectures, colorQuestion],
 
             }
+
 
             if (newLesson.icon) {
                 await dispatch(addnewLesson(newLesson))
@@ -187,7 +201,7 @@ export function LessonEdit() {
         }
     }
     async function setfalse() {
-        setLectures([{ text: "", color: "" }, { text: "", color: "" }, { text: "", color: "" }, { text: "", color: "" }, { text: "", color: "" }])
+        setLectures([{ text: "", color: "" }])
         setAddLesson({
             lesson: "",
             icon: "",
@@ -196,19 +210,119 @@ export function LessonEdit() {
         })
         setImage('')
         setAdd(false)
+        setColorQuestion({
+            text: LocalValue === "AM" ? "Հարցաշար" : "Question",
+            color: ""
+        })
     }
-    function text(id: any, lesson: any) {
+    function text(id: any, unique_key: any) {
 
-        localStorage.setItem("lessons", JSON.stringify(lesson))
-        if ((lectures.length - 1) === id && done) {
+        let item: any;
+        Lesson.map((el: any) => {
+            if (el.unique_key === unique_key) {
+                item = el.lectures.length
+            }
+        })
+
+        localStorage.setItem("lessons", JSON.stringify(unique_key))
+        if ((item - 1) === id && done) {
             navigate("/EditQuiz")
         }
     }
+    const clodeAddLectures = () => {
+        setShowAddLectures(false);
+        setImage("");
+        setAddLecturesData({
+            text: "",
+            color: "",
+        })
+    }
+
+    const addLectures = async () => {
+
+        const rr = editLesson.lectures.slice(0, editLesson.lectures?.length - 1)
 
 
-    
+
+        rr.push(addLecturesData);
+        rr.push(editLesson.lectures[editLesson.lectures?.length - 1]);
+
+        const obj = {
+            ...editLesson,
+            lectures: rr
+        }
+
+        setEditLesson(obj);
+        setShowAddLectures(false);
+        setAddLecturesData({
+            text: "",
+            color: "",
+        })
+    }
+
+    const createLectures = () => {
+        setLectures([...lectures, createLec]);
+
+        setShowAddLectures(false);
+        // setColorQuestion({
+        //     text: LocalValue === "AM" ? "Հարցաշար" : "Question",
+        //     color: ""
+        // });
+        setCreateLec({ text: "", color: "", })
+        setShowAddLec(false);
 
 
+
+    }
+    const closeCreatingLectures = () => {
+        setShowAddLectures(false);
+        setCreateLec({ text: "", color: "" })
+        setColorQuestion({
+            text: LocalValue === "AM" ? "Հարցաշար" : "Question",
+            color: ""
+        })
+        setCreateLec({ text: "", color: "", });
+        setShowAddLec(false)
+    }
+
+    const deleteAddedLecture = (state: any, index: number, setState: any) => {
+
+        if (state.length > 2) {
+            const newState = state.filter((el: any, i: number) => {
+                if (i !== index) {
+                    return el
+                }
+            });
+            setState(newState)
+        }
+        setColorQuestion({
+            text: LocalValue === "AM" ? "Հարցաշար" : "Question",
+            color: ""
+        });
+        setCreateLec({ text: "", color: "", })
+
+    }
+
+    const deleteAdL = (elem: any, index: number) => {
+
+        if (editLesson?.lectures?.length > 2) {
+
+            const newlec = editLesson?.lectures?.filter((el: any, i: number) => {
+                if (index !== i) {
+                    return el
+                }
+            })
+            setEditLesson({ ...editLesson, lectures: newlec })
+        }
+        setColorQuestion({
+            text: LocalValue === "AM" ? "Հարցաշար" : "Question",
+            color: ""
+        });
+        setCreateLec({ text: "", color: "", })
+
+
+
+    }
 
     return (<>
         {
@@ -217,10 +331,10 @@ export function LessonEdit() {
                 <>
                     <div className='EditLesson_Component'>
                         {
-                            Lesson?.map((el) =>
+                            Lesson?.map((el: any) =>
                                 <div className='Lesson_option' key={el.id}>
                                     {editLesson?.id === el.id ? <>
-                                        <div className='Lesson_item' >
+                                        {!showaddLectures && <div className='Lesson_item' >
                                             <input type="text" value={editLesson.lesson} onChange={(e) => setEditLesson({
                                                 lesson: e.target.value,
                                                 background: editLesson.background,
@@ -229,7 +343,8 @@ export function LessonEdit() {
                                                 color: editLesson.color,
                                                 icon: editLesson.icon,
                                                 iconka: editLesson.iconka,
-                                                lectures: editLesson.lectures
+                                                lectures: editLesson.lectures,
+                                                unique_key: editLesson.unique_key
                                             })} />
                                             <img src={editLesson?.icon} alt={'icon' + el.id} />
                                             <div className="uploadImage">
@@ -244,13 +359,13 @@ export function LessonEdit() {
                                                     style={{ display: "none" }}
                                                 />
                                             </div>
-                                        </div>
+                                        </div>}
                                         <div className='Lesson_mini_map'>
 
                                             {
-                                                editLesson?.lectures?.map((elem: any, index: number) => <div className="Lesson_mini_div">
+                                                !showaddLectures && editLesson?.lectures?.map((elem: any, index: number) => <div className="Lesson_mini_div">
                                                     <div key={index} className='Lesson_mini_item' style={{ background: elem.color }}>
-                                                        <textarea value={elem.text} rows={5} onChange={(e) =>
+                                                        {editLesson?.lectures?.length - 1 !== index ? <textarea value={elem.text} rows={5} onChange={(e) =>
                                                             setEditLesson({
                                                                 lesson: editLesson.lesson,
                                                                 background: editLesson.background,
@@ -259,6 +374,7 @@ export function LessonEdit() {
                                                                 color: editLesson.color,
                                                                 icon: editLesson.icon,
                                                                 iconka: editLesson.iconka,
+                                                                unique_key: editLesson.unique_key,
                                                                 lectures: editLesson?.lectures?.map((element: any, idx: number) => {
                                                                     if (index === idx) {
                                                                         let newaa = {
@@ -274,6 +390,10 @@ export function LessonEdit() {
                                                                 })
                                                             })
                                                         } />
+                                                            :
+                                                            <p>{LocalValue === "AM" ? "Հարցաշար" : "Question"}</p>
+
+                                                        }
                                                         <input type="color" value={elem.color} onChange={(e) =>
                                                             setEditLesson({
                                                                 lesson: editLesson.lesson,
@@ -283,6 +403,7 @@ export function LessonEdit() {
                                                                 color: editLesson.color,
                                                                 icon: editLesson.icon,
                                                                 iconka: editLesson.iconka,
+                                                                unique_key: editLesson.unique_key,
                                                                 lectures: editLesson?.lectures?.map((element: any, idx: number) => {
                                                                     if (index === idx) {
                                                                         let newaa = {
@@ -298,12 +419,31 @@ export function LessonEdit() {
                                                                 })
                                                             })
                                                         } />
+                                                        {editLesson?.lectures?.length - 1 !== index && <button  className='Delete_button_Lesson' onClick={() => { deleteAdL(elem, index) }} ><DeleteOutlined /></button>}
                                                     </div>
                                                 </div>)
                                             }
+                                            {!showaddLectures ? <button className='save_button_Lesson' onClick={() => { setShowAddLectures(true) }} ><PlusCircleFilled /></button>
+                                                : <div className="Lesson_mini_div" >
 
-                                            <button className='save_button_Lesson' onClick={() => editLessons(el.lesson)}><CheckSquareOutlined /></button>
-                                            <button className='save_button_Lesson' onClick={() => setEditLesson('')}><CloseOutlined /></button>
+                                                    <div className='Lesson_mini_item' style={{ background: addLecturesData?.color }}>
+                                                        <textarea value={addLecturesData.text} rows={5} onChange={(e) =>
+                                                            setAddLecturesData({ ...addLecturesData, text: e.target.value })
+                                                        } />
+                                                        <input type="color" value={addLecturesData.color} onChange={(e) =>
+                                                            setAddLecturesData({ ...addLecturesData, color: e.target.value })
+                                                        } />
+                                                    </div>
+
+                                                    <button className='save_button_Lesson' onClick={() => { addLectures() }} ><CheckSquareOutlined /></button>
+                                                    <button className='save_button_Lesson' onClick={() => { clodeAddLectures() }} ><CloseOutlined /></button>
+                                                </div>
+                                            }
+
+                                            {!showaddLectures && <>
+                                                <button className='save_button_Lesson' onClick={() => editLessons(el.lesson)}><CheckSquareOutlined /></button>
+                                                <button className='save_button_Lesson' onClick={() => setEditLesson('')}><CloseOutlined /></button>
+                                            </>}
                                         </div>
                                     </> :
                                         <>
@@ -316,24 +456,24 @@ export function LessonEdit() {
 
                                             </div>
                                             <div className='Lesson_mini_map'>
-
                                                 {
-                                                    el?.lectures.map((elem: any, index: number) =>
+                                                    el?.lectures?.map((elem: any, index: number) =>
                                                         <div key={index} className='Lesson_mini_div'>
                                                             <div className='Lesson_mini_item' style={{ background: elem.color }}>
                                                                 {elem.text}
                                                             </div>
                                                             <div className='Editmini_leson' style={{ background: elem.color }}
                                                                 onClick={() => {
-                                                                    setEditInformation(el.lesson); setEditInformationID(index); text(index, el.lesson);
+                                                                    setEditInformation(el.unique_key); setEditInformationID(index); text(index, el.unique_key); setLessonName(el.lesson)
                                                                 }}>
                                                                 <p>{LocalValue === "AM" ? "Փոփոխել ներքին նյութերը" : "Modify internal materials"} <EditOutlined /></p>
                                                             </div>
-                                                        </div>)
+                                                        </div>
+                                                    )
                                                 }
                                                 <div>
                                                     <button className='Edit_button_Lesson' onClick={() => setEditLesson(el)}><EditOutlined /></button>
-                                                    <button className='Delete_button_Lesson' onClick={() => DeleteLesson(el.id,el.lesson)}><DeleteOutlined /></button></div>
+                                                    <button className='Delete_button_Lesson' onClick={() => DeleteLesson(el.id, el.unique_key)}><DeleteOutlined /></button></div>
                                             </div></>}
 
                                 </div>)
@@ -341,8 +481,8 @@ export function LessonEdit() {
                     </div>
                     <div className="AddLesson_component">
                         <button className='AddLesson_button'><PlusCircleFilled onClick={() => { setAdd(!add); }} /></button>
-                        {add && <div className="AddLesson_div">
-                            <div className='Lesson_item' >
+                        {add &&  <div className="AddLesson_div">
+                           {!showAddLec&& <div className='Lesson_item' >
                                 <label htmlFor="">{LocalValue === "AM" ? "Դասընթացի անվանումը" : "Lessone name"}</label>
                                 <input type="text" onChange={(e) => {
                                     setAddLesson({
@@ -364,33 +504,50 @@ export function LessonEdit() {
                                         style={{ display: "none" }}
                                     />
                                 </div>
-
-                            </div>
-                            <div className='Lesson_mini_map'>
-
+                            </div>}
+                            {!showAddLec&& <div className='Lesson_mini_map'>
+                                  <div className='addLec'>
                                 {
-
                                     lectures?.map((elem: any, i: any) =>
                                         <div key={i} className='Lesson_mini_item' style={{ background: elem?.color }}>
                                             <label htmlFor="">{LocalValue === "AM" ? "Թեմայի անվանումը" : "Theme Name"}</label>
-                                            <input type="text" onChange={(e) => editLecturess(e, i, "text")
+                                            <input type="text" value={elem?.text} onChange={(e) => editLecturess(e, i, "text")
                                             } />
                                             <label htmlFor="">{LocalValue === "AM" ? "Դաշտի գույնը" : "The color of the field"}</label>
                                             <input type="color" value={elem?.color} onChange={(e) => editLecturess(e, i, "color")} />
+                                            <button onClick={() => { deleteAddedLecture(lectures, i, setLectures) }} ><DeleteOutlined /></button>
                                         </div>)
                                 }
-
-                            </div>
-                            <div className='btn_box'>
+                                <div className='Lesson_mini_item' style={{ background: colorQuestion?.color }}>
+                                    <p>{colorQuestion.text}</p>
+                                    <label htmlFor="">{LocalValue === "AM" ? "Դաշտի գույնը" : "The color of the field"}</label>
+                                    <input type="color" value={colorQuestion?.color} onChange={(e) => { setColorQuestion({ ...colorQuestion, color: e.target.value }) }} />
+                                </div>
+                                </div>
+                            </div>}
+                            {!showAddLec ? <button className='save_button_Lesson' onClick={() => { setShowAddLec(true) }} ><PlusCircleFilled /></button>
+                                :
+                                <div className='addLec1'>
+                                    <div className='Lesson_mini_item' style={{ background: createLec?.color }}>
+                                        <label htmlFor="">{LocalValue === "AM" ? "Թեմայի անվանումը" : "Theme Name"}</label>
+                                        <input type="text" value={createLec.text} onChange={(e) => setCreateLec({ ...createLec, text: e.target.value })
+                                        } />
+                                        <label htmlFor="">{LocalValue === "AM" ? "Դաշտի գույնը" : "The color of the field"}</label>
+                                        <input type="color" value={createLec.color} onChange={(e) => setCreateLec({ ...createLec, color: e.target.value })} />
+                                    </div>
+                                    <button className='Edit_button_Lesson' onClick={() => { createLectures() }} ><CheckSquareOutlined /></button>
+                                    <button className='Delete_button_Lesson' onClick={() => { closeCreatingLectures() }} ><CloseOutlined /></button>
+                                </div>
+                            }
+                            {!showAddLec && <div className='btn_box'>
                                 <CheckSquareOutlined className='iconantd' onClick={() => { addLessons() }
                                 } />
                                 < CloseOutlined className='iconantd' onClick={() => { setfalse() }} />
-                            </div>
-
+                            </div>}
                         </div>}
                     </div>
                     {/* {deleteState[0] !== -1 && <RemoveItem deleteItem={DeleteLesson} name={'lesson'} setDeletePage={setDeleteState} id={deleteState} />} */}
-                    {editInformation && <EditInformation title={editInformation} indexing={editInformationID} setEditInformation={setEditInformation} />}
+                    {editInformation && <EditInformation name={lessonName} title={editInformation} indexing={editInformationID} setEditInformation={setEditInformation} setEditInformationID={setEditInformationID} />}
                 </>}
     </>
     )

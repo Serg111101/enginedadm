@@ -251,18 +251,22 @@
 
         display: flex;
         flex-direction: column;
+
+
+        .imageDiv {
+          text-align: center;
+          padding: 20px;
+          background-color: rgb(1, 1, 1);
+          
+          img {
+              width: 100%;
+              border-radius: 10px 10px 0 0;
+          }
+      }
+
     }
 
-    .imageDiv {
-        text-align: center;
-        padding: 20px;
-        background-color: rgb(1, 1, 1);
-        
-        img {
-            width: 100%;
-            border-radius: 10px 10px 0 0;
-        }
-    }
+   
 
     .selectDiv {
         padding: 5px;

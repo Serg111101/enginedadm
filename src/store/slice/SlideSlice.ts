@@ -29,9 +29,13 @@ export const SlideSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message
     },
+    fetchDelete(state, ) {
     
+      state.Slide = [];
+
+    },
   }
 })
 
-export const { fetchingSlide, fetchSlide, fetchErrorSlide } = SlideSlice.actions;
+export const { fetchingSlide, fetchSlide, fetchErrorSlide,fetchDelete } = SlideSlice.actions;
 export default SlideSlice.reducer;

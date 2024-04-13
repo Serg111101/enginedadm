@@ -6,7 +6,7 @@ import { HomeHeader } from "../../components/HomeHeader/HomeHeader";
 import { getfetchContact, getfetchHomeAuthor, getfetchHomeHeader, getfetchHomeInfo, getfetchHomeNextRout,getfetchSendMail } from "../../store/action/HomeAction";
 import { HomeNextRoute } from "../../components/HomeNextRoute/HomeNextRoute";
 import { HomeAuthorComponent } from "../../components/HomeAuthorComponent";
-import { HomeInfo } from "../../components/HomeInfo/HomeInfo";
+// import { HomeInfo } from "../../components/HomeInfo/HomeInfo";
 import { Contact } from "../../components/Contact/Contact";
 import { Info } from "../../components/Info";
 
@@ -38,7 +38,7 @@ export function Home() {
       <div className="homePageBottom" style={{ backgroundImage: `url(${Background})`}}>
         <HomeNextRoute/>
         <HomeAuthorComponent/>
-        <HomeInfo/>
+        {/* <HomeInfo/> */}
         <Contact/> 
           <Info/>
         </div>

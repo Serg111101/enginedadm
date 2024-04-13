@@ -1,15 +1,10 @@
-/*eslint-disable */
-
-import  { useEffect, useState } from "react";
-import "./AboutPerson.scss";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import {
-  addPerson,
-  addPersonImage,
-  deletePersons,
-  editePerson,
-  getAboutOutTeam,
-} from "../../store/action/AboutAction";
+import React, { useEffect, useState } from 'react'
+import "./AboutPerson.scss"
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { addPerson, addPersonImage, deletePersons, editePerson, getAboutOutTeam } from '../../store/action/AboutAction';
+import { uploadImage } from "../../store/action/AboutAction";
+import Swal from 'sweetalert2';
+import DeleteAll from '../../components/DeleteComponent';
 import { IAboutOurTeam } from "../../models";
 import {
   CloseOutlined,
@@ -18,122 +13,127 @@ import {
   PlusCircleFilled,
   DeleteOutlined,
 } from "@ant-design/icons";
-import { uploadImage } from "../../store/action/AboutAction";
-import Swal from "sweetalert2";
-import DeleteAll from "../DeleteComponent";
+import { useNavigate } from 'react-router-dom';
+const AboutPerson = () => {
 
-export function AboutPersons({ id }: any) {
-  const { AboutOurTeam } = useAppSelector((state) => state?.AboutOurTeam);
-  const dispatch = useAppDispatch();
-  const [done, setDone] = useState<boolean | string | any>(false);
-  const [show, setShow] = useState(0);
-  const [editvalue, setEditValue] = useState<any>({});
-  const [addShow, setAddShow] = useState(false);
-  const [addValue, setAddValue] = useState<any>({});
-  const [active, setActive] = useState<any>(sessionStorage.getItem("done"));
-  const [addimage,setAddImage] = useState("")
-  let LocalValue: any;
-  if (localStorage.getItem("language")) {
-    let local: any = localStorage.getItem("language");
-    LocalValue = JSON.parse(local);
-  }
-  
-
-  useEffect(() => {
-    dispatch(getAboutOutTeam());
-  }, [dispatch]);
-
-
-
-  useEffect(() => {
-    if (active) {
-      setActive(JSON.parse(active));
-      setDone(active);
-    }
-  }, [active]);
-
-  async function uploadededImage(event: any) {
-    await dispatch(uploadImage(event, editvalue.id,setAddImage));
-  }
-
-  async function editPersons(id: number, editvalue: any) {
-    let obj={
-      ...editvalue,
-      image:addimage
+    const { AboutOurTeam } = useAppSelector((state) => state?.AboutOurTeam);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate()
+    const [done, setDone] = useState<boolean | string | any>(false);
+    const [show, setShow] = useState(0);
+    const [editvalue, setEditValue] = useState<any>({});
+    const [addShow, setAddShow] = useState(false);
+    const [addValue, setAddValue] = useState<any>({});
+    const [active, setActive] = useState<any>(sessionStorage.getItem("done"));
+    const [addimage,setAddImage] = useState("")
+    let LocalValue: any;
+    if (localStorage.getItem("language")) {
+      let local: any = localStorage.getItem("language");
+      LocalValue = JSON.parse(local);
     }
     
-    await dispatch(editePerson(id, addimage?obj:editvalue));
-    await dispatch(getAboutOutTeam());
-
-    setShow(0);
-    setAddImage("");
-
-  }
-  async function addPersons() {
-    await dispatch(addPerson(addValue, addimage));
-    await dispatch(getAboutOutTeam());
-    setAddShow(false);
-    setAddValue({});
-    setAddImage("");
-  }
-  async function addPersonsImage(event: any) {
-    await dispatch(addPersonImage(event,setAddImage));
-  }
-
-  // async function deletePerson(id: number) {
-  //   await dispatch(deletePersons(id));
-  //   await dispatch(getAboutOutTeam());
-  //   setAddImage("");
-  // }
-
-
-  async function validateAndEditPerson(id: number, newTitle: string) {
-    if (!editvalue?.text.trim() || !editvalue?.name.trim()) {
-      Swal.fire({
-        title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
-        icon: 'error',
-        confirmButtonText:(LocalValue==="AM"? 'Լավ':"OK")})
-    } else {
-      await editPersons(id, newTitle);
+  
+    useEffect(() => {
+      dispatch(getAboutOutTeam());
+    }, [dispatch]);
+  
+  
+  
+    useEffect(() => {
+      if (active) {
+        setActive(JSON.parse(active));
+        setDone(active);
+      }
+    }, [active]);
+  
+    async function uploadededImage(event: any) {
+      await dispatch(uploadImage(event, editvalue.id,setAddImage));
+    }
+  
+    async function editPersons(id: number, editvalue: any) {
+      let obj={
+        ...editvalue,
+        image:addimage
+      }
       
+      await dispatch(editePerson(id, addimage?obj:editvalue));
+      await dispatch(getAboutOutTeam());
+  
+      setShow(0);
+      setAddImage("");
+  
     }
-
+    async function addPersons() {
+      await dispatch(addPerson(addValue, addimage));
+      await dispatch(getAboutOutTeam());
+      setAddShow(false);
+      setAddValue({});
+      setAddImage("");
+    }
+    async function addPersonsImage(event: any) {
+      await dispatch(addPersonImage(event,setAddImage));
+    }
+  
+    // async function deletePerson(id: number) {
+    //   await dispatch(deletePersons(id));
+    //   await dispatch(getAboutOutTeam());
+    //   setAddImage("");
+    // }
+  
+  
+    async function validateAndEditPerson(id: number, newTitle: string) {
+      if (!editvalue?.text.trim() || !editvalue?.name.trim()) {
+        Swal.fire({
+          title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
+          icon: 'error',
+          confirmButtonText:(LocalValue==="AM"? 'Լավ':"OK")})
+      } else {
+        await editPersons(id, newTitle);
+        
+      }
+  
+    }
+  
+    async function validateAndaAddPerson() {
+      if (!addValue?.text?.trim() || !addValue?.name?.trim()) {
+        Swal.fire({
+          title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
+          icon: 'error',
+          confirmButtonText:(LocalValue==="AM"? 'Լավ':"OK")})
+      } else {
+        await addPersons();
+      }
+  
+    }
+  
+  
+  
+    async function deleteItemm(id: number) {
+      try {
+          await DeleteAll({
+              title: LocalValue === 'AM' ? "Ցանկանում եք ջնջե՞լ" : 'Do you want to delete?',
+              text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող" : 'If you delete it, you cannot restore it',
+              deleteItem: () => dispatch(deletePersons(id))
+          });
+  
+  
+      } catch (error) {
+          console.error(error);
+  
+      }
+  
   }
-
-  async function validateAndaAddPerson() {
-    if (!addValue?.text?.trim() || !addValue?.name?.trim()) {
-      Swal.fire({
-        title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
-        icon: 'error',
-        confirmButtonText:(LocalValue==="AM"? 'Լավ':"OK")})
-    } else {
-      await addPersons();
-    }
-
-  }
-
-
-
-  async function deleteItemm(id: number) {
-    try {
-        await DeleteAll({
-            title: LocalValue === 'AM' ? "Ցանկանում եք ջնջե՞լ" : 'Do you want to delete?',
-            text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող" : 'If you delete it, you cannot restore it',
-            deleteItem: () => dispatch(deletePersons(id))
-        });
-
-
-    } catch (error) {
-        console.error(error);
-
-    }
-
-}
-
+  
+  
 
 
   return (
-    <div className="AboutPersons">
+    <div className='AboutPerson' >
+         {!done&&<div className="button">
+        <button onClick={()=>{navigate("/about")}} >{LocalValue==="AM" ? "Հետ":"Go back"}</button>
+     </div>}
+
+         <div className="AboutPersons">
       <div className="aboutPersonCont">
         {AboutOurTeam?.map((el: IAboutOurTeam, index: number) => {
           return (
@@ -335,5 +335,8 @@ export function AboutPersons({ id }: any) {
         </div>
       )}
     </div>
-  );
+    </div>
+  )
 }
+
+export default AboutPerson

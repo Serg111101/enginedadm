@@ -22,6 +22,7 @@ import { useEffect, useState } from "react";
 // import axios from "./axios/axios";
 import { Loading } from "./components/Loading";
 import { AdminSatelite } from "./pages/AdminSatelite";
+import { AboutPerson } from "./pages/AboutPerson";
 
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
   useEffect(() => {
     if (path !== "/Setting" && sessionStorage.getItem("done")) {
       sessionStorage.removeItem("done");
+    } 
+    if (path !== "/Leqtures" && localStorage.getItem("elem")) {
+      localStorage.removeItem("elem");
     } 
   }, [url, path]);
 
@@ -81,6 +85,7 @@ function App() {
         { !auth.accessToken && window.location.pathname!=="/"  ? <Loading/>: <Routes> 
           <Route path="/home" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/aboutPersons" element={<AboutPerson/>}/>
           <Route path="/ContactUS" element={<ContactUs />} />
           <Route path="/Lessons" element={<Lesson />} />
           <Route path="/Leqtures" element={<Infomation />} />

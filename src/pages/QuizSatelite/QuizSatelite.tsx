@@ -23,7 +23,9 @@ export const QuizSatelite = () => {
            const quz:any = localStorage.getItem('quizzsat')
            const Quizs = JSON.parse(quz);
             setItem(Quizs)
-        }}
+        }}else{
+            setItem(QuizSatelite)
+        }
     },[QuizSatelite])
     let [question, setQuestion] = useState(0)
     let [count, setCount] = useState(0)

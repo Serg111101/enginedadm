@@ -83,6 +83,12 @@
         display: flex;
         justify-content: space-around;
         position: relative;
+        .infoParentSlide1{
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           }
         .prev,.next {
             position: fixed;
             width: 70px;

@@ -1,6 +1,5 @@
 .EditLesson_Component {
     width: 100%;
-    height: auto;
     padding: 10px;
 
     .Lesson_option {
@@ -13,66 +12,78 @@
         padding-bottom: 30px;
         padding-top: 30px;
         border-bottom: 2px solid white;
+        gap: 30px;
+        input[type="color"] {
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            height: 50px;
+            padding: 2px;
+          }
        
         .Lesson_item {
+    
+
             width: 200px;
-            height: auto;
-            color:aliceblue;
+            color: aliceblue;
 
             img {
                 width: 100%;
             }
         }
-        textarea{
+
+        textarea {
             margin: 0 auto;
         }
+
         .Lesson_mini_map {
             width: 80%;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            
+
             .Lesson_mini_div {
+                text-align: center;
+                margin: 0 auto;
                 width: 200px;
+                
                 .Lesson_mini_item {
+                    margin-top: 20px;
                     width: 100%;
                     padding: 20px;
                     min-height: 160px;
                     text-align: center;
 
+                    &:hover {
+                        background-color: rgba(255, 255, 255, 0.1);
+                    }
                 }
-                .Editmini_leson{
+
+                .Editmini_leson {
                     position: relative;
                     display: flex;
-                    z-index: -1;
                     background-color: rgba(255, 255, 255, 0.703);
                     text-align: center;
                     top: -10%;
-                    border-bottom-left-radius: 12px;
-                    border-bottom-right-radius: 12px;
-                    border-top: 1px solid rgba(255, 255, 255, 0);
+                    border-radius: 12px;
+                    border-top: 1px solid transparent;
                     cursor: pointer;
-                    &:hover{
+                    transition: all 0.5s ease;
+
+                    &:hover {
                         border-top: 1px solid white;
                         color: white;
+                        top: 0;
                     }
-                }
-                &:hover>.Editmini_leson{
-                    transition: all .5s linear;
-                    top: 0;
-                    z-index: 1;
                 }
             }
 
             .Edit_button_Lesson,
             .save_button_Lesson,
             .Delete_button_Lesson {
-                position: relative;
+                 margin-left: 10px;
                 width: 50px;
                 height: 50px;
-               
-                // left: -50%;
                 cursor: pointer;
 
                 span {
@@ -85,16 +96,14 @@
 }
 
 .AddLesson_component {
-
     text-align: center;
-  color: aliceblue;
+    color: aliceblue;
+
     input {
-        // background: rgba(255, 255, 255, 0);
         width: 100%;
         padding: 5px;
         margin-bottom: 10px;
-        // border-radius: 20px;
-        border-bottom: 2px solid;
+        border-bottom: 2px solid white;
     }
 
     .AddLesson_button {
@@ -107,15 +116,57 @@
         width: 90%;
         margin: 0 auto;
         display: flex;
-        flex-wrap:wrap ;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
         padding-bottom: 30px;
         padding-top: 30px;
         border-bottom: 2px solid white;
+        .save_button_Lesson
+       {
+             margin-left: 10px;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
 
+            span {
+                font-size: 20px;
+                padding: 14px;
+            }
+        }
+        .addLec1{
+            .Lesson_mini_item{
+                width: 200px;
+                height: 200px;
+                padding: 20px;
+            }
+            .Edit_button_Lesson,
+            .save_button_Lesson,
+            .Delete_button_Lesson 
+            {
+                  margin-left: 10px;
+                 width: 50px;
+                 height: 50px;
+                 cursor: pointer;
+     
+                 span {
+                     font-size: 20px;
+                     padding: 14px;
+                 }
+             }
+           
+        }
+        .btn_box {
+            width: 30%;
+            padding: 5px;
+            height: 80px;
+            display: flex;
+    
+            align-items: center;
+            justify-content: space-between;
+        }
         .Lesson_item {
-          
+            margin: 0 auto;
             width: 200px;
             height: auto;
 
@@ -125,11 +176,15 @@
         }
 
         .Lesson_mini_map {
-            width: 78%;
+            width: 80%;
             display: flex;
             flex-wrap: wrap;
-            // justify-content: space-between;
-
+            .addLec{
+                width: 100%;
+                display: flex;
+                flex-wrap: wrap;
+            }
+           
             .Lesson_mini_item {
                 width: 200px;
                 min-height: 200px;
@@ -141,17 +196,13 @@
                 align-items: center;
                 text-align: center;
                 border-right: 2px solid white;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.1);
+                }
             }
 
-        }
-        .btn_box{
-            width: 100%;
-            padding: 5px;
-            height: 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
+          
         }
     }
 }

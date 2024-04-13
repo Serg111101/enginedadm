@@ -5,6 +5,28 @@
     padding: 150px 40px;
 
     // background-color: #68abea;
+    .prevButton {
+        max-width: 1200px;
+        margin: 20px auto;
+
+        button {
+            width: 90px;
+            padding: 10px;
+            color: antiquewhite;
+            background: rgb(47, 47, 46);
+            border-radius: 10px;
+            font-size: 18px;
+            transition: all .5s linear;
+
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.1);
+                background: rgb(173, 204, 233);
+                border-radius: 40px;
+                color: black;
+            }
+        }
+    }
     .quiz {
         max-width: 1200px;
         margin: 20px auto;

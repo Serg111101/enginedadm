@@ -10,15 +10,13 @@ import {
 } from "@ant-design/icons";
 import axios from "../../axios/adminaxios"
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
-interface IAboutTeam {
-  show: boolean;
-  setShow: (show: boolean) => void;
-  id: any;
-}
+
 const URL = process.env.REACT_APP_BASE_URL;
 
-export function AboutTeam({ show, setShow, id }: IAboutTeam) {
+export function AboutTeam() {
+  const navigate = useNavigate()
   const { About } = useAppSelector((state) => state.About);
   const [done, setDone] = useState(false);
   const [editeValue, setEditValue] = useState<any>({});
@@ -36,14 +34,7 @@ let LocalValue: any;
     setDone(sessionStorage.getItem("done") === "true");
   }, [url]);
 
-  useEffect(() => {
-    if (show) {
-      const timer = setTimeout(() => {
-        setShow(false);
-      }, 50000);
-      return () => clearTimeout(timer);
-    }
-  }, [show, setShow]);
+ 
 
   useEffect(() => {
     dispatch(getFetchAbout());
@@ -227,7 +218,7 @@ let LocalValue: any;
                     {el.id === 2 ? (
                       <div>
                         {el?.more !== null && shows !== el?.id && (
-                          <button onClick={() => setShow(!show)}>
+                          <button onClick={() => {navigate("/aboutPersons")}}>
                             {el?.more}
                           </button>
                         )}

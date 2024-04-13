@@ -7,19 +7,18 @@ import {
   getfetchHomeHeader,
   getfetchHomeInfo,
   getfetchHomeNextRout
-} from '../../store/action/HomeAction';
+} from '../../store/action/HomeAction'; 
 import {
   CloseOutlined,
 } from "@ant-design/icons";
 import { HomeHeader } from '../../components/HomeHeader/HomeHeader';
 import { HomeNextRoute } from '../../components/HomeNextRoute/HomeNextRoute';
 import { HomeAuthorComponent } from '../../components/HomeAuthorComponent';
-import { HomeInfo } from '../../components/HomeInfo/HomeInfo';
+// import { HomeInfo } from '../../components/HomeInfo/HomeInfo';
 import { Contact } from '../../components/Contact/Contact';
 import { Info } from '../../components/Info';
 import { getFetchFooter } from '../../store/action/FooterAction';
 import { AboutTeam } from '../../components/AboutTeam';
-import { AboutPersons } from '../../components/AboutPersons';
 import { getFetchLogo } from '../../store/action/LogoAction';
 import { ContactUsInfo } from '../../components/ContactUsInfo';
 import { EditHeader } from '../../components/EditHeader';
@@ -27,13 +26,14 @@ import { EditFooter } from '../../components/EditFooter';
 import { LessonEdit } from '../../components/LessonEdit';
 import { Satellites } from '../Satellites';
 import { Teacher } from '../../components/Teacher';
+import { AboutPerson } from '../AboutPerson';
 
 
 export const Settings = () => {
   const dispatch = useAppDispatch();
   const [item, setItem] = useState<any>("Teacher");
-  const [show, setShow] = useState<boolean>(true);
-  const id: string = 'linkIdentifikator';
+ 
+ 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const getItem = sessionStorage.getItem('settings');
@@ -77,7 +77,9 @@ export const Settings = () => {
     <div className={`menu ${menuOpen ? 'open' : ''}`} ref={menuRef}>
       {[
         "Teacher", 'Home', 'Header', 'HomeNextRoute', 'HomeAuthorComponent',
-        'HomeInfo', 'ContactUSInfo', 'Contact', 'Info',
+        // 'HomeInfo',
+         'ContactUSInfo', 'Contact', 
+        'Info',
         'AboutTeam', 'AboutPerson', 'Lessons',"Satelite", 'Footer'
       ].map(menuItem => (
         <p
@@ -91,18 +93,18 @@ export const Settings = () => {
       <div><CloseOutlined className="iconantd" onClick={() => setMenuOpen(false)} /></div>
     </div>
       <div className='eiement'>
-        {item === 'Home' && <HomeHeader />}
+        {item === 'Home' && <HomeHeader /> }
         <div className='homePageBottom' style={{ backgroundImage: `url(${Background})` }}>
            {item === 'Header' && <EditHeader />}
           {item === 'Teacher' && <Teacher/>}
           {item === 'HomeNextRoute' && <HomeNextRoute />}
           {item === 'HomeAuthorComponent' && <HomeAuthorComponent />}
-          {item === 'HomeInfo' && <HomeInfo />}
+          {/* {item === 'HomeInfo' && <HomeInfo />} */}
           {item === "ContactUSInfo" && <ContactUsInfo/>}
           {item === 'Contact' && <Contact />}
           {item === 'Info' && <Info />}
-          {item === 'AboutTeam' && <AboutTeam show={show} setShow={setShow} id={id} />}
-          {item === 'AboutPerson' && <AboutPersons id={id} />}
+          {item === 'AboutTeam' && <AboutTeam />}
+          {item === 'AboutPerson' && <AboutPerson  />}
           {item === 'Lessons' && <LessonEdit />}
           {item === "Satelite" && <Satellites/>}
           {item === 'Footer' && <EditFooter/>}

@@ -112,6 +112,7 @@ export interface ILesson  {
   created_at:string,
   icon:string,
   ikonka:string,
+  unique_key:string,
   lectures:any[]
   lesson:string,
   button:boolean
@@ -160,6 +161,7 @@ export interface IMail  {
 export interface ISlide  {
   created_at:string,
   id:number,
+  unique_key:number,
   image:string | null;
   lectures:string,
   lessons:string | null,

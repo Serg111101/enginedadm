@@ -1,0 +1,217 @@
+.AboutPerson{
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: black;
+
+    .button{
+        // max-width: 1200px;
+        margin: 20px auto;
+         button{
+          width: 90px;
+          padding: 10px;
+          color:antiquewhite;
+          background: rgb(47, 47, 46);
+          border-radius: 10px;
+          font-size: 18px;
+          transition: all .5s linear;
+          &:hover{
+            cursor: pointer;
+            transform: scale(1.1);
+          background: rgb(173, 204, 233);
+          border-radius:40px ;
+          color:black; 
+          }
+         }
+    }
+    
+    .AboutPersons{
+        padding: 90px;
+        font-size: OpenSans,sans-serif;
+         margin: 0 auto;
+         .aboutPersonCont {
+             margin: 0 auto;
+             display: grid;
+             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+             gap: 30px;
+             .itemPeople{
+                margin: 0 auto;
+                 color: white;
+                 // display: flex;
+                 // justify-content: center;
+                 // align-items: center;
+                 // padding: 10%;
+     
+                 .imageDiv{
+                    max-width: 213px;
+                    height: 213px;
+                    overflow: hidden;
+                    object-position: 50% 50%;
+                    object-fit: cover;
+                    border-radius: 50%;
+                     img{
+                        width: 213px;
+                        height: 100%;
+                        object-fit: cover;
+                        object-position: 50% 50%;
+                     }
+                 }
+                 .PersonTitle{
+                     width: 100%;
+                     display: flex;
+                     justify-content: center;
+                     align-items: center;
+                     margin-left: auto;
+                     margin-right: auto;
+                     text-align: center;
+     
+                     p{
+                         width: 100%;
+                     margin-top: 12%;
+                     display: flex;
+                     justify-content: center;
+                     align-items: center;
+                 margin-left: auto;margin-right: auto;
+                 text-align: center;
+     
+                     }
+                 }
+             }
+             .infoPerson{
+                 width: 100%;
+                 margin-top: 2%;
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+                 margin-left: auto;margin-right: auto;
+                 text-align: center;
+     
+                 p{
+                     width: 100%;
+                 margin-top: 12%;
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+                 margin-left: auto;margin-right: auto;
+                 text-align: center;
+                 
+     
+                 }
+             }
+             
+     
+             
+         }
+     
+     
+         @media (max-width:1200px){
+             
+             .PersonTitle{
+                
+                 margin: 2% auto !important ;
+                 text-align: center !important;
+                 p{
+                     margin: 0 auto !important;
+                     text-align: center !important;
+                 }
+             }
+             .infpPerson{
+                 margin: 0 auto !important;
+                 text-align: center !important;
+                 p{
+                     margin: 0 auto !important;
+                     text-align: center !important;
+                 }
+             }
+             .imageDiv{
+                 margin: 0 auto !important ;
+             }
+         
+             
+     
+             
+         }
+         .iconantd{
+            font-size: 25px !important;
+            background-color: white;
+            color: black;
+            transition: all .3s linear;
+            &:hover{
+                color: white;
+                background-color: gray;
+                transform: scale(1.1);
+            }
+         }
+         .addIcon{
+            width: 100%;
+            margin-top: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+          
+         }
+     .addPerson{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;align-items: center;
+        overflow: hidden;
+        .addImageDiv{
+            width:213px;
+            height: 200px;
+            border: 2px solid red;
+            overflow: hidden;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit:fill;
+                overflow: hidden;
+            }
+        }
+        .addTextInput{
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+    
+            input{
+                margin-top: 30px;
+                padding: 10px;
+                
+            }
+    
+        }
+    
+    
+     }
+    .allButton{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .saveButton{
+        margin-top: 20px;
+        display: flex;justify-content: space-between;
+        align-items: center;
+    }
+     .okclosButtons{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+     }
+     .uploadImage{
+        display: flex;
+        justify-content: flex-end;
+     }
+     .adddd{
+        color: white;
+        margin-top: 12px;
+     }
+   
+     }
+     @media (max-width:500px ){
+            .AboutPersons{
+                padding: 0px !important;
+            }
+     }
+}

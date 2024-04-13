@@ -5,8 +5,9 @@ import { getFetchSlides, uploadImageFunction, editLessonSlides, addTopics } from
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { DeleteOutlined, CloudDownloadOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons'
 import { Loading } from '../../Loading';
+import { fetchDelete } from '../../../store/slice/SlideSlice';
 
-export const EditInformation = ({ title, indexing, setEditInformation }: { title: string, indexing: number, setEditInformation: (text: string) => void }) => {
+export const EditInformation = ({name, title, indexing, setEditInformation,setEditInformationID }: {name:string, title: string, indexing: number, setEditInformation: (text: string) => void,setEditInformationID: (text: number) => void }) => {
     
     const { Slide, loading } = useAppSelector((state) => state.Slide);
     const [slideState, setSlideState] = useState<any>()
@@ -25,11 +26,13 @@ export const EditInformation = ({ title, indexing, setEditInformation }: { title
     const dispatch = useAppDispatch()
 
     let LocalValue:any;
+    
     if(localStorage.getItem("language")){
         let local:any = localStorage.getItem("language");
         LocalValue = JSON.parse(local);  
     }
     useEffect(() => {
+        
         dispatch(getFetchSlides(title))
     }, [dispatch])
 
@@ -46,7 +49,7 @@ export const EditInformation = ({ title, indexing, setEditInformation }: { title
         }
         else if (!Slide?.length && slideState === undefined) {
             setSlideState({
-                lesson: title
+                lesson: name,
             })
             setLoadingSlide(loading)
             setNewSlide(true)
@@ -369,7 +372,8 @@ export const EditInformation = ({ title, indexing, setEditInformation }: { title
             text2: slideState.text2||null,
             text3: slideState.text3||null,
             text_arr: slideState.text_arr||null,
-            text_arr_margin: slideState.text_arr_margin||null
+            text_arr_margin: slideState.text_arr_margin||null,
+            unique_key:title
         }
         
         await dispatch(addTopics(newState))
@@ -661,7 +665,7 @@ export const EditInformation = ({ title, indexing, setEditInformation }: { title
                             }
                         </div>}
 
-                <div className="CloseEdit" onClick={() => { setSlideState({}); setEditInformation('') }}><CloseOutlined /></div>
+                <div className="CloseEdit" onClick={() => { setSlideState({}); setEditInformation('');setEditInformationID(-1);setSlideState('');dispatch(fetchDelete()) }}><CloseOutlined /></div>
             </div>
     }</>)
 }
