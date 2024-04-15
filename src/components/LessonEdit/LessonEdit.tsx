@@ -10,12 +10,14 @@ import { RemoveItem } from '../removeItem';
 import { EditInformation } from './EditInformation';
 import Swal from 'sweetalert2';
 import DeleteAll from '../DeleteComponent';
+import axios from '../../axios/adminaxios';
+
 let LocalValue: any;
 if (localStorage.getItem("language")) {
     let local: any = localStorage.getItem("language");
     LocalValue = JSON?.parse(local);
 }
-
+const URL = process.env.REACT_APP_BASE_URL
 export function LessonEdit() {
     let LocalValue: any;
     if (localStorage.getItem("language")) {
@@ -30,8 +32,9 @@ export function LessonEdit() {
     const [editInformationID, setEditInformationID] = useState(-1)
     const [lectures, setLectures] = useState<any>([{ text: "", color: "" },])
     const [image, setImage] = useState("")
+    const [indexElem, setIndexElem] = useState<any>('')
     const [colorQuestion, setColorQuestion] = useState({
-        text: LocalValue === "AM" ? "Հարցաշար" : "Question",
+        text: LocalValue === "AM" ? "Հարցաշար" : "Questions",
         color: ""
     })
     const [addLesson, setAddLesson] = useState<any>({
@@ -98,6 +101,19 @@ export function LessonEdit() {
         }
         else {
             await dispatch(editLessonAction(editLesson.id, editLesson, lesson))
+            const response = await axios.get(`${URL}aeroSpace/lessons/${LocalValue === "AM" ? "US":"AM"}`);
+ 
+            
+          let x = response.data.filter((el:any)=> el.id === editLesson.id)
+
+    
+            const newlec1 = x[0].lectures?.filter((el: any, i: number) => {
+                if (indexElem !== i) {
+                    return el
+                }
+            })
+            console.log(newlec1,"editLesson");
+            await axios.put(`${URL}aeroSpace/editExistLesson/${LocalValue === "AM" ? "US":"AM"}/${editLesson.unique_key}`, [{...editLesson, lectures:newlec1},editLesson.unique_key])
             await dispatch(getFetchLesson())
             setEditLesson({})
         }
@@ -303,7 +319,7 @@ export function LessonEdit() {
 
     }
 
-    const deleteAdL = (elem: any, index: number) => {
+    const  deleteAdL = async (elem: any, index: number) => {
 
         if (editLesson?.lectures?.length > 2) {
 
@@ -319,6 +335,8 @@ export function LessonEdit() {
             color: ""
         });
         setCreateLec({ text: "", color: "", })
+    
+  setIndexElem(index)
 
 
 
@@ -459,9 +477,12 @@ export function LessonEdit() {
                                                 {
                                                     el?.lectures?.map((elem: any, index: number) =>
                                                         <div key={index} className='Lesson_mini_div'>
-                                                            <div className='Lesson_mini_item' style={{ background: elem.color }}>
-                                                                {elem.text}
-                                                            </div>
+                                                            {el?.lectures?.length-1 !== index ?<div className='Lesson_mini_item' style={{ background: elem.color }}>
+                                                              <p>  {elem.text}</p>
+                                                            </div>: <div className='Lesson_mini_item' style={{ background: elem.color }}>
+                                                            <p>{LocalValue === "AM" ? "Հարցաշար" : "Question"}</p>
+                                                            </div>}
+                                                            
                                                             <div className='Editmini_leson' style={{ background: elem.color }}
                                                                 onClick={() => {
                                                                     setEditInformation(el.unique_key); setEditInformationID(index); text(index, el.unique_key); setLessonName(el.lesson)
@@ -484,7 +505,7 @@ export function LessonEdit() {
                         {add &&  <div className="AddLesson_div">
                            {!showAddLec&& <div className='Lesson_item' >
                                 <label htmlFor="">{LocalValue === "AM" ? "Դասընթացի անվանումը" : "Lessone name"}</label>
-                                <input type="text" onChange={(e) => {
+                                <input type="text" value={addLesson.lesson} onChange={(e) => {
                                     setAddLesson({
                                         lesson: e.target.value,
                                         icon: addLesson.icon,
