@@ -78,15 +78,15 @@ useEffect(() => {
                     <h3>{LocalValue === 'AM' ? "Փոփոխել" : 'Change'}</h3>
                     <p className='namep'>{LocalValue === 'AM' ? "Անուն Ազգանուն" : 'Name Surname'}</p>
                     <input className={error && "errorInput"} type="text" maxLength={30} placeholder={LocalValue === 'AM' ? "Անուն Ազգանուն" : 'Name Surname'} value={obj?.fullName} onChange={(e) => { seteditTeacher({...obj,fullName:e.target.value}); setError(false) }} />
-                    <p className='positionp'>{LocalValue === 'AM' ? "Առարկան" : 'Subject'}</p>
-                    <input className={error && "errorInput"} type="text" maxLength={30} placeholder={LocalValue === 'AM' ? "Առարկան" : 'Subject'} value={obj?.position} onChange={(e) => { seteditTeacher({...obj,position:e.target.value}); setError(false) }} />
+                    <p className='positionp'>{LocalValue === 'AM' ? "Առարկա" : 'Subject'}</p>
+                    <input className={error && "errorInput"} type="text" maxLength={30} placeholder={LocalValue === 'AM' ? "Առարկա" : 'Subject'} value={obj?.position} onChange={(e) => { seteditTeacher({...obj,position:e.target.value}); setError(false) }} />
 
 
                     <p className='namep'>{LocalValue === 'AM' ? "Մուտքանուն" : 'Username'}</p>
                     <input className={error && "errorInput"} type="text" maxLength={30} placeholder={LocalValue === 'AM' ? "Մուտքանուն" : 'Username'} value={obj?.login} onChange={(e) => { seteditTeacher({...obj,login:e.target.value}); setError(false) }} />
 
-                    <p className='namep'>{LocalValue === 'AM' ? "Գաղտաբառը" : 'Password'}</p>
-                    <input className={error && "errorInput"} type="text" maxLength={30} placeholder={LocalValue === 'AM' ? "Գաղտաբառը" : 'Password'}  onChange={(e) => { seteditTeacher({...obj,password:e.target.value}); setError(false) }} />
+                    <p className='namep'>{LocalValue === 'AM' ? "Գաղտաբառ" : 'Password'}</p>
+                    <input className={error && "errorInput"} type="text" maxLength={30} placeholder={LocalValue === 'AM' ? "Գաղտաբառ" : 'Password'}  onChange={(e) => { seteditTeacher({...obj,password:e.target.value}); setError(false) }} />
 
                     {error && <p>{LocalValue === 'AM' ? "Դաշտը չի կարող դատարկ լինել" : 'The field cannot be empty'} *</p>}
                     

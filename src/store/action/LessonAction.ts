@@ -168,7 +168,6 @@ export const editLessonSlides = (id: number, props: any) => {
 }
 
 export const editLessonAction = (id: number, props: any,title:any) => {
-   console.log(props);
    
     
     return async () => {

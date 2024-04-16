@@ -78,7 +78,7 @@ export function HomeInfo() {
   }
     if (!editValue?.title.trim()||!editValue?.readmore.trim()) {
       Swal.fire({
-        title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
+        title:(LocalValue==="AM"? 'Չի կարող դատարկ լինել':"Cannot be empty") ,
         icon: 'error',
         confirmButtonText:(LocalValue==="AM"? 'Լավ':"OK")})
     } else {

@@ -84,7 +84,7 @@ const AboutPerson = () => {
     async function validateAndEditPerson(id: number, newTitle: string) {
       if (!editvalue?.text.trim() || !editvalue?.name.trim()) {
         Swal.fire({
-          title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
+          title:(LocalValue==="AM"? 'Չի կարող դատարկ լինել':"Cannot be empty") ,
           icon: 'error',
           confirmButtonText:(LocalValue==="AM"? 'Լավ':"OK")})
       } else {
@@ -97,7 +97,7 @@ const AboutPerson = () => {
     async function validateAndaAddPerson() {
       if (!addValue?.text?.trim() || !addValue?.name?.trim()) {
         Swal.fire({
-          title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
+          title:(LocalValue==="AM"? 'Չի կարող դատարկ լինել':"Cannot be empty") ,
           icon: 'error',
           confirmButtonText:(LocalValue==="AM"? 'Լավ':"OK")})
       } else {
@@ -272,7 +272,7 @@ const AboutPerson = () => {
             className="iconantd"
           />
           </div>
-          <p className="adddd" > {LocalValue === "AM" ? "Ավելացնել նոր թիմի անդամ" : "Add a new team member"}</p>
+          <p className="adddd" > {LocalValue === "AM" ? "Ավելացնել թիմի նոր  անդամ" : "Add a new team member"}</p>
         </div>
       )}
       {done && addShow && (

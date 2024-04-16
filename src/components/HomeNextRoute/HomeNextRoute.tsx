@@ -106,7 +106,7 @@ export function HomeNextRoute() {
   async function validateAndEditPerson(id: number) {
     if (!edit?.title.trim()) {
       Swal.fire({
-        title: (loacal === "AM" ? 'չի կարող դատարկ լինել' : "cannot be empty"),
+        title: (loacal === "AM" ? 'Չի կարող դատարկ լինել' : "Cannot be empty"),
         icon: 'error',
         confirmButtonText: (loacal === "AM" ? 'Լավ' : "OK")
       })

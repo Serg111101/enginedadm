@@ -73,7 +73,7 @@ let LocalValue: any;
   async function validateAndAddTeam(id: number) {
     if (!addImg) {
       Swal.fire({
-        title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
+        title:(LocalValue==="AM"? 'Չի կարող դատարկ լինել':"Cannot be empty") ,
         icon: 'error',
         confirmButtonText:(LocalValue==="AM"? 'Լավ':"OK")})
     }
@@ -88,7 +88,7 @@ let LocalValue: any;
 
     if (!editeValue?.title?.trim() || !editeValue?.text?.trim() || !editeValue?.more?.trim()) {
       Swal.fire({
-        title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
+        title:(LocalValue==="AM"? 'Չի կարող դատարկ լինել':"Cannot be empty") ,
         icon: 'error',
         confirmButtonText:(LocalValue==="AM"? 'Լավ':"OK")})
     }

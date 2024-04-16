@@ -126,7 +126,7 @@ const AddTeacher = ({ setOpen }: any) => {
 
 
         <Form.Item
-          label={LocalValue === 'AM' ? "Գաղտաբառը" : 'Password'}
+          label={LocalValue === 'AM' ? "Գաղտաբառ" : 'Password'}
           name="password"
           rules={[{ required: true, message: LocalValue === 'AM' ? "Պարտադիր դաշտ!" : 'Required field' }]}
         >
@@ -158,7 +158,7 @@ const AddTeacher = ({ setOpen }: any) => {
           </Button>
         </Form.Item>
       </Form>
-      <button className="buttonprev" onClick={() => setOpen(false)}>{LocalValue === 'AM' ? "Հետ" : 'Back'} </button>
+      <button className="buttonprev" onClick={() => setOpen(false)}>{LocalValue === 'AM' ? "Հետ" : 'Go back'} </button>
     </div>
   );
 };

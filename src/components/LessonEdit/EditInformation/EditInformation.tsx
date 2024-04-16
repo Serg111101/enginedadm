@@ -392,7 +392,7 @@ export const EditInformation = ({name, title, indexing, setEditInformation,setEd
                         <div className='EditInformation_div'>
 
                             <div >
-                                <input type="text" placeholder={LocalValue==="AM"?'Ներմուծել Վերնագիր':"Import Title"} value={slideState?.lectures} style={{ fontSize: '20px' }} onChange={(e) =>
+                                <input type="text" placeholder={LocalValue==="AM"?'Ներմուծել վերնագիր':"Import title"} value={slideState?.lectures} style={{ fontSize: '20px' }} onChange={(e) =>
                                     setSlideState({
                                         id: slideState.id,
                                         button: slideState?.button,
@@ -408,7 +408,7 @@ export const EditInformation = ({name, title, indexing, setEditInformation,setEd
                                     })
                                 } />
                                 <hr />
-                                {<textarea cols={10} placeholder={LocalValue==="AM"?'Ներմուծել Վերնագիր':"Import Title"} value={slideState.text1} onChange={(e) =>
+                                {<textarea cols={10} placeholder={LocalValue==="AM"?'Ներմուծել վերնագիր':"Import title"} value={slideState.text1} onChange={(e) =>
                                     setSlideState({
                                         id: slideState.id,
                                         button: slideState?.button,
@@ -454,7 +454,7 @@ export const EditInformation = ({name, title, indexing, setEditInformation,setEd
 
                                     </div></div>}
                                 <hr />
-                                {<textarea placeholder={LocalValue==="AM"?'Ներմուծել Վերնագիր':"Import Title"} value={slideState.text2} onChange={(e) =>
+                                {<textarea placeholder={LocalValue==="AM"?'Ներմուծել վերնագիր':"Import title"} value={slideState.text2} onChange={(e) =>
                                     setSlideState({
                                         id: slideState.id,
                                         button: slideState?.button,
@@ -659,7 +659,7 @@ export const EditInformation = ({name, title, indexing, setEditInformation,setEd
                                     </button></div> :
                                     <div className='SaveChange_Edit'>
                                         <button onClick={() => saveChangeSlides()}>
-                                        {LocalValue==="AM"?'Պահպանել փոփոխությունները':"Save Changes"} 
+                                        {LocalValue==="AM"?'Պահպանել փոփոխությունները':"Save changes"} 
                                         </button>
                                     </div>
                             }

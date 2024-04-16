@@ -27,7 +27,8 @@ export function Teacher() {
     const [error, setError] = useState<any>()
     const [loading, setLoadnig] = useState(false);
     const [image, setImage] = useState("");
-    const [cameraLink, setCameraLink] = useState("")
+    const [cameraLink, setCameraLink] = useState("");
+    const [cubesatName,setCubesatName] = useState("")
     useEffect(() => {
         dispatch(getTeacher("admin"))
     }, [dispatch])
@@ -74,7 +75,7 @@ export function Teacher() {
     }
     async function addLinks() {
         if (linkVal?.length > 2 ) {
-            const obj = { ...openLinks, links: [...openLinks?.links, { cubesat_link: linkVal, camera_link: cameraLink, image: image }] }
+            const obj = { ...openLinks, links: [...openLinks?.links, { cubesat_link: linkVal, camera_link: cameraLink, image: image,name:cubesatName }] }
             setOpenLinks(obj);
         }
         
@@ -87,6 +88,7 @@ export function Teacher() {
             setEditLink(false);
             setLinkVal("");
             setCameraLink("");
+            setCubesatName("")
             setImage("");
 
 
@@ -124,8 +126,6 @@ export function Teacher() {
     }, [error, loading]);
 
 
-
-
     async function editLinks() {
         const newLinks = openLinks?.links.map((el: any, index: any) => {
             if (index !== editLink[1]) {
@@ -142,9 +142,10 @@ export function Teacher() {
         })
         await EditTeacher({ ...openLinks, links: newLinks }, setError, setLoadnig);
         setOpen(false);
-        setLinkVal("")
+        setLinkVal("");
         setEditLink(false);
         setImage("")
+        setCubesatName("")
 
     }
 
@@ -164,9 +165,6 @@ export function Teacher() {
         }
     }
 
-
-
-
     async function deleteLink(item: any) {
         const newLinks = openLinks?.links.filter((el: any) => {
             if (el?.camera_link !== item?.camera_link && el?.cubesat_link !== item?.cubesat_link) {
@@ -178,12 +176,10 @@ export function Teacher() {
         EditTeacher({ ...openLinks, links: newLinks }, setError, setLoadnig);
         setOpenLinks({ ...openLinks, links: newLinks })
         setOpen(false);
+        setCubesatName("")
         setLinkVal("")
         setEditLink(false);
     }
-
-
-
 
     async function uploadImageHandler(e: any) {
         const formData = new FormData();
@@ -226,7 +222,7 @@ export function Teacher() {
                                 <td>{el?.fullName}</td>
                                 <td><strong>{el?.position}</strong></td>
                                 <td className=' editdelete'>
-                                    <ArrowRightOutlined className='edit' onClick={() => { setOpenLinks(el); setTeacherIndex(index); setLinkVal("") }} />
+                                    <ArrowRightOutlined className='edit' onClick={() => { setOpenLinks(el); setTeacherIndex(index); setLinkVal("");setCubesatName("") }} />
                                 </td>
                                 <td className=' editdelete'>
                                     <EditOutlined className='edit' onClick={() => { seteditTeacher(el) }} />
@@ -247,12 +243,13 @@ export function Teacher() {
                 <>
                     <div className='teacherContainer'>
                         {!open && !editLink && <div className='ClassTable'>
-                            <button className='button' onClick={() => { setOpenLinks(false); setEditLink(false); setOpen(false) }} >{LocalValue === 'AM' ? "Հետ" : 'go back'}</button>
+                            <button className='button' onClick={() => { setOpenLinks(false); setEditLink(false); setOpen(false) }} >{LocalValue === 'AM' ? "Հետ" : 'Go back'}</button>
 
                             <table>
                                 <thead>
                                     <tr>
                                         <th >{LocalValue === 'AM' ? "Հղումներ" : 'Links'}</th>
+                                        <th >{LocalValue === 'AM' ? "Արբանյակի անվանում" : 'Satellite name'}</th>
                                         <th>{LocalValue === 'AM' ? "Արբանյակի հղում" : 'Satellite link'}</th>
                                         <th>{LocalValue === 'AM' ? "Տեսախցիկի հղում" : 'Camera link'}</th>
                                         <th colSpan={2} ><EyeFilled /></th>
@@ -263,6 +260,9 @@ export function Teacher() {
 
                                         <td className=' editdelete'>
                                             <img src={el?.image} alt={el?.cubesat_link} />
+                                        </td>
+                                        <td className=' editdelete'>
+                                            {el?.name}
                                         </td>
                                         <td className=' editdelete'>
                                             {el?.cubesat_link}
@@ -315,6 +315,10 @@ export function Teacher() {
 
                             </div>
                             {image?.length > 0 && <div className='inputContainer' >
+                            <div>
+                                    <label htmlFor="cameraLinkVal">{LocalValue === 'AM' ? "Ավելացրեք արբանյակի անունը" : 'Add a satellite name'}</label>
+                                    <input type='text' id='cameraLinkVal' name='cameraLinkVal' value={cubesatName} onChange={(e) => { setCubesatName(e.target.value)}} />
+                                </div>
                                 <div>
                                     <label htmlFor="linkVal">{LocalValue === 'AM' ? "Ավելացրեք արբանյակի հղում" : 'Add a satellite link'}</label>
                                     <input type='text' id='linkVal' name='linkVal' value={linkVal} onChange={(e) => { setLinkVal(e.target.value) }} />
@@ -335,7 +339,7 @@ export function Teacher() {
 
 
                             <div className="contaButton">
-                                <button className='button' onClick={() => { setOpen(false) }} >{LocalValue === 'AM' ? "Հետ" : 'go back'}</button>
+                                <button className='button' onClick={() => { setOpen(false) }} >{LocalValue === 'AM' ? "Հետ" : 'Go back'}</button>
                                 <button className='button' onClick={() => { addLinks() }} >{LocalValue === 'AM' ? "Պահպանել" : 'Save'}</button>
                             </div>
                         </div>}
@@ -370,6 +374,10 @@ export function Teacher() {
 
                             </div>
                             <div className='inputContainer' >
+                            <div>
+                                    <label htmlFor="cameraLinkVal">{LocalValue === 'AM' ? "Ավելացրեք արբանյակի անունը" : 'Add a satellite name'}</label>
+                                    <input type='text' id='cameraLinkVal' name='cameraLinkVal' value={editLink[0]?.name} onChange={(e) => { setEditLink([{ ...editLink[0], name: e.target.value }, editLink[1]]) }} />
+                                </div>
                                 <div>
                                     <label htmlFor="linkVal">{LocalValue === 'AM' ? "Ավելացրեք արբանյակի հղում" : 'Add a satellite link'}</label>
                                     <input type='text' name='linkVal' id='linkVal' value={editLink[0]?.cubesat_link} onChange={(e) => { setEditLink([{ ...editLink[0], cubesat_link: e.target.value }, editLink[1]]) }} />
@@ -383,8 +391,8 @@ export function Teacher() {
 
 
                             <div className="contaButton">
-                                <button className='button' onClick={() => { setEditLink(false); setLinkVal("") }} >{LocalValue === 'AM' ? "Հետ" : 'go back'}</button>
-                                <button className='button' onClick={() => { editLinks(); }} >Save</button>
+                                <button className='button' onClick={() => { setEditLink(false); setLinkVal("") }} >{LocalValue === 'AM' ? "Հետ" : 'Go back'}</button>
+                                <button className='button' onClick={() => { editLinks(); }} >{LocalValue === 'AM' ? "Պահպանել" : 'Save'}</button>
                             </div>
 
                         </div>}

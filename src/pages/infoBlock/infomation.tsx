@@ -84,7 +84,7 @@ const Informatoin = () => {
       <div className="Lecturee" style={elem ? { display: "none" } : { backgroundImage: `url(${Background})`, }}>
         {!elem && lectures?.length > 0 && <div className='prevButton'>
           <button onClick={() => navigate("/Lessons")} >
-            {LocalValue === "AM" ? 'Հետ' : "Back"}
+            {LocalValue === "AM" ? 'Հետ' : "Go back"}
           </button>
         </div>}
         <div className={!elem ? 'lectureTitle' : ''}>
@@ -159,7 +159,7 @@ const Informatoin = () => {
                       {
                         el?.text_arr_margin?.map((elem: any, index: number) => {
                           if (elem?.includes('http')) {
-                            return <div className='imageDiv' key={index} > <img src={elem} alt='nkar' /> </div>
+                            return <div className='imageDiv' key={index} > <img src={elem} alt='Image not found' /> </div>
                           } else {
                             return <p key={index} style={{ marginLeft: elem?.startsWith("●") ? "80px" : "40px" }}>{elem}</p>
                           }

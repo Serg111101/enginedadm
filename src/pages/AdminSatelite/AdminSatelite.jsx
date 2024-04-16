@@ -7,7 +7,7 @@ import { EditOutlined, DeleteOutlined, ArrowRightOutlined, EyeFilled, CheckSquar
 import axios from '../../axios/adminaxios';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { addLinksSuperAdmin, deleteLinksSuperAdmin, editLinksSuperAdmin, getLinksSuperAdmin } from '../../store/action/LinksSuperAdmin';
-import locale from 'antd/es/date-picker/locale/en_US';
+
 
 
 const AdminSatelite = () => {
@@ -22,8 +22,9 @@ const AdminSatelite = () => {
   const [editLinks, setEditLink] = useState(false)
   const [image, setImage] = useState("");
   const [open, setOpen] = useState('');
-  const [cameraLink, setCameraLink] = useState("")
+  const [cameraLink, setCameraLink] = useState("");
   const [linkVal, setLinkVal] = useState("");
+  const [cubesatName,setCubesatName] = useState("");
 
   // const { auth } = useAuth();
   const navigate = useNavigate()
@@ -59,6 +60,11 @@ const AdminSatelite = () => {
     
 };
 
+let LocalValue;
+if (localStorage.getItem("language")) {
+    let local = localStorage.getItem("language");
+    LocalValue = JSON.parse(local);
+}
 
 // async function navigateTo(el){
 //     if(el?.includes("http://")){
@@ -76,8 +82,8 @@ const AdminSatelite = () => {
   
  useEffect(()=>{
     if(selectVal?.length>0){
-        selectVal==="cubesatLInk"&& navigateTo(linkValue[0]);
-        selectVal==="cameraLink"&& navigateTo(linkValue[1]);
+        selectVal==="spaceLinks"&& navigateTo(linkValue[0]);
+        selectVal==="cameraLinks"&& navigateTo(linkValue[1]);
         setSelectVal("")
         setLinkvalue([])
     }
@@ -102,11 +108,12 @@ const AdminSatelite = () => {
   }
   async function addLinks() {
  if(image?.length>0 && linkVal?.length>0){
-  await   dispatch(addLinksSuperAdmin({image:image,cameraLinks:cameraLink,spaceLinks:linkVal}))
+  await   dispatch(addLinksSuperAdmin({image:image,cameraLinks:cameraLink,spaceLinks:linkVal,name:cubesatName}))
   await  dispatch(getLinksSuperAdmin());
     setOpen(false);
     setImage("");
     setCameraLink("");
+    setCubesatName('')
     setLinkVal("")
  }
  
@@ -117,6 +124,7 @@ const AdminSatelite = () => {
       await dispatch(editLinksSuperAdmin(editLinks))
       await dispatch(getLinksSuperAdmin());
       await setEditLink('')
+
       
     }
   }
@@ -125,9 +133,10 @@ const AdminSatelite = () => {
    await dispatch(getLinksSuperAdmin());
  
       }
+
   return (
     <div className="UserSatelite">
-      <button className='btn' onClick={() => navigate("/home")} > {loacal === "AM" ? "Հետ" : "Back"}</button>
+      <button className='btn' onClick={() => navigate("/home")} > {loacal === "AM" ? "Հետ" : "Go back"}</button>
       <div className="contaLink"> 
    {!open&&   <button className='addBtn' onClick={()=>{setOpen(true)}}>    <PlusCircleFilled className="iconantd" /></button>}
 
@@ -163,6 +172,10 @@ const AdminSatelite = () => {
 
           </div>
           {image?.length > 0 && <div className='inputContainer' >
+          <div>
+                                    <label htmlFor="cameraLinkVal">{LocalValue === 'AM' ? "Ավելացրեք արբանյակի անունը" : 'Add a satellite name'}</label>
+                                    <input type='text' id='cameraLinkVal' name='cameraLinkVal' value={cubesatName} onChange={(e) => { setCubesatName(e.target.value)}} />
+                                </div>
             <div>
               <label htmlFor="linkVal">{loacal === 'AM' ? "Ավելացրեք արբանյակի հղում" : 'Add a satellite link'}</label>
               <input type='text' id='linkVal' name='linkVal' value={linkVal} onChange={(e) => { setLinkVal(e.target.value) }} />
@@ -183,7 +196,7 @@ const AdminSatelite = () => {
 
 
           <div className="contaButton">
-            <button className='button' onClick={() => { setOpen(false) }} >{loacal === 'AM' ? "Հետ" : 'go back'}</button>
+            <button className='button' onClick={() => { setOpen(false) }} >{loacal === 'AM' ? "Հետ" : 'Go back'}</button>
             <button className='button' onClick={() => { addLinks() }} >{loacal === 'AM' ? "Պահպանել" : 'Save'}</button>
           </div>
         </div>}
@@ -218,21 +231,25 @@ const AdminSatelite = () => {
 
         </div>
         <div className='inputContainer' >
+        <div>
+                                    <label htmlFor="cubesatName">{LocalValue === 'AM' ? "Ավելացրեք արբանյակի անունը" : 'Add a satellite name'}</label>
+                                    <input type='text' id='cubesatName' name='cubesatName' value={editLinks.name} onChange={(e) => { setEditLink({ ...editLinks, name: e.target.value })}} />
+                                </div>
             <div>
-                <label htmlFor="linkVal">{locale === 'AM' ? "Ավելացրեք արբանյակի հղում" : 'Add a satellite link'}</label>
+                <label htmlFor="linkVal">{LocalValue === 'AM' ? "Ավելացրեք արբանյակի հղում" : 'Add a satellite link'}</label>
                 <input type='text' name='linkVal' id='linkVal' value={editLinks?.spaceLinks} onChange={(e) => { setEditLink({ ...editLinks, spaceLinks: e.target.value }) }} />
 
             </div>
             <div>
-                <label htmlFor="cameraLinkVal">{locale === 'AM' ? "Ավելացրեք տեսախցիկի հղում" : 'Add a camera link'}</label>
+                <label htmlFor="cameraLinkVal">{LocalValue === 'AM' ? "Ավելացրեք տեսախցիկի հղում" : 'Add a camera link'}</label>
                 <input type='text' id='cameraLinkVal' name='cameraLinkVal' value={editLinks?.cameraLinks} onChange={(e) => { setEditLink({ ...editLinks, cameraLinks: e.target.value }) }} />
             </div>
         </div>
 
 
         <div className="contaButton">
-            <button className='button' onClick={() => { setEditLink(false); setLinkVal("") }} >{locale === 'AM' ? "Հետ" : 'go back'}</button>
-            <button className='button' onClick={() => { edit(); }} >Save</button>
+            <button className='button' onClick={() => { setEditLink(false); setLinkVal("") }} >{LocalValue === 'AM' ? "Հետ" : 'Go back'}</button>
+            <button className='button' onClick={() => { edit(); }} >{LocalValue === 'AM' ? "Պահպանել" : 'Save'}</button>
         </div>
 
     </div>}
@@ -244,6 +261,7 @@ const AdminSatelite = () => {
                             <div onClick={()=>{!el?.cameraLinks?.length&&navigateTo(el?.spaceLinks)}} className="imageDiv">
                                 <img  src={el?.image} alt="picture with cubesat" />
                             </div>
+                            <p className='nameSatelite'>{el.name}</p>
                             <div className="selectDiv">
                                 {el?.cameraLinks?<select onChange={(e)=>handleSelectChange(e,el)}>
                                     <option  hidden>

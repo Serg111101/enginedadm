@@ -71,7 +71,7 @@ export function HomeHeader() {
   async function validateAndEditHomeHeader() {
     if (!editValue.trim()) {
       Swal.fire({
-        title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
+        title:(LocalValue==="AM"? 'Չի կարող դատարկ լինել':"Cannot be empty") ,
         icon: 'error',
         confirmButtonText:(LocalValue==="AM"? 'Լավ':"OK")})
     } else {
@@ -129,7 +129,7 @@ export function HomeHeader() {
     try {
         await DeleteAll({
             title: LocalValue === 'AM' ? "Ցանկանում եք ջնջե՞լ" : 'Do you want to delete?',
-            text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող" : 'If you delete it, you cannot restore it',
+            text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող !" : 'If you delete it, you cannot restore it !',
             deleteItem: () => dispatch(deleteHomeHeaderImages(index))
         });
 

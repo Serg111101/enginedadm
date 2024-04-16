@@ -10,6 +10,13 @@ import auth from "../../auth";
 const URL = process.env.REACT_APP_BASE_URL;
 
 export const Login = () => {
+
+  let LocalValue: any;
+  if (localStorage.getItem("language")) {
+    let local: any = localStorage.getItem("language");
+    LocalValue = JSON.parse(local);
+  }
+
   const [active, setActive] = useState(false);
   const navigate = useNavigate();
   const [checkLogin, setCheckLogin] = useState<any>({});
@@ -49,7 +56,7 @@ else{
 
 
     } catch (error) {
-      loginError.login = "error";
+      loginError.login =LocalValue === "AM"? "Սխալ": "error";
       setLoginError({ ...loginError });
     }
   };
@@ -67,10 +74,10 @@ else{
       check++;
       setLoginError({});
     } else if (!checkLogin["login"]) {
-      loginError.login = "Required";
+      loginError.login = LocalValue === "AM"?"Պարտադիր դաշտ":"Required Field";
       setLoginError({ ...loginError });
     } else {
-      loginError.login = "Min 3, Max 38 characters";
+      loginError.login = LocalValue ==="AM"?"Նվազագույնը 3, առավելագույնը 38 նիշ":'Min 3, Max 38 characters';
       setLoginError({ ...loginError });
     }
 
@@ -82,10 +89,10 @@ else{
       check++;
       setPasswordError({});
     } else if (!password["password"]) {
-      passwordError.password = "Required";
+      passwordError.password = LocalValue === "AM"?"Պարտադիր դաշտ":"Required Field";
       setPasswordError({ ...passwordError });
     } else {
-      passwordError.password = "Min 3, Max 38 characters";
+      passwordError.password = LocalValue ==="AM"?"Նվազագույնը 3, առավելագույնը 38 նիշ":'Min 3, Max 38 characters' ;
       setPasswordError({ ...passwordError });
     }
 
@@ -97,19 +104,20 @@ else{
 
   return (
     <div className="dashboard" >
-      <h1>LOGIN</h1>
+      <h1>{LocalValue === "AM" ? 'Մուտք' : "Login"} </h1>
     <div className="login">
       <div className="main">
         <div className="containeri" id="container">
           <div className="containerHeader" id="containerHeader">
-            <h3 id={"containerHeaderH1"}>Admin Panel Login</h3>
+            <h3 id={"containerHeaderH1"}>{LocalValue === "AM" ? 'Ադմինիստրատորի վահանակի մուտք' : "Admin panel login"}</h3>
           </div>
           <div className="containerMain">
             <form className="loginForm" onSubmit={checkValidation}>
               <div id="loginFormChildLogin" className="loginFormChild">
-                <label>Username</label>
+              <label>{LocalValue === "AM" ? 'Մուտքանուն' : "Username"}</label>
+
                 <Input
-                  placeholder="Username"
+                  placeholder={LocalValue === "AM" ? 'Մուտքանուն' : "Username"}
                   name="login"
                   onChange={(e) =>
                     setCheckLogin({ ...checkLogin, [e.target.name]: e.target.value })
@@ -120,9 +128,9 @@ else{
               </div>
 
               <div id="loginFormChildPassword" className="loginFormChild">
-                <label>Password</label>
+                <label> {LocalValue === "AM" ? 'Գաղտնաբառ' : "Password"}</label>
                 <Input.Password
-                  placeholder="Password"
+                  placeholder={LocalValue === "AM" ? 'Գաղտնաբառ' : "Password"}
                   iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                   name="password"
                   onChange={(e) =>
@@ -136,12 +144,12 @@ else{
               <div id="loginFormChildCheckbox" className="loginFormCheckbox">
                 <div className="remcheck">
                   <input type="checkbox" onChange={() => setActive(!active)} />
-                  <label id={active ? "unCheked" : "saveCheck"}>Remember Me</label>
+                  <label id={active ? "unCheked" : "saveCheck"}> {LocalValue === "AM" ? 'Հիշել' : "Remember Me"}</label>
                 </div>
               </div>
 
               <button id="loginFormChildButton" className="loginFormButton">
-                Login
+                {LocalValue === "AM" ? 'Մուտք' : "Login"}
               </button>
             </form>
           </div>

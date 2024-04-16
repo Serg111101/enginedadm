@@ -48,7 +48,7 @@ export const EditQuiz = () => {
         if ( value?.incorrectAnswer !== undefined) {
             if (!value?.incorrectAnswer?.trim()) {
                 Swal.fire({
-                    title: LocalValue === "AM" ? 'չի կարող դատարկ լինել' : "cannot be empty",
+                    title: LocalValue === "AM" ? 'Չի կարող դատարկ լինել' : "Cannot be empty",
                     icon: 'error',
                     confirmButtonText: (LocalValue === "AM" ? 'Լավ' : "OK")
                 })
@@ -63,7 +63,7 @@ export const EditQuiz = () => {
         } else {
             if (!value?.trim()) {
                 Swal.fire({
-                    title: LocalValue === "AM" ? 'չի կարող դատարկ լինել' : "cannot be empty",
+                    title: LocalValue === "AM" ? 'Չի կարող դատարկ լինել' : "Cannot be empty",
                     icon: 'error',
                     confirmButtonText: (LocalValue === "AM" ? 'Լավ' : "OK")
                 })
@@ -81,7 +81,7 @@ export const EditQuiz = () => {
 
         if (question?.length === 0 && correctAnswer?.length === 0 && incorrectAnswer[0]?.length === 0 && incorrectAnswer[1]?.length === 0 && incorrectAnswer[2]?.length === 0) {
             Swal.fire({
-                title: LocalValue === "AM" ? 'չի կարող դատարկ լինել' : "cannot be empty",
+                title: LocalValue === "AM" ? 'Չի կարող դատարկ լինել' : "Cannot be empty",
                 icon: 'error',
                 confirmButtonText: (LocalValue === "AM" ? 'Լավ' : "OK")
             })
@@ -133,7 +133,7 @@ export const EditQuiz = () => {
 
                             { <div className='answer_box'>
                                 <div className='answer_correct'>
-                                    <h4>{LocalValue === "AM" ? "Ճիշտ պատասխան" : "CorrectAnswer"}</h4>
+                                    <h4>{LocalValue === "AM" ? "Ճիշտ պատասխան" : "Correct answer"}</h4>
                                     <div className='answer_text'>
                                         {active === el.correctAnswer  ? <input type="text" value={value} onChange={(e) => { setValue(e.target.value) }} /> : <p>{el.correctAnswer}</p>}
                                         {active === el.correctAnswer ? <div> <CloseOutlined className="iconantd" onClick={() => { setActive('') }} /> < CheckSquareOutlined className="iconantd" onClick={() => { editQuestion(value, i, '', el.id, "correctAnswer") }} /> </div> : <EditOutlined className="iconantd" onClick={() => { setValue(el.correctAnswer); setActive(el.correctAnswer) }} />}
@@ -141,7 +141,7 @@ export const EditQuiz = () => {
 
                                 </div>
                                 <div className='answer_wrong'  >
-                                    <h4  >{LocalValue === "AM" ? "Սխալ պատասխան" : "IncorrectAnswer"}</h4>
+                                    <h4  >{LocalValue === "AM" ? "Սխալ պատասխան" : "Incorrect answer"}</h4>
                                     <div className='answer_wrongtext'>
                                         {el.incorrectAnswer.map((elem: any, index: number) => <div key={index +43}>
                                             {active === elem ? <input type="text" value={value} onChange={(e) => { setValue(e.target.value) }} /> : <p>{index + 1}.{elem}</p>}
@@ -161,12 +161,12 @@ export const EditQuiz = () => {
 
                 < PlusCircleFilled onClick={() => { setAdd(!add) }} />
                 {add && <form className='addQuestion'>
-                    { <p>{LocalValue === "AM" ? "Լացնել բոլոր դաշտորը" : "fill in all fields"}</p>}
+                    { <p>{LocalValue === "AM" ? "Լրացնել բոլոր դաշտորը" : "Fill in all fields"}</p>}
                     <label htmlFor="">{LocalValue === "AM" ? "Հարց" : "Question"}  </label>
                     <input type="text" onChange={(e) => { setQuestion(e.target.value) }} />
-                    <label htmlFor="">{LocalValue === "AM" ? "Ճիշտ պատասխան" : "CorrectAnswer"}</label>
+                    <label htmlFor="">{LocalValue === "AM" ? "Ճիշտ պատասխան" : "Correct answer"}</label>
                     <input type="text" onChange={(e) => { setCorrectAnswer(e.target.value) }} />
-                    <label htmlFor=""> {LocalValue === "AM" ? "Սխալ պատասխան" : "IncorrectAnswer"}</label>
+                    <label htmlFor=""> {LocalValue === "AM" ? "Սխալ պատասխան" : "Incorrect answer"}</label>
                     <input type="text" onChange={(e) => { setIncorrectAnswer([e.target.value, incorrectAnswer[1], incorrectAnswer[2]]) }} />
                     <input type="text" onChange={(e) => { setIncorrectAnswer([incorrectAnswer[0], incorrectAnswer[1], e.target.value]) }} />
                     <input type="text" onChange={(e) => { setIncorrectAnswer([incorrectAnswer[0], e.target.value, incorrectAnswer[2]]) }} />

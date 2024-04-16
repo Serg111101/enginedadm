@@ -220,14 +220,14 @@ export function Satellites() {
               </div>
             )}
           </div>
-          {loadingVideo==='video1' ? <h2 className="editbutton">Loading...</h2> : <ReactPlayer  key={1} url={upload ? upload : Satellites?.animationCubeSat1} width="100%" height="auto" controls={true} autoplayer={"false"} />}
+          {loadingVideo==='video1' ? <h2 className="editbutton">{LocalValue === "AM" ? "Բեռնվում է..." : "Loading..."}</h2> : <ReactPlayer  key={1} url={upload ? upload : Satellites?.animationCubeSat1} width="100%" height="auto" controls={true} autoplayer={"false"} />}
           <div className="editbutton1">
             {!upload && Satellites?.animationCubeSat1 && done && (
               <DeleteOutlined className="iconantd" onClick={() => { deleteItemmm("animationCubeSat1", 0, Satellites.id); }} />
             )}
             {!upload && done && (
               <label htmlFor="video1" >
-                {LocalValue === "AM" ? "Ներբեռնել վիդեո" : "Upload video"} {<PlusCircleFilled className="iconantd" />}
+                {LocalValue === "AM" ? "Ներբեռնել տեսանյութ" : "Upload video"} {<PlusCircleFilled className="iconantd" />}
               </label>
             )}
 
@@ -386,7 +386,7 @@ export function Satellites() {
             )}
           </div>
 
-          {loadingVideo==='video2' ? <h2 className="editbutton">Loading...</h2> : <ReactPlayer
+          {loadingVideo==='video2' ? <h2 className="editbutton">{LocalValue === "AM" ? "Բեռնվում է..." : "Loading..."}</h2> : <ReactPlayer
             key={2}
             url={upload || Satellites?.animationCubeSat2}
             width="100%"
@@ -409,7 +409,7 @@ export function Satellites() {
 
                   <div>
                     <label htmlFor="video2" >
-                      {LocalValue === "AM" ? "Ներբեռնել վիդեո" : "Upload video"}  <PlusCircleFilled className="iconantd" />
+                    {LocalValue === "AM" ? "Ներբեռնել տեսանյութ" : "Upload video"} <PlusCircleFilled className="iconantd" />
                     </label>
 
                     <input
@@ -731,7 +731,7 @@ export function Satellites() {
             )}
           </div>
 
-          {loadingVideo ==='video3'? <h2 className="editbutton">Loading...</h2> : <ReactPlayer
+          {loadingVideo ==='video3'? <h2 className="editbutton">{LocalValue === "AM" ? "Բեռնվում է..." : "Loading..."}</h2> : <ReactPlayer
             key={3}
             url={upload || Satellites?.animationCubeSat3}
             width="100%"
@@ -749,7 +749,7 @@ export function Satellites() {
               />
 
               <label htmlFor="video3" >
-                {LocalValue === "AM" ? "Ներբեռնել վիդեո" : "Upload video"} <PlusCircleFilled className="iconantd" />
+              {LocalValue === "AM" ? "Ներբեռնել տեսանյութ" : "Upload video"} <PlusCircleFilled className="iconantd" />
               </label>
 
               <input
@@ -843,7 +843,7 @@ export function Satellites() {
               </div>
             )}
           </div>
-          {loadingVideo==='video4' ? <h2 className="editbutton">Loading...</h2> : <ReactPlayer
+          {loadingVideo==='video4' ? <h2 className="editbutton">{LocalValue === "AM" ? "Բեռնվում է..." : "Loading..."}</h2> : <ReactPlayer
             // key={4}
             url={upload || Satellites?.animationCubeSat4}
             width="100%"
@@ -862,7 +862,7 @@ export function Satellites() {
                     }}
                   />
                   <label htmlFor="video4" className="editlabel">
-                    {LocalValue === "AM" ? "Ներբեռնել վիդեո" : "Upload video"}  <PlusCircleFilled className="iconantd" />
+                    {LocalValue === "AM" ? "Ներբեռնել տեսանյութ" : "Upload video"}  <PlusCircleFilled className="iconantd" />
                   </label>
 
                 </div>
@@ -963,7 +963,7 @@ export function Satellites() {
                 navigateTo()
               }}
             >
-              {LocalValue === "AM" ? "Հարցաշար" : "Questions"}
+              {LocalValue === "AM" ? "Հարցաշար" : "Question"}
             </button>
           </div>
         </div>

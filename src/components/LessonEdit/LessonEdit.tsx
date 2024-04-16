@@ -34,7 +34,7 @@ export function LessonEdit() {
     const [image, setImage] = useState("")
     const [indexElem, setIndexElem] = useState<any>('')
     const [colorQuestion, setColorQuestion] = useState({
-        text: LocalValue === "AM" ? "Հարցաշար" : "Questions",
+        text: LocalValue === "AM" ? "Հարցաշար" : "Question",
         color: ""
     })
     const [addLesson, setAddLesson] = useState<any>({
@@ -94,7 +94,7 @@ export function LessonEdit() {
         })
         if (errorLectures || !editLesson?.lesson?.trim() || !editLesson?.icon?.trim()) {
             Swal.fire({
-                title: (LocalValue === "AM" ? 'չի կարող դատարկ լինել' : "cannot be empty"),
+                title: (LocalValue === "AM" ? 'Չի կարող դատարկ լինել' : " Cannot be empty"),
                 icon: 'error',
                 confirmButtonText: (LocalValue === "AM" ? 'Լավ' : "OK")
             })
@@ -112,7 +112,6 @@ export function LessonEdit() {
                     return el
                 }
             })
-            console.log(newlec1,"editLesson");
             await axios.put(`${URL}aeroSpace/editExistLesson/${LocalValue === "AM" ? "US":"AM"}/${editLesson.unique_key}`, [{...editLesson, lectures:newlec1},editLesson.unique_key])
             await dispatch(getFetchLesson())
             setEditLesson({})
@@ -126,7 +125,7 @@ export function LessonEdit() {
         try {
             await DeleteAll({
                 title: LocalValue === 'AM' ? "Ցանկանում եք ջնջե՞լ" : 'Do you want to delete?',
-                text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող" : 'If you delete it, you cannot restore it',
+                text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող !" : 'If you delete it, you cannot restore it !',
                 deleteItem: () => dispatch(deleteLesson(id, title))
 
 
@@ -210,7 +209,7 @@ export function LessonEdit() {
 
         } else {
             Swal.fire({
-                title: LocalValue === "AM" ? 'չի կարող դատարկ լինել' : "cannot be empty",
+                title: LocalValue === "AM" ? 'Չի կարող դատարկ լինել' : "Cannot be empty",
                 icon: 'error',
                 confirmButtonText: (LocalValue === "AM" ? 'Լավ' : "OK")
             })
@@ -531,7 +530,7 @@ export function LessonEdit() {
                                 {
                                     lectures?.map((elem: any, i: any) =>
                                         <div key={i} className='Lesson_mini_item' style={{ background: elem?.color }}>
-                                            <label htmlFor="">{LocalValue === "AM" ? "Թեմայի անվանումը" : "Theme Name"}</label>
+                                            <label htmlFor="">{LocalValue === "AM" ? "Թեմայի անվանումը" : "Theme name"}</label>
                                             <input type="text" value={elem?.text} onChange={(e) => editLecturess(e, i, "text")
                                             } />
                                             <label htmlFor="">{LocalValue === "AM" ? "Դաշտի գույնը" : "The color of the field"}</label>
@@ -550,7 +549,7 @@ export function LessonEdit() {
                                 :
                                 <div className='addLec1'>
                                     <div className='Lesson_mini_item' style={{ background: createLec?.color }}>
-                                        <label htmlFor="">{LocalValue === "AM" ? "Թեմայի անվանումը" : "Theme Name"}</label>
+                                        <label htmlFor="">{LocalValue === "AM" ? "Թեմայի անվանումը" : "Theme name"}</label>
                                         <input type="text" value={createLec.text} onChange={(e) => setCreateLec({ ...createLec, text: e.target.value })
                                         } />
                                         <label htmlFor="">{LocalValue === "AM" ? "Դաշտի գույնը" : "The color of the field"}</label>

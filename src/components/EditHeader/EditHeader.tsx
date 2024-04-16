@@ -14,7 +14,7 @@ import { editHeader, getFetchHeader } from "../../store/action/HeaderAction";
 import { getFetchLogo, uploadImage } from "../../store/action/LogoAction";
 import { IHeader } from "../../models";
 import Swal from "sweetalert2";
-import { title } from "process";
+
 
 export function EditHeader() {
   const { Logo, Header } = useAppSelector((state: any) => ({
@@ -118,7 +118,7 @@ export function EditHeader() {
   async function validateAndEditHeader(id: number, newTitle: any  ) {
     if (!newTitle?.title.trim()) {
       Swal.fire({
-        title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
+        title:(LocalValue==="AM"? 'Չի կարող դատարկ լինել':"Cannot be empty") ,
         icon: 'error',
         confirmButtonText:(LocalValue==="AM"? 'Լավ':"OK")})
     } else {

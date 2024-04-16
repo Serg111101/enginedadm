@@ -62,7 +62,7 @@ export function Contact() {
     
     if ( !editTitileError||!editValue?.title?.trim()) {
       Swal.fire({
-        title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
+        title:(LocalValue==="AM"? 'Չի կարող դատարկ լինել':"Cannot be empty") ,
         icon: 'error',
         confirmButtonText:(LocalValue==="AM"? 'Լավ':"OK")})
     } else {
@@ -157,7 +157,7 @@ export function Contact() {
 
                {show !== 2 &&<Form.Item
                   name="email"
-                  rules={[{ required: true, message:language ==="AM"? "Պարտադիր դաշտ" :"required" }]}
+                  rules={[{ required: true, message:language ==="AM"? "Պարտադիր դաշտ !" :"Required" }]}
                 >
                   <Input
                     type="email"
@@ -220,7 +220,7 @@ export function Contact() {
               )}
                {show!==3 && <Form.Item
                   name="userName"
-                  rules={[{ required: true, message:language==="AM"? "Պարտադիր դաշտ" :"required" }]}
+                  rules={[{ required: true, message:language==="AM"? "Պարտադիր դաշտ !" :"Required" }]}
                 >
                   <Input
                     type="text"
@@ -284,7 +284,7 @@ export function Contact() {
               
             {show !==4 &&  <Form.Item
                 name="textarea"
-                rules={[{ required: true, message:language==="AM"? "Պարտադիր դաշտ" :"required" }]}
+                rules={[{ required: true, message:language==="AM"? "Պարտադիր դաշտ" :"Required" }]}
               >
                 <TextArea
                   rows={8}

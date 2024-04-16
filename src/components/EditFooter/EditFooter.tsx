@@ -36,7 +36,7 @@ function EditFooter() {
   async function editFooterr(id: number) {
     if (!value.trim()) {
       Swal.fire({
-        title: (LocalValue === "AM" ? 'չի կարող դատարկ լինել' : "cannot be empty"),
+        title: (LocalValue === "AM" ? 'Չի կարող դատարկ լինել' : "Cannot be empty"),
         icon: 'error',
         confirmButtonText: (LocalValue === "AM" ? 'Լավ' : "OK")
       })
@@ -50,7 +50,7 @@ function EditFooter() {
 async function editSocial(id: number) {
     if (!editValue?.title?.trim() || !editValue?.text?.trim()) {
       Swal.fire({
-        title: (LocalValue === "AM" ? 'չի կարող դատարկ լինել' : "cannot be empty"),
+        title: (LocalValue === "AM" ? 'Չի կարող դատարկ լինել' : "Cannot be empty"),
         icon: 'error',
         confirmButtonText: (LocalValue === "AM" ? 'Լավ' : "OK")
       })
@@ -86,7 +86,7 @@ async function uploadImageHandler(e: any) {
 async function addSocialItems() {
   if (!addValue?.text?.trim() || !addValue?.title?.trim() || !addImg) {
     Swal.fire({
-      title: (LocalValue === "AM" ? 'չի կարող դատարկ լինել' : "cannot be empty"),
+      title: (LocalValue === "AM" ? 'Չի կարող դատարկ լինել' : "Cannot be empty"),
       icon: 'error',
       confirmButtonText: (LocalValue === "AM" ? 'Լավ' : "OK")
     })
@@ -113,7 +113,7 @@ async function deleteFooter(id: number) {
   try {
       await DeleteAll({
           title: LocalValue === 'AM' ? "Ցանկանում եք ջնջե՞լ" : 'Do you want to delete?',
-          text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող" : 'If you delete it, you cannot restore it',
+          text: LocalValue === 'AM' ? "Ջնջելու դեպքում վերականգնել չեք կարող !" : 'If you delete it, you cannot restore it !',
           deleteItem: () => dispatch(DeleteFooter(id))
       });
 
@@ -238,7 +238,7 @@ return (
           {!addShow && (
             <div className="addIcon">
 
-              <p>{LocalValue === "AM" ? 'Ավելացնել նորը' : 'Add new'}  </p>
+              <p>{LocalValue === "AM" ? 'Ավելացնել' : 'Add'}  </p>
               <div>
                 <PlusCircleFilled
                   onClick={() => setAddShow(true)}

@@ -75,7 +75,7 @@ export function HomeAuthorComponent() {
   async function validateAndEditPerson() {
     if (!editValue?.text.trim() || !editValue?.title.trim()) {
       Swal.fire({
-        title:(LocalValue==="AM"? 'չի կարող դատարկ լինել':"cannot be empty") ,
+        title:(LocalValue==="AM"? 'Չի կարող դատարկ լինել':"Cannot be empty") ,
         icon: 'error',
         confirmButtonText:(LocalValue==="AM"? 'Լավ':"OK")})
     } else {
