@@ -45,7 +45,7 @@ export const Login = () => {
 });
 
 if(user.data.role==="superadmin"){
-  navigate("/home");
+  navigate(`/home/${LocalValue}`);
 }
 else{
   throw new Error
@@ -97,7 +97,7 @@ else{
     }
 
     if (check === 2 && auth().role === "superAdmin") {
-      navigate("/home");
+      navigate(`/home/${LocalValue}`);
     }
     await loginRequest();
   };

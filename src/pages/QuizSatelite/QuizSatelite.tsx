@@ -6,6 +6,11 @@ import { useNavigate } from 'react-router-dom'
 import { getFetchQuizSatelite } from '../../store/action/QuizSateliteAction';
 import { Loading } from '../../components/Loading/Loading';
 export const QuizSatelite = () => {
+    let LocalValue: any;
+    if (localStorage.getItem("language")) {
+        let local: any = localStorage.getItem("language");
+        LocalValue = JSON.parse(local);
+    }
     const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const { QuizSatelite,loading } = useAppSelector((state:any) => state.QuizSatelite);
@@ -71,14 +76,14 @@ export const QuizSatelite = () => {
 
         <div className='answer' style={{ backgroundImage: `url(${Background})`}}>
             <div className='prevButton'>
-    <button onClick={()=>navigate("/Satellites")} >
+    <button onClick={()=>navigate(`/Satellites/${LocalValue}`)} >
       {QuizSatelite[0]?.button[3]}
     </button>
     </div>
             {loading ? <Loading/>:
           finish ? <div className='answer_next' >
             <p>{QuizSatelite[0]?.button[0]}{count}/{item.length}</p>
-            <button onClick={()=>{ navigate('/Satellites')}}> {QuizSatelite[0]?.button[1]}  </button>
+            <button onClick={()=>{ navigate(`/Satellites/${LocalValue}`)}}> {QuizSatelite[0]?.button[1]}  </button>
           </div> : <div className='quiz'>
                 <div>
                     <h1>{item[question]?.question}</h1>

@@ -138,7 +138,7 @@ export function HomeInfo() {
                     onClick={() => {
                       if (index === 1) {
                         sessionStorage.setItem("friend", "true");
-                        navigate("/about");
+                        navigate(`/about/${LocalValue}`);
                         setTimeout(() => {
                           sessionStorage.removeItem("friend");
                         }, 5000);

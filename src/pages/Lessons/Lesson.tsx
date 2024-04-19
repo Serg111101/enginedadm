@@ -8,6 +8,11 @@ import { Loading } from "../../components/Loading/Loading";
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
 export function Lesson() {
+  let LocalValue:any
+  if (localStorage.getItem("language")) {
+    let local: any = localStorage.getItem("language");
+    LocalValue = JSON.parse(local);
+  }
   const navigate = useNavigate();
   const [quiz, setQuiz] = useState(false);
   const dispatch = useAppDispatch();
@@ -32,7 +37,7 @@ export function Lesson() {
   async function Quizz(unique_key:string) {
     localStorage.setItem("lessons", JSON.stringify(unique_key));
     setQuiz(!quiz);
-    navigate('/Leqtures');
+    navigate(`/Leqtures/${LocalValue}`);
   }
   
   return (
@@ -42,7 +47,7 @@ export function Lesson() {
     <div className='LessonContainer' style={{ backgroundImage: `url(${Background})` }}>
       <div className="Lesson">
         <div className='prevButton'>
-    <button onClick={()=>navigate("/home")} >
+    <button onClick={()=>navigate(`/home/${LocalValue}`)} >
       {Lesson[0]?.button}
     </button>
         </div>

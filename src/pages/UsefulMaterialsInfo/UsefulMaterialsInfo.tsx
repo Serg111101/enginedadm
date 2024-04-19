@@ -9,6 +9,11 @@ import {
 import { Loading } from "../../components/Loading/Loading";
 
 const UsefulMaterialsInfo = () => {
+  let LocalValue: any;
+if (localStorage.getItem("language")) {
+  let local: any = localStorage.getItem("language");
+  LocalValue = JSON.parse(local);
+}
   const { Lectures, loading } = useSelector((state:any) => state.Lectures);
   const { Slide } = useSelector((state:any) => state.Slide);
   const [lectures, setLectures] = useState(Lectures);
@@ -44,7 +49,7 @@ const UsefulMaterialsInfo = () => {
         kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
         {!elem && lectures?.length > 0 && (
           <div className="prevButton">
-            <button onClick={() => navigate("/UsefulMaterials")}>
+            <button onClick={() => navigate(`/UsefulMaterials/${LocalValue}`)}>
               {Slide[0]?.button[0]}
             </button>
           </div>

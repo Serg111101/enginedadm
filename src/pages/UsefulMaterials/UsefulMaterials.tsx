@@ -9,6 +9,11 @@ import { Loading } from "../../components/Loading/Loading";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 
 export function UsefulMaterials() {
+let LocalValue: any;
+if (localStorage.getItem("language")) {
+  let local: any = localStorage.getItem("language");
+  LocalValue = JSON.parse(local);
+}
 
   const navigate = useNavigate();
   const [quiz, setQuiz] = useState(false);
@@ -37,7 +42,7 @@ export function UsefulMaterials() {
 
   async function nextInfo(title:any, index:any) {
 
-    navigate(`/UsefulMaterialsInfo/:${index}`)
+    navigate(`/UsefulMaterialsInfo/:${index}/${LocalValue}`)
   }
   return (
     <>
@@ -50,7 +55,7 @@ export function UsefulMaterials() {
         >
           <div className="Lesson">
             <div className="prevButton">
-              <button onClick={() => navigate("/")}>{Lesson[0]?.button}</button>
+              <button onClick={() => navigate(`/`)}>{Lesson[0]?.button}</button>
             </div>
             {!quiz && (
               <div className="product-grid">

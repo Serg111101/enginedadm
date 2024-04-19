@@ -100,14 +100,14 @@ export const Quiz = () => {
     return (
         <div className='answer' style={{ backgroundImage: `url(${Background})`}} >
             <div className='prevButton'>
-    <button onClick={()=>{navigate("/Leqtures");localStorage.removeItem('elem')}}>
+    <button onClick={()=>{navigate(`/Leqtures/${LocalValue}`);localStorage.removeItem('elem')}}>
     {LocalValue === "AM" ? 'Հետ' : "Go back"}
     </button>
     </div>
             {loading ? <Loading/>:
           finish ? <div className='answer_next'>
             <p>{LocalValue === "AM" ? 'Դուք հավաքեցիք' : "You collected"+ "  "}{count}/{item.length}</p>
-            <button onClick={()=>{ navigate('/Lessons')}}> {LocalValue === "AM" ? 'Դասնթացներ' : "Lessons"+ "  "}  </button>
+            <button onClick={()=>{ navigate(`/Lessons/${LocalValue}`)}}> {LocalValue === "AM" ? 'Դասնթացներ' : "Lessons"+ "  "}  </button>
           </div> : Quiz.length > 0 ? <div className='quiz'>
                 <div>
                     <h1>{question+1+" . " + item[question]?.question}</h1>

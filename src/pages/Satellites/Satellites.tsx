@@ -45,10 +45,10 @@ export function Satellites() {
 
   function navigateTo() {
     if (!done) {
-      navigate("/SatelliteQuiz");
+      navigate(`/SatelliteQuiz/${LocalValue}`);
 
     } else {
-      navigate("/EditSatelliteQuiz");
+      navigate(`/EditSatelliteQuiz/${LocalValue}`);
 
     }
   }

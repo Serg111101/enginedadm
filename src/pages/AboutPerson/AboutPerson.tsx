@@ -130,7 +130,7 @@ const AboutPerson = () => {
   return (
     <div className='AboutPerson' >
          {!done&&<div className="button">
-        <button onClick={()=>{navigate("/about")}} >{LocalValue==="AM" ? "Հետ":"Go back"}</button>
+        <button onClick={()=>{navigate(`/about/${LocalValue}`)}} >{LocalValue==="AM" ? "Հետ":"Go back"}</button>
      </div>}
 
          <div className="AboutPersons">

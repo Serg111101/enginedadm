@@ -218,7 +218,7 @@ let LocalValue: any;
                     {el.id === 2 ? (
                       <div>
                         {el?.more !== null && shows !== el?.id && (
-                          <button onClick={() => {navigate("/aboutPersons")}}>
+                          <button onClick={() => {navigate(`/aboutPersons/${LocalValue}`)}}>
                             {el?.more}
                           </button>
                         )}

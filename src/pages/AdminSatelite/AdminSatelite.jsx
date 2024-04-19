@@ -136,7 +136,7 @@ if (localStorage.getItem("language")) {
 
   return (
     <div className="UserSatelite">
-      <button className='btn' onClick={() => navigate("/home")} > {loacal === "AM" ? "Հետ" : "Go back"}</button>
+      <button className='btn' onClick={() => navigate(`/home/${LocalValue}`)} > {loacal === "AM" ? "Հետ" : "Go back"}</button>
       <div className="contaLink"> 
    {!open&&   <button className='addBtn' onClick={()=>{setOpen(true)}}>    <PlusCircleFilled className="iconantd" /></button>}
 

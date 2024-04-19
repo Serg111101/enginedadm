@@ -38,19 +38,20 @@ export function EditHeader() {
   
   let bb: any = window.location.pathname;
   let LocalValue: any;
+  
   if (localStorage.getItem("language")) {
     let local: any = localStorage.getItem("language");
     LocalValue = JSON.parse(local);
   }
   
   useEffect(() => {
-    if (window.location.pathname === "/Setting") {
+    if (window.location.pathname === `/Setting/${LocalValue}`) {
       sessionStorage.setItem("done", "true");
     } else {
       sessionStorage.removeItem("done");
     }
     setDone(sessionStorage.getItem("Header") === "true");
-    if (window.location.pathname === "/Setting") {
+    if (window.location.pathname === `/Setting/${LocalValue}`) {
       sessionStorage.setItem("Header", "true");
     } else {
       sessionStorage.removeItem("Header");
@@ -59,7 +60,7 @@ export function EditHeader() {
 
   }, [url]);
   const sessionSetting = sessionStorage.getItem("settings");
-  const urll = window.location.pathname !== "/Setting";
+  const urll = window.location.pathname !== `/Setting/${LocalValue}`;
   useEffect(()=>{
     if(sessionSetting&&sessionSetting==='"Header"'){
       setItem(sessionSetting)
@@ -100,19 +101,19 @@ export function EditHeader() {
   function navigateTo(val:any) {
     switch (val.id) {
       case 1:
-        navigate("/home");
+        navigate(`/home/${LocalValue}`);
         break;
       case 2:
-        navigate("/about");
+        navigate(`/about/${LocalValue}`);
         break;
       case 3:
         window.open(val.link,"_blank")
         break;
       case 4:
-        navigate("/ContactUS");
+        navigate(`/ContactUS/${LocalValue}`);
         break;
       default:
-        navigate("/home");
+        navigate(`/home/${LocalValue}`);
     }
   }
   async function validateAndEditHeader(id: number, newTitle: any  ) {
@@ -144,10 +145,10 @@ export function EditHeader() {
       <div className="editconstainerHeader">
         <div className="editimageHeader">
           <a
-            href="/home"
+            href={`/home/${LocalValue}`}
             onClick={(e) => {
               e.preventDefault();
-              navigate("/home");
+              navigate(`/home/${LocalValue}`);
             }}
           >
             <img src={Logo?.logo?Logo?.logo:image} alt={"Web Page Logo is not difind"} />
@@ -184,9 +185,9 @@ export function EditHeader() {
             {  Header?.map((el: IHeader, index: number) => (
               <div
                 className={
-                  (index === 0 && bb === "/home") ||
-                  (index === 1 && bb === "/about") ||
-                  (index === 3 && bb === "/ContactUS")
+                  (index === 0 && bb === `/home/${LocalValue}`) ||
+                  (index === 1 && bb === `/about/${LocalValue}`) ||
+                  (index === 3 && bb === `/ContactUS/${LocalValue}`)
                     ? "item active"
                     : "item"
                 }

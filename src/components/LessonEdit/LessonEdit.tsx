@@ -12,11 +12,7 @@ import Swal from 'sweetalert2';
 import DeleteAll from '../DeleteComponent';
 import axios from '../../axios/adminaxios';
 
-let LocalValue: any;
-if (localStorage.getItem("language")) {
-    let local: any = localStorage.getItem("language");
-    LocalValue = JSON?.parse(local);
-}
+
 const URL = process.env.REACT_APP_BASE_URL
 export function LessonEdit() {
     let LocalValue: any;
@@ -241,7 +237,7 @@ export function LessonEdit() {
 
         localStorage.setItem("lessons", JSON.stringify(unique_key))
         if ((item - 1) === id && done) {
-            navigate("/EditQuiz")
+            navigate(`/EditQuiz/${LocalValue}`)
         }
     }
     const clodeAddLectures = () => {

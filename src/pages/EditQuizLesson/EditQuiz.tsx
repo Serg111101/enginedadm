@@ -116,7 +116,7 @@ export const EditQuiz = () => {
 
             <div className='answer' >
             <div className='prevButton'>
-          <button onClick={() => { navigate("/Setting") }} >
+          <button onClick={() => { navigate(`/Setting/${LocalValue}`) }} >
           {LocalValue==="AM" ? "Հետ":"Go back"}
           </button>
         </div>

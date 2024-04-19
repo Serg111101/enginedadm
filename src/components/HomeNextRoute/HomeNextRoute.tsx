@@ -41,15 +41,15 @@ export function HomeNextRoute() {
 
 
       if (id === 0) {
-        navigate('/Lessons');
+        navigate(`/Lessons/${loacal}`);
       } else if (id === 1) {
-        navigate('/UsefulMaterials');
+        navigate(`/UsefulMaterials/${loacal}`);
       } else if (id === 2) {
-        navigate('/Satellites');
+        navigate(`/Satellites/${loacal}`);
       } else if (id === 3) {
-        navigate("/UserSatelite")
+        navigate(`/UserSatelite/${loacal}`)
       } else {
-        navigate("/home")
+        navigate(`/home/${loacal}`)
       }
     }
 

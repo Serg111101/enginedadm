@@ -70,7 +70,7 @@ const Informatoin = () => {
     setElem(id);
     localStorage.setItem("elem", id)
     if (lectures[0]?.lectures?.length === id) {
-      navigate("/Quiz")
+      navigate(`/Quiz/${LocalValue}`)
     }
   }
 
@@ -83,7 +83,7 @@ const Informatoin = () => {
     <>
       <div className="Lecturee" style={elem ? { display: "none" } : { backgroundImage: `url(${Background})`, }}>
         {!elem && lectures?.length > 0 && <div className='prevButton'>
-          <button onClick={() => navigate("/Lessons")} >
+          <button onClick={() => navigate(`/Lessons/${LocalValue}`)} >
             {LocalValue === "AM" ? 'Հետ' : "Go back"}
           </button>
         </div>}

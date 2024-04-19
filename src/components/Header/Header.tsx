@@ -35,7 +35,7 @@ export function Header() {
       LocalValue = JSON.parse(local);
   }
   useEffect(() => {
-    if (window.location.pathname === "/Setting") {
+    if (window.location.pathname === `/Setting/${LocalValue}`) {
       sessionStorage.setItem("done", "true");
     } else {
       sessionStorage.removeItem("done");
@@ -73,36 +73,66 @@ export function Header() {
     if (language === null) {
       localStorage.setItem("language", JSON.stringify(languages || "AM"));
       setLanguages(languages);
-      window.location.hash = languages;
     } else {
       setLanguages(JSON.parse(language));
-      window.location.hash = JSON.parse(language);
+
     }
   }
 
-  function changeLanguage(e: any) {
-    localStorage.setItem("language", JSON.stringify(e));
-    setLanguages(e);
-    // navigate("/home");
-    window.location.reload();
+  async function changePath(LocalValue:any) {
+    let path = window.location.pathname.slice(0, window.location.pathname.length - 2);
+    window.location.pathname = path + LocalValue;
+    localStorage.setItem("language", JSON.stringify(LocalValue));
+  }
+  
+  function HandelChangeLanguage(e:any) {
+    return new Promise((resolve:any, reject) => {
+      changePath(e)
+        .then(() => {
+          setLanguages(e);
+          resolve();
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  }
+  
+  async function reloadWindow() {
+    return new Promise((resolve:any) => {
+      setTimeout(() => {
+  
+        window.location.reload();
+        resolve();
+      }, 300);
+    });
+  }
+  
+  async function changeLanguage(e:any) {
+    try {
+      await HandelChangeLanguage(e);
+      await reloadWindow();
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
   }
 
   function navigateTo(val:any) {
     switch (val.id) {
       case 1:
-        navigate("/home");
+        navigate(`/home/${LocalValue}`);
         break;
       case 2:
-        navigate("/about");
+        navigate(`/about/${LocalValue}`);
         break;
       case 3:
         window.open(val.link,"_blank")
         break;
       case 4:
-        navigate("/ContactUS");
+        navigate(`/ContactUS/${LocalValue}`);
         break;
       default:
-        navigate("/home");
+        navigate(`/home/${LocalValue}`);
     }
   }
 
@@ -115,7 +145,7 @@ export function Header() {
             
             onClick={(e) => {
               e.preventDefault();
-              navigate("/home");
+              navigate(`/home/${LocalValue}`);
             }}
           >
             <img src={Logo?.logo?Logo?.logo:image} alt={"Web Page Logo is not difind"} />
@@ -144,9 +174,9 @@ export function Header() {
             {  Header?.map((el: IHeader, index: number) => (
               <div
                 className={
-                  (index === 0 && bb === "/home") ||
-                  (index === 1 && bb === "/about") ||
-                  (index === 3 && bb === "/ContactUS")
+                  (index === 0 && bb === `/home/${LocalValue}`) ||
+                  (index === 1 && bb === `/about/${LocalValue}`) ||
+                  (index === 3 && bb === `/ContactUS/${LocalValue}`)
                     ? "item active"
                     : "item"
                 }
@@ -159,21 +189,21 @@ export function Header() {
               </div>
             ))}
             {auth && <div
-              className={url === `${URL}aeroSpace/Settings` ? "item active" : "item"}
-              onClick={() => navigate("/Setting")}
+              className={url === `${URL}aeroSpace/Settings/${LocalValue}` ? "item active" : "item"}
+              onClick={() => navigate(`/Setting/${LocalValue}`)}
               >
              {LocalValue === "AM"?"Կարգավորումներ":" Settings"}
             </div>}
            {auth ? <div
               className={url === `${URL}aeroSpace/Login` ? "item active" : "item"}
-              onClick={() => {localStorage.removeItem('auth');setAuth('');navigate("/")}}
+              onClick={() => {localStorage.removeItem('auth');setAuth('');navigate(`/${LocalValue}`)}}
               >
              {LocalValue === "AM"?"Դուրս գալ":" Log out"}
 
            
             </div> : <div
               className={url === `${URL}aeroSpace/Login` ? "item active" : "item"}
-              onClick={() => navigate("/")}
+              onClick={() => navigate(`/`)}
             >
               {LocalValue === "AM"?"Մուտք":" Log in"}
             </div>}

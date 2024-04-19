@@ -26,6 +26,11 @@ import { AboutPerson } from "./pages/AboutPerson";
 
 
 function App() {
+  let LocalValue: any;
+  if (localStorage.getItem("language")) {
+    let local: any = localStorage.getItem("language");
+    LocalValue = JSON.parse(local);
+  }
 
   const navigate = useNavigate();
   const [auth, setAuth] = useState<any>("")
@@ -39,7 +44,7 @@ function App() {
         setAuth(json);
       }
     } else {
-      navigate("/")
+      navigate(`/`)
     }
   }, [localStorage?.getItem("auth")])
   
@@ -47,25 +52,44 @@ function App() {
   const path = window.location.pathname;
 
   useEffect(() => {
-    if (path !== "/Setting" && sessionStorage.getItem("done")) {
+    if (!path.includes("/Setting") && sessionStorage.getItem("done")) {
       sessionStorage.removeItem("done");
     } 
-    if (path !== "/Leqtures" && localStorage.getItem("elem")) {
-      localStorage.removeItem("elem");
-    } 
+   
   }, [url, path]);
+  useEffect(() => {
+    let path = window.location.pathname.slice(window.location.pathname.length - 2, window.location.pathname.length);
+   if(path !== "/"){
+    
+     localStorage.setItem("language",JSON.stringify(path))
+   }else{
+     localStorage.setItem("language",JSON.stringify("AM"))
+
+   }
+
+     
+     if (path !== `/Leqtures/${LocalValue}` && localStorage.getItem("elem")) {
+       localStorage.removeItem("elem");
+     } 
+  
+ }, [url, path]);
 
   useEffect(() => {
 
     if (!auth?.accessToken && !localStorage.getItem("auth")) {
-      navigate('/')
+      navigate(`/`)
       setAuth1(false)
     }else{
       setAuth1(true)
     }
-  }, [auth])
+  }, [auth,window.location.pathname])
 
 
+  useEffect(() => {
+    return () => {
+      window.location.reload();
+    };
+  }, [LocalValue]);
 
   return (
     <Scrollbars
@@ -83,21 +107,21 @@ function App() {
         {auth1 && window.location.pathname!=="/" && <Header />}
 
         { !auth.accessToken && window.location.pathname!=="/"  ? <Loading/>: <Routes> 
-          <Route path="/home" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/aboutPersons" element={<AboutPerson/>}/>
-          <Route path="/ContactUS" element={<ContactUs />} />
-          <Route path="/Lessons" element={<Lesson />} />
-          <Route path="/Leqtures" element={<Infomation />} />
-          <Route path="/Quiz" element={<Quiz />} />
-          <Route path="/EditQuiz" element={<EditQuiz />} />
-          <Route path="/Satellites" element={<Satellites />} />
-          <Route path="/Setting" element={<Settings />} />
-          <Route path="/" element={<Login />} />
-          <Route path="/SatelliteQuiz" element={<QuizSatelite />} />
-          <Route path="/EditSatelliteQuiz" element={<EditQuizSatelite />} />
-          <Route path="/EditHeader" element={<EditHeader />} />
-          <Route path="/UserSatelite" element={<AdminSatelite/>}/>
+          <Route path={`/home/${LocalValue}`} element={<Home />} />
+          <Route path={`/about/${LocalValue}`} element={<About />} />
+          <Route path={`/aboutPersons/${LocalValue}`} element={<AboutPerson/>}/>
+          <Route path={`/ContactUS/${LocalValue}`} element={<ContactUs />} />
+          <Route path={`/Lessons/${LocalValue}`} element={<Lesson />} />
+          <Route path={`/Leqtures/${LocalValue}`} element={<Infomation />} />
+          <Route path={`/Quiz/${LocalValue}`} element={<Quiz />} />
+          <Route path={`/EditQuiz/${LocalValue}`} element={<EditQuiz />} />
+          <Route path={`/Satellites/${LocalValue}`} element={<Satellites />} />
+          <Route path={`/Setting/${LocalValue}`} element={<Settings />} />
+          <Route path={`/`} element={<Login />} />
+          <Route path={`/SatelliteQuiz/${LocalValue}`} element={<QuizSatelite />} />
+          <Route path={`/EditSatelliteQuiz/${LocalValue}`} element={<EditQuizSatelite />} />
+          <Route path={`/EditHeader/${LocalValue}`} element={<EditHeader />} />
+          <Route path={`/UserSatelite/${LocalValue}`} element={<AdminSatelite/>}/>
           {/* <Route path="/UsefulMaterials" element={<UsefulMaterialsInfo />} /> */}
           {/* <Route path="/UsefulMaterialsInfo/:name" element={<UsefulMaterialsInfo />} /> */}
 
