@@ -121,18 +121,23 @@ export function Header() {
     switch (val.id) {
       case 1:
         navigate(`/home/${LocalValue}`);
+        setMobile(false);
         break;
       case 2:
         navigate(`/about/${LocalValue}`);
+        setMobile(false);
         break;
       case 3:
-        window.open(val.link,"_blank")
+        window.open(val.link,"_blank");
+        setMobile(false);
         break;
       case 4:
         navigate(`/ContactUS/${LocalValue}`);
+        setMobile(false);
         break;
       default:
         navigate(`/home/${LocalValue}`);
+        setMobile(false);
     }
   }
 

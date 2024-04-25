@@ -30,17 +30,36 @@ import { AboutPerson } from '../AboutPerson';
 
 
 export const Settings = () => {
+  let LocalValue:any;
+  if(localStorage.getItem("language")){
+      let local:any = localStorage.getItem("language");
+      LocalValue = JSON.parse(local);  
+  }
+  const arr = LocalValue === "AM"? [
+    "ՈՒսուցիչ", 'Գլխավոր', 'Վերնագիր', 'Մեր ծրագրերը', 'Մեջբերեում',
+    // 'HomeInfo',
+     'Կապ', 'Կապ էլ․փոստի միջոցով', 
+    'ՏԵղեկատու',
+    'Մեր մասին', 'Մեր թիմը', 'Դասընթացներ',"Արբանյակ", 'Էջատակ'
+  ] : [
+    "Teacher","Home","Header","Our Programs","Qoutation",
+    // "HomeInfo",
+    "Contact us","Contact via E-mail","Info","About us","Our Team","Lessons","Satelite","Footer"
+  ]
   const dispatch = useAppDispatch();
-  const [item, setItem] = useState<any>("Teacher");
- 
+  const [item, setItem] = useState<any>(0);
+  
  
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
   const getItem = sessionStorage.getItem('settings');
+
   useEffect(() => {
     if (getItem) {
       const storedItem = JSON.parse(sessionStorage.getItem('settings') || "");
       setItem(storedItem);
+      
+
     } else {
       sessionStorage.setItem('settings', JSON.stringify(item));
     }
@@ -58,16 +77,13 @@ export const Settings = () => {
 
   const { HomeAuthor } = useAppSelector((state: any) => state.HomeAuthor);
   const Background = HomeAuthor?.[0]?.logo;
-  let LocalValue:any;
-  if(localStorage.getItem("language")){
-      let local:any = localStorage.getItem("language");
-      LocalValue = JSON.parse(local);  
-  }
-  const handleMenuItemClick = (itemName: string) => {
+
+  const handleMenuItemClick = (itemName: number) => {
     setItem(itemName);
     setMenuOpen(false);
     sessionStorage.setItem('settings', JSON.stringify(itemName));
   };
+
 
   return (
     <div className='setting'>
@@ -75,17 +91,11 @@ export const Settings = () => {
     {LocalValue==="AM"?"Ցանկ":"Menu"}  
     </button>
     <div className={`menu ${menuOpen ? 'open' : ''}`} ref={menuRef}>
-      {[
-        "Teacher", 'Home', 'Header', 'HomeNextRoute', 'HomeAuthorComponent',
-        // 'HomeInfo',
-         'ContactUSInfo', 'Contact', 
-        'Info',
-        'AboutTeam', 'AboutPerson', 'Lessons',"Satelite", 'Footer'
-      ].map(menuItem => (
+      {arr.map((menuItem,index) => (
         <p
         key={menuItem}
-        className={item === menuItem ? 'active' : ''}
-        onClick={() => handleMenuItemClick(menuItem)}
+        className={item === index ? 'active' : ''}
+        onClick={() => handleMenuItemClick(index)}
       >
         {menuItem}
       </p>
@@ -93,21 +103,21 @@ export const Settings = () => {
       <div><CloseOutlined className="iconantd" onClick={() => setMenuOpen(false)} /></div>
     </div>
       <div className='eiement'>
-        {item === 'Home' && <HomeHeader /> }
         <div className='homePageBottom' style={{ backgroundImage: `url(${Background})` }}>
-           {item === 'Header' && <EditHeader />}
-          {item === 'Teacher' && <Teacher/>}
-          {item === 'HomeNextRoute' && <HomeNextRoute />}
-          {item === 'HomeAuthorComponent' && <HomeAuthorComponent />}
+          {item === 0 && (LocalValue === "AM"?"ՈՒսուցիչ":'Teacher') && <Teacher/>}
+          {item === 1 && (LocalValue === "AM"? "Գլխավոր": 'Home') && <HomeHeader /> }
+          {item === 2 &&(LocalValue === "AM"?"Վերնագիր":'Header') && <EditHeader />}
+          {item === 3 && (LocalValue === "AM"?"Մեր ծրագրերը":'Our Programs') && <HomeNextRoute />}
+          {item === 4 && (LocalValue === "AM"?"Մեջբերեում":'Qoutation') && <HomeAuthorComponent />}
           {/* {item === 'HomeInfo' && <HomeInfo />} */}
-          {item === "ContactUSInfo" && <ContactUsInfo/>}
-          {item === 'Contact' && <Contact />}
-          {item === 'Info' && <Info />}
-          {item === 'AboutTeam' && <AboutTeam />}
-          {item === 'AboutPerson' && <AboutPerson  />}
-          {item === 'Lessons' && <LessonEdit />}
-          {item === "Satelite" && <Satellites/>}
-          {item === 'Footer' && <EditFooter/>}
+          {item === 5 && (LocalValue === "AM"?"Կապ":"Contact us") && <ContactUsInfo/>}
+          {item === 6 && (LocalValue === "AM"? "Կապ էլ․փոստի միջոցով" : 'Contact via E-mail') && <Contact />}
+          {item === 7 && (LocalValue === "AM"?"ՏԵղեկատու":'Info') && <Info />}
+          {item === 8 && (LocalValue === "AM"?"Մեր մասին":'About us') && <AboutTeam />}
+          {item === 9 && (LocalValue === "AM"?"Մեր թիմը":'Our Team') && <AboutPerson  />}
+          {item === 10 && (LocalValue === "AM"?"Դասընթացներ":'Lessons') && <LessonEdit />}
+          {item === 11 && (LocalValue === "AM"?"Արբանյակ":"Satelite") && <Satellites/>}
+          {item === 12 && (LocalValue === "AM"?"Էջատակ":'Footer') && <EditFooter/>}
 
         </div>
       </div>

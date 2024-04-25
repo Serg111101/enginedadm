@@ -89,10 +89,10 @@ export function EditHeader() {
     if (language === null) {
       localStorage.setItem("language", JSON.stringify(languages || "AM"));
       setLanguages(languages);
-      window.location.hash = languages;
+      // window.location.hash = languages;
     } else {
       setLanguages(JSON.parse(language));
-      window.location.hash = JSON.parse(language);
+      // window.location.hash = JSON.parse(language);
     }
   }
 
